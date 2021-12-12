@@ -2,12 +2,35 @@ name: CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
   pull_request:
-    branches: [ main ]
+    branches: [ master ]
   workflow_dispatch: # Allows to run workflow manually from the Actions tab
 
 jobs:
+  backend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup .NET Core SDK ${{ matrix.dotnet-version }}
+        uses: actions/setup-dotnet@v1.7.2
+        with:
+          dotnet-version: '5.0.x'
+      - uses: actions/cache@v2
+        with:
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget-
+      - name: Install dependencies
+        run: dotnet restore
+      - name: Build
+        run: dotnet build --configuration Release --no-restore
+      - name: Test
+        run: dotnet test --no-restore --verbosity normal
   frontend:
     runs-on: ubuntu-latest
     defaults:
@@ -15,10 +38,10 @@ jobs:
         working-directory: frontend
     steps:
     - uses: actions/checkout@v2
-    - name: Use Node.js 15
+    - name: Use Node.js 16
       uses: actions/setup-node@v1
       with:
-        node-version: '15.x'
+        node-version: '16.x'
     - name: Cache Node.js modules
       uses: actions/cache@v2
       with:
@@ -28,4 +51,3 @@ jobs:
           ${{ runner.os }}-node-
     - run: npm ci
     - run: npm run build --if-present
-    - run: npm test
