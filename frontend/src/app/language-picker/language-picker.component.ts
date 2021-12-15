@@ -10,7 +10,7 @@ export class LanguagePickerComponent implements OnInit {
 
   constructor(private translateService: TranslateService) { }
 
-  currentLanguage: string = "";
+  currentLanguage: string;
 
   onLanguageChange(): void {
     this.translateService.use(this.currentLanguage)
