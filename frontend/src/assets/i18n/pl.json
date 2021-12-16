@@ -1,3 +1,5 @@
 {
-  "hello": "Cześć"
+  "hello": "Cześć",
+  "logIn": "Zaloguj",
+  "signUp": "Zarejestruj"
 }

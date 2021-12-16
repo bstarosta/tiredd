@@ -1,0 +1,12 @@
+:host {
+  width: 60%;
+}
+
+input {
+  font-size: 18px;
+  width: calc(100% - 64px);
+  height: 38px;
+  border: 1px solid black;
+  border-radius: 32px;
+  padding: 0 30px;
+}

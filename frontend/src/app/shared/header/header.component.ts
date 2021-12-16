@@ -9,6 +9,8 @@ export class HeaderComponent implements OnInit {
 
   constructor() { }
 
+  userLoggedIn: boolean = true;
+
   ngOnInit(): void {
   }
 

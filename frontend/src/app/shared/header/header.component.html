@@ -1,3 +1,13 @@
 <header>
+  <div>
+    <img src="#" alt="logo">
+    <select *ngIf="userLoggedIn"></select>
+  </div>
 
+  <trd-searchbar></trd-searchbar>
+  <div>
+    <button class="log-in-button">{{"logIn" | translate}}</button>
+    <button class="sign-up-button">{{"signUp" | translate}}</button>
+    <trd-language-picker></trd-language-picker>
+  </div>
 </header>
