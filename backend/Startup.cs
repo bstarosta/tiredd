@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace backend
 {
@@ -25,12 +26,21 @@ namespace backend
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "backend", Version = "v1" });
             });
+            
+            var connectionString = "server=localhost;user=root;password=root;database=tiredd"; // TODO: Extract password as env variable
+            var serverVersion = new MySqlServerVersion(new Version(8, 0, 26));
+            services.AddDbContext<TireddDbContext>(
+                dbContextOptions => dbContextOptions
+                    .UseMySql(connectionString, serverVersion)
+                    .LogTo(Console.WriteLine, LogLevel.Information)
+                    .EnableSensitiveDataLogging()
+                    .EnableDetailedErrors()
+            );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
