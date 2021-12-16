@@ -1,4 +1,10 @@
-<select [(ngModel)]="currentLanguage" (change)="onLanguageChange()">
-  <option value="en" >English</option>
-  <option value="pl" >Polish</option>
-</select>
+<mat-form-field appearance="fill" class="language-select">
+  <mat-select [(ngModel)]="selectedLanguage" (selectionChange)="onLanguageChange()" disableOptionCentering>
+    <mat-select-trigger>
+      <span class="flag-icon flag-icon-{{selectedLanguage.flagName}}"></span>
+    </mat-select-trigger>
+    <mat-option *ngFor="let language of languages" [value]="language">
+      <span class="flag-icon flag-icon-{{language.flagName}}"></span><span> {{language.name}}</span>
+    </mat-option>
+  </mat-select>
+</mat-form-field>
