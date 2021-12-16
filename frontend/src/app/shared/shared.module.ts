@@ -4,6 +4,8 @@ import {TranslateModule} from "@ngx-translate/core";
 import {LanguagePickerComponent} from "./language-picker/language-picker.component";
 import {FormsModule} from "@angular/forms";
 import { HeaderComponent } from './header/header.component';
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatSelectModule} from "@angular/material/select";
 
 
 @NgModule({
@@ -11,7 +13,9 @@ import { HeaderComponent } from './header/header.component';
   imports: [
     CommonModule,
     TranslateModule,
-    FormsModule
+    FormsModule,
+    MatFormFieldModule,
+    MatSelectModule
   ],
   exports: [
     LanguagePickerComponent,

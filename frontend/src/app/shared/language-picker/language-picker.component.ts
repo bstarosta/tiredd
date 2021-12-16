@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {TranslateService} from "@ngx-translate/core";
+import {Language} from "../../interfaces/language";
 
 @Component({
   selector: 'trd-language-picker',
@@ -8,16 +9,23 @@ import {TranslateService} from "@ngx-translate/core";
 })
 export class LanguagePickerComponent implements OnInit {
 
-  constructor(private translateService: TranslateService) { }
+  constructor(private translateService: TranslateService) {
+  }
 
-  currentLanguage: string;
+  languages: Language[] = [
+    {shortName: 'pl', name: 'Polski', flagName: 'pl'},
+    {shortName: 'en', name: 'English', flagName: 'gb'}
+  ]
+  selectedLanguage: Language
 
   onLanguageChange(): void {
-    this.translateService.use(this.currentLanguage)
+    this.translateService.use(this.selectedLanguage.shortName)
   }
 
   ngOnInit(): void {
-    this.currentLanguage = this.translateService.currentLang
+    this.selectedLanguage = this.languages.find(language =>
+      language.shortName === this.translateService.currentLang
+    )
   }
 
 }
