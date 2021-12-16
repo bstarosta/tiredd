@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 
 @Component({
-  selector: 'app-subtiredd-page',
+  selector: 'trd-subtiredd-page',
   templateUrl: './subtiredd-page.component.html',
   styleUrls: ['./subtiredd-page.component.scss']
 })

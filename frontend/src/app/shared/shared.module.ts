@@ -3,10 +3,11 @@ import {CommonModule} from '@angular/common';
 import {TranslateModule} from "@ngx-translate/core";
 import {LanguagePickerComponent} from "./language-picker/language-picker.component";
 import {FormsModule} from "@angular/forms";
+import { HeaderComponent } from './header/header.component';
 
 
 @NgModule({
-  declarations: [LanguagePickerComponent],
+  declarations: [LanguagePickerComponent, HeaderComponent,],
   imports: [
     CommonModule,
     TranslateModule,
@@ -14,7 +15,8 @@ import {FormsModule} from "@angular/forms";
   ],
   exports: [
     LanguagePickerComponent,
-    TranslateModule
+    TranslateModule,
+    HeaderComponent
   ]
 })
 export class SharedModule {

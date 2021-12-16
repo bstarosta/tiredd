@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {TranslateService} from "@ngx-translate/core";
 
 @Component({
-  selector: 'app-language-picker',
+  selector: 'trd-language-picker',
   templateUrl: './language-picker.component.html',
   styleUrls: ['./language-picker.component.scss']
 })
