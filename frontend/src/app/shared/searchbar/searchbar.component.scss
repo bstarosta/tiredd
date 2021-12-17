@@ -1,12 +1,29 @@
+@use "../../../style/ui-colors";
+
 :host {
-  width: 60%;
+  max-width: 50%;
+  display: flex;
+  width: auto;
+  flex-grow: 1;
 }
 
 input {
   font-size: 18px;
-  width: calc(100% - 64px);
+  width: calc(100% - 70px);
   height: 38px;
-  border: 1px solid black;
+  border: 1px solid ui-colors.$searchbar-border;
   border-radius: 32px;
-  padding: 0 30px;
+  padding: 0 35px;
+  outline: none;
+  background: url("../../../assets/icons/search-icon.svg") no-repeat 10px 10px/20px 20px;
+
+
+  &:hover {
+    border-color: #2196f3;
+  }
+
+  &:focus {
+    border-color: #2196f3
+  }
+
 }

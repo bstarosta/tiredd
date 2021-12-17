@@ -1,0 +1,10 @@
+<div [matMenuTriggerFor]="menu">
+  {{userInitial}}
+</div>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item (click)="onUserLogout()">
+    <mat-icon>logout</mat-icon>
+    <span>{{"logout" | translate}}</span>
+  </button>
+  <input>
+</mat-menu>

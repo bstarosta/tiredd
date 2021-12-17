@@ -1,5 +1,7 @@
 {
   "hello": "Hello",
   "logIn": "Log In",
-  "signUp": "Sign Up"
+  "signUp": "Sign Up",
+  "logout": "Logout",
+  "search": "Search"
 }

@@ -16,6 +16,7 @@ header {
   width: 100%;
   margin: auto 0;
   justify-content: space-between;
+  align-items: center;
 }
 
 button {
@@ -30,7 +31,7 @@ button {
 .log-in-button {
   background-color: ui-colors.$log-in-button-background ;
   border: 1px solid ui-colors.$log-in-button-border;
-  margin: 0 10px;
+  margin: 0 10px 0 40px;
 }
 
 .sign-up-button {
@@ -40,10 +41,20 @@ button {
 }
 
 trd-language-picker {
-  margin: 0 20px;
+  margin: auto 10px;
+}
+
+trd-subtiredd-select {
+  margin-right: 20px;
+}
+
+trd-user-avatar {
+  margin-right: 20px;
 }
 
 img{
+  width: 150px;
+  height: 40px;
   margin: 0 20px;
 }
 

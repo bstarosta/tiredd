@@ -1,0 +1,29 @@
+:host {
+  height: 40px;
+}
+
+::ng-deep {
+  .subtiredd-select {
+      width: 273px;
+      height: 38px;
+      border: 1px solid black;
+      border-radius: 4px;
+
+    .mat-select-content {
+      padding: 0;
+    }
+
+    .mat-select-arrow-wrapper {
+      padding-right: 5px;
+    }
+
+    .mat-select-value{
+      padding: 10px;
+      vertical-align: middle;
+    }
+
+    .mat-select-value-text {
+      line-height: 100%;
+    }
+  }
+}
