@@ -1,0 +1,64 @@
+@use "../../../style/ui-colors";
+
+:host {
+  display: flex;
+  width: 50%;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid ui-colors.$post-list-item-border;
+  background-color: ui-colors.$post-list-background;
+}
+
+.votes-sidebar {
+  background-color: ui-colors.$votes-sidebar-background;
+  width: 60px;
+}
+
+img {
+  display: flex;
+  width: 25px;
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  cursor: pointer;
+}
+
+.rotate90 {
+  transform: rotate(180deg);
+}
+
+.score-text {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 18px;
+  color: ui-colors.$post-list-item-text;
+}
+
+.post-contents {
+  width: 100%;
+}
+
+.post-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 3px;
+}
+
+.subtiredd-name {
+  margin-left: 5px;
+  text-align: left;
+  color: ui-colors.$post-list-item-text;
+}
+
+.time-text {
+  text-align: right;
+  margin-right: 5px;
+  color: ui-colors.$post-list-item-light-text;
+}
+
+.post-title {
+  font-size: 24px;
+}
