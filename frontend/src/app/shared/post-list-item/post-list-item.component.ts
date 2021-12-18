@@ -12,7 +12,8 @@ export class PostListItemComponent implements OnInit {
     title: "This is a post",
     subtireddName: "t/subtiredd",
     score: 100,
-    userVote: "upVote"
+    userVote: "upVote",
+    timestamp: new Date("2021-12-18T18:21:00Z")
   }
 
   constructor() { }

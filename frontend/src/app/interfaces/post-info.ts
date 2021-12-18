@@ -5,4 +5,5 @@ export interface PostInfo {
   subtireddName: string;
   score: number;
   userVote: Vote;
+  timestamp: Date;
 }
