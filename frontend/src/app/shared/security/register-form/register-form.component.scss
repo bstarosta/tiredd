@@ -1,0 +1,42 @@
+@use "../../../../style/ui-colors";
+
+:host {
+  display: block;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+
+  ::ng-deep {
+    mat-form-field:not(.mat-form-field-invalid).mat-focused {
+       .mat-form-field-label {
+        color: #99a5df;
+      }
+
+      .mat-form-field-ripple {
+        background-color: #99a5df;
+      }
+    }
+  }
+}
+
+mat-form-field {
+  width: 40%;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+button {
+  width: 40%;
+  height: 40px;
+  border: none;
+  border-radius: 30px;
+  background-color: ui-colors.$account-dialog-button;
+  font-size: 18px;
+
+  &:hover {
+    background-color: ui-colors.$account-dialog-button-hover;
+  }
+}
+

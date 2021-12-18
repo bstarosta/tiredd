@@ -1,3 +1,5 @@
 <div class="sidepanel"></div>
-<trd-login-modal (closeClick)="onCloseClick()" *ngIf="data === 'login' "></trd-login-modal>
-<trd-register-modal (closeClick)="onCloseClick()" *ngIf="data === 'register'"></trd-register-modal>
+<div class="modal-container">
+  <trd-login-modal (closeClick)="onCloseClick()" *ngIf="data === 'login' "></trd-login-modal>
+  <trd-register-modal (closeClick)="onCloseClick()" *ngIf="data === 'register'"></trd-register-modal>
+</div>

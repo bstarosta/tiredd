@@ -14,5 +14,7 @@
   "password": "Password",
   "confirmPassword": "Confirm password",
   "email": "E-mail",
-  "comments": "Comments"
+  "continue": "Continue",
+  "comments": "Comments",
+  "alreadySignedUp": "Already signed up?"
 }

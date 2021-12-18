@@ -14,5 +14,7 @@
   "password": "Hasło",
   "confirmPassword": "Powtórz hasło",
   "email": "E-mail",
-  "comments": "Komentarze"
+  "continue": "Kontynuuj",
+  "comments": "Komentarze",
+  "alreadySignedUp": "Masz już konto?"
 }

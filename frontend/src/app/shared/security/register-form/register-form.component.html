@@ -1,0 +1,19 @@
+<form [formGroup]="form">
+  <mat-form-field >
+    <mat-label>{{"username" | translate}}</mat-label>
+    <input matInput formControlName="username">
+  </mat-form-field>
+  <mat-form-field >
+    <mat-label>{{"email" | translate}}</mat-label>
+    <input matInput formControlName="email">
+  </mat-form-field>
+  <mat-form-field >
+    <mat-label>{{"password" | translate}}</mat-label>
+    <input type="password" matInput formControlName="password">
+  </mat-form-field>
+  <mat-form-field >
+    <mat-label>{{"confirmPassword" | translate}}</mat-label>
+    <input type="password" matInput formControlName="confirmPassword">
+  </mat-form-field>
+  <button>{{"continue" | translate}}</button>
+</form>

@@ -6,6 +6,12 @@
   width: 100%;
 }
 
+.modal-container {
+  display: flex;
+  flex-grow: 1;
+  padding-left: 30px;
+}
+
 
 .sidepanel {
   height: 100%;

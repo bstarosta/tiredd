@@ -6,8 +6,9 @@ import {Observable} from "rxjs";
 export type AccountModalMode = "login" | "register"
 
 const ACCOUNT_MODAL_CONFIG: MatDialogConfig = {
-  height: "80vh",
-  width: "40vw",
+  height: "85vh",
+  width: "50vw",
+  disableClose: true,
   panelClass: "account-dialog-container"
 }
 
