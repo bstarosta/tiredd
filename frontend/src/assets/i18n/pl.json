@@ -1,3 +1,9 @@
 {
-  "hello": "Cześć"
+  "hello": "Cześć",
+  "logIn": "Zaloguj",
+  "signUp": "Zarejestruj",
+  "logout": "Wyloguj",
+  "search": "Szukaj",
+  "home": "Strona domowa",
+  "filter": "Filtruj"
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'trd-header',
@@ -7,7 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+  }
+
+  userLoggedIn: boolean = false;
+
+  onLogIn(): void {
+    this.userLoggedIn = true
+  }
+
+  onLogOut(): void {
+    this.userLoggedIn = false
+  }
 
   ngOnInit(): void {
   }

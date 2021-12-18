@@ -1,5 +1,6 @@
 <mat-form-field appearance="fill" class="language-select">
-  <mat-select [(ngModel)]="selectedLanguage" (selectionChange)="onLanguageChange()" disableOptionCentering>
+  <mat-select [(ngModel)]="selectedLanguage" (selectionChange)="onLanguageChange()"
+              disableOptionCentering panelClass="language-picker-panel">
     <mat-select-trigger>
       <span class="flag-icon flag-icon-{{selectedLanguage.flagName}}"></span>
     </mat-select-trigger>

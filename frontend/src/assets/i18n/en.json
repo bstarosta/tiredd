@@ -1,3 +1,9 @@
 {
-  "hello": "Hello"
+  "hello": "Hello",
+  "logIn": "Log In",
+  "signUp": "Sign Up",
+  "logout": "Logout",
+  "search": "Search",
+  "home": "Home",
+  "filter": "Filter"
 }

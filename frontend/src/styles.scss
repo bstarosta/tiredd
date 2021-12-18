@@ -1,5 +1,6 @@
 @import "style/misc/global";
+@import "style/misc/unselectable";
 @import "~flag-icon-css/sass/flag-icons";
+@import "style/components/language-picker-panel";
+@import "style/components/subtiredd-select-panel";
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
