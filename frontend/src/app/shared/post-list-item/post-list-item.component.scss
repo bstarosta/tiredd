@@ -15,16 +15,30 @@
   width: 60px;
 }
 
-img {
-  display: flex;
+.arrow-icon {
+  display: block;
   width: 25px;
+  height: 25px;
   margin-top: 10px;
   margin-left: auto;
   margin-right: auto;
   cursor: pointer;
+  background: url("../../../assets/icons/arrow.png") 0 0 / 25px 25px no-repeat;
+
+  &:hover {
+    background: url("../../../assets/icons/arrow-light.png") 0 0 / 25px 25px no-repeat;
+  }
+
+  &.selected {
+    background: url("../../../assets/icons/arrow-filled.png") 0 0 / 25px 25px no-repeat;
+  }
+
+  &.selected:hover {
+    background: url("../../../assets/icons/arrow-filled-light.png") 0 0 / 25px 25px no-repeat;
+  }
 }
 
-.rotate90 {
+.rotate180 {
   transform: rotate(180deg);
 }
 
@@ -37,6 +51,8 @@ img {
 
 .post-contents {
   width: 100%;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .post-info {
@@ -48,17 +64,28 @@ img {
 }
 
 .subtiredd-name {
-  margin-left: 5px;
   text-align: left;
   color: ui-colors.$post-list-item-text;
 }
 
 .time-text {
   text-align: right;
-  margin-right: 5px;
   color: ui-colors.$post-list-item-light-text;
 }
 
 .post-title {
   font-size: 24px;
+  margin-top: 10px;
+}
+
+.post-image {
+  display: flex;
+  max-width: 90%;
+  margin: 15px auto;
+}
+
+.comments {
+  display: flex;
+  margin-bottom: 5px;
+  color: ui-colors.$post-list-item-light-text;
 }
