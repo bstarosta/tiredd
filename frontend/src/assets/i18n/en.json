@@ -3,5 +3,7 @@
   "logIn": "Log In",
   "signUp": "Sign Up",
   "logout": "Logout",
-  "search": "Search"
+  "search": "Search",
+  "home": "Home",
+  "filter": "Filter"
 }

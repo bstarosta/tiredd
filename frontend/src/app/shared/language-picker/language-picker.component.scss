@@ -1,3 +1,5 @@
+@use "../../../style/ui-colors";
+
 ::ng-deep {
   .language-select {
     .mat-form-field-underline {
@@ -23,7 +25,7 @@
     }
 
     mat-select-trigger .flag-icon {
-      border: 1px solid #5a6488;
+      border: 1px solid ui-colors.$language-picker-border;
     }
 
     &.mat-form-field.mat-focused.mat-primary .mat-select-arrow {

@@ -19,11 +19,11 @@ input {
 
 
   &:hover {
-    border-color: #2196f3;
+    border-color: ui-colors.$searchbar-border-focus;
   }
 
   &:focus {
-    border-color: #2196f3
+    border-color: ui-colors.$searchbar-border-focus;
   }
 
 }

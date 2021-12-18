@@ -11,6 +11,7 @@ import { SubtireddSelectComponent } from './subtiredd-select/subtiredd-select.co
 import { UserAvatarComponent } from './user-avatar/user-avatar.component';
 import {MatMenuModule} from "@angular/material/menu";
 import {MatIconModule} from "@angular/material/icon";
+import {RouterModule} from "@angular/router";
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import {MatIconModule} from "@angular/material/icon";
     MatFormFieldModule,
     MatSelectModule,
     MatMenuModule,
-    MatIconModule
+    MatIconModule,
+    RouterModule
   ],
   exports: [
     LanguagePickerComponent,

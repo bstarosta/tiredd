@@ -1,29 +1,58 @@
+@use "../../../style/ui-colors";
+
 :host {
   height: 40px;
 }
 
 ::ng-deep {
-  .subtiredd-select {
-      width: 273px;
-      height: 38px;
-      border: 1px solid black;
-      border-radius: 4px;
+  .mat-menu-panel.subtiredd-menu {
+    max-width: none;
+    width: 275px;
+    max-height: 40vh;
+  }
+}
 
-    .mat-select-content {
-      padding: 0;
-    }
+.trigger {
+  display: flex;
+  height: 38px;
+  width: 273px;
+  border: 1px solid ui-colors.$subtiredd-select-border;
+  border-radius: 4px;
+  justify-content: space-between;
+  cursor: pointer;
 
-    .mat-select-arrow-wrapper {
-      padding-right: 5px;
-    }
+  .current-location {
+    height: 38px;
+    line-height: 38px;
+    padding-left: 10px;
+  }
 
-    .mat-select-value{
-      padding: 10px;
-      vertical-align: middle;
-    }
+  .arrow {
+    width: 20px;
+    margin-right: 10px;
 
-    .mat-select-value-text {
-      line-height: 100%;
+    span {
+      line-height: 38px;
     }
   }
 }
+
+.filter {
+  height: 30px;
+  padding: 0 10px;
+  margin: 15px 0;
+
+  input {
+    line-height: 24px;
+    font-size: 16px;
+    width: calc(100% - 22px);
+    outline: none;
+    padding: 4px 10px;
+    border: 1px solid ui-colors.$subtiredd-filter-border;
+
+    &:hover, &:focus {
+      border-color: ui-colors.$subtiredd-filter-border-focus;
+    }
+  }
+}
+
