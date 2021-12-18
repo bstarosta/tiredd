@@ -35,7 +35,7 @@ button {
 .popular-communities-item {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-evenly;
   width: 100%;
   border-bottom: 1px solid ui-colors.$popular-communities-item-border;
 }
