@@ -13,10 +13,11 @@ import {MatMenuModule} from "@angular/material/menu";
 import {MatIconModule} from "@angular/material/icon";
 import {RouterModule} from "@angular/router";
 import { PostListItemComponent } from './post-list-item/post-list-item.component';
+import { PostListComponent } from './post-list/post-list.component';
 
 
 @NgModule({
-  declarations: [LanguagePickerComponent, HeaderComponent, SearchbarComponent, SubtireddSelectComponent, UserAvatarComponent, PostListItemComponent],
+  declarations: [LanguagePickerComponent, HeaderComponent, SearchbarComponent, SubtireddSelectComponent, UserAvatarComponent, PostListItemComponent, PostListComponent],
   imports: [
     CommonModule,
     TranslateModule,
@@ -27,12 +28,13 @@ import { PostListItemComponent } from './post-list-item/post-list-item.component
     MatIconModule,
     RouterModule
   ],
-    exports: [
-        LanguagePickerComponent,
-        TranslateModule,
-        HeaderComponent,
-        PostListItemComponent
-    ]
+  exports: [
+    LanguagePickerComponent,
+    TranslateModule,
+    HeaderComponent,
+    PostListItemComponent,
+    PostListComponent
+  ]
 })
 export class SharedModule {
 }
