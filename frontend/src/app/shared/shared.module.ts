@@ -13,10 +13,12 @@ import {MatMenuModule} from "@angular/material/menu";
 import {MatIconModule} from "@angular/material/icon";
 import {RouterModule} from "@angular/router";
 import { PostListItemComponent } from './post-list-item/post-list-item.component';
+import { PopularCommunitiesComponent } from './popular-communities/popular-communities.component';
+import { CommunityAvatarComponent } from './community-avatar/community-avatar.component';
 
 
 @NgModule({
-  declarations: [LanguagePickerComponent, HeaderComponent, SearchbarComponent, SubtireddSelectComponent, UserAvatarComponent, PostListItemComponent],
+  declarations: [LanguagePickerComponent, HeaderComponent, SearchbarComponent, SubtireddSelectComponent, UserAvatarComponent, PostListItemComponent, PopularCommunitiesComponent, CommunityAvatarComponent],
   imports: [
     CommonModule,
     TranslateModule,
@@ -31,7 +33,8 @@ import { PostListItemComponent } from './post-list-item/post-list-item.component
         LanguagePickerComponent,
         TranslateModule,
         HeaderComponent,
-        PostListItemComponent
+        PostListItemComponent,
+        PopularCommunitiesComponent
     ]
 })
 export class SharedModule {

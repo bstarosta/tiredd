@@ -1,0 +1,41 @@
+@use "../../../style/ui-colors";
+
+:host {
+  display: flex;
+  width: 20%;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid ui-colors.$popular-communities-border;
+  background-color: ui-colors.$popular-communities-background;
+}
+
+.view-all-communities-button {
+  border: none;
+  background-color: ui-colors.$view-all-communities-button-background;
+
+  &:hover {
+    background-color: ui-colors.$light-blue;
+  }
+}
+
+button {
+  height: 35px;
+  padding-right: 30px;
+  padding-left: 30px;
+  border-radius: 30px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.popular-communities-contents {
+  width: 100%;
+}
+
+.popular-communities-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  border-bottom: 1px solid ui-colors.$popular-communities-item-border;
+}
