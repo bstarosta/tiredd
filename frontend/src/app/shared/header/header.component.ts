@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {AccountModalMode, AccountModalService} from "../../services/account-modal.service";
 
 @Component({
   selector: 'trd-header',
@@ -7,10 +8,14 @@ import {Component, OnInit} from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() {
+  constructor(private accountModalService: AccountModalService) {
   }
 
   userLoggedIn: boolean = false;
+
+  openAccountModal(mode: AccountModalMode): void {
+    this.accountModalService.openAccountModal(mode)
+  }
 
   onLogIn(): void {
     this.userLoggedIn = true

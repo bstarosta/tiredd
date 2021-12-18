@@ -12,6 +12,7 @@ import { UserAvatarComponent } from './user-avatar/user-avatar.component';
 import {MatMenuModule} from "@angular/material/menu";
 import {MatIconModule} from "@angular/material/icon";
 import {RouterModule} from "@angular/router";
+import {SecurityModule} from "./security/security.module";
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import {RouterModule} from "@angular/router";
     MatSelectModule,
     MatMenuModule,
     MatIconModule,
-    RouterModule
+    RouterModule,
+    SecurityModule
   ],
   exports: [
     LanguagePickerComponent,

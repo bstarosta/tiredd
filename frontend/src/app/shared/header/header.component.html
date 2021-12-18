@@ -7,7 +7,7 @@
   <trd-searchbar></trd-searchbar>
   <div>
     <button *ngIf="!userLoggedIn" class="log-in-button" (click)="onLogIn()">{{"logIn" | translate}}</button>
-    <button *ngIf="!userLoggedIn" class="sign-up-button">{{"signUp" | translate}}</button>
+    <button *ngIf="!userLoggedIn" class="sign-up-button" (click)="openAccountModal('register')">{{"signUp" | translate}}</button>
     <trd-language-picker></trd-language-picker>
     <trd-user-avatar *ngIf="userLoggedIn" (userLoggedOut)="onLogOut()"></trd-user-avatar>
   </div>

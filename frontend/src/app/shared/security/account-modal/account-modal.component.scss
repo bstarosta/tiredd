@@ -1,0 +1,15 @@
+@use "../../../../style/ui-colors";
+
+:host {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+
+.sidepanel {
+  height: 100%;
+  width: 20%;
+  border-right: 1px solid black;
+  background-color:  ui-colors.$account-dialog-sidepanel;
+}

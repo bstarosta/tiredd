@@ -5,5 +5,13 @@
   "logout": "Logout",
   "search": "Search",
   "home": "Home",
-  "filter": "Filter"
+  "filter": "Filter",
+  "registerModalTitle": "Sign up",
+  "registerModalMessage": "Sign up to join our communities, create new posts and add comments",
+  "loginModalTitle": "Sign up",
+  "loginModalMessage": "Sign up to join our communities, create new posts and add comments",
+  "username" : "Username",
+  "password": "Password",
+  "confirmPassword": "Confirm password",
+  "email": "E-mail"
 }
