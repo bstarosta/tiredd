@@ -12,10 +12,11 @@ import { UserAvatarComponent } from './user-avatar/user-avatar.component';
 import {MatMenuModule} from "@angular/material/menu";
 import {MatIconModule} from "@angular/material/icon";
 import {RouterModule} from "@angular/router";
+import { PostListItemComponent } from './post-list-item/post-list-item.component';
 
 
 @NgModule({
-  declarations: [LanguagePickerComponent, HeaderComponent, SearchbarComponent, SubtireddSelectComponent, UserAvatarComponent,],
+  declarations: [LanguagePickerComponent, HeaderComponent, SearchbarComponent, SubtireddSelectComponent, UserAvatarComponent, PostListItemComponent],
   imports: [
     CommonModule,
     TranslateModule,
@@ -26,11 +27,12 @@ import {RouterModule} from "@angular/router";
     MatIconModule,
     RouterModule
   ],
-  exports: [
-    LanguagePickerComponent,
-    TranslateModule,
-    HeaderComponent
-  ]
+    exports: [
+        LanguagePickerComponent,
+        TranslateModule,
+        HeaderComponent,
+        PostListItemComponent
+    ]
 })
 export class SharedModule {
 }
