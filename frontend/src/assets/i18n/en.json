@@ -13,5 +13,6 @@
   "username" : "Username",
   "password": "Password",
   "confirmPassword": "Confirm password",
-  "email": "E-mail"
+  "email": "E-mail",
+  "comments": "Comments"
 }
