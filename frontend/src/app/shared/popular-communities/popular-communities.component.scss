@@ -38,6 +38,32 @@ img {
   height: 100%;
 }
 
+.center-button {
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.join-community-button {
+  border: none;
+  background-color: ui-colors.$view-all-communities-button-background;
+  width: 90px;
+  margin-left: auto;
+  margin-right: 10px;
+
+  &:hover {
+    background-color: ui-colors.$light-blue;
+  }
+}
+
+button {
+  height: 30px;
+  border-radius: 15px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
 .popular-communities-contents {
   width: 100%;
 }
@@ -50,10 +76,21 @@ img {
   border-top: 1px solid ui-colors.$popular-communities-item-border;
   padding-bottom: 8px;
   padding-top: 8px;
+}
+
+.popular-communities-item-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  padding-bottom: 8px;
+  padding-top: 8px;
   cursor: pointer;
 
   &:hover {
-    background-color: ui-colors.$ultra-light-blue;
+    .underline-on-hover {
+      text-decoration: underline;
+    }
   }
 }
 
