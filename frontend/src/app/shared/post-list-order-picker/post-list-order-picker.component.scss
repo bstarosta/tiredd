@@ -1,0 +1,58 @@
+@use "../../../style/ui-colors";
+
+:host {
+  display: flex;
+  flex-direction: row;
+  width: 50%;
+  margin: 20px auto 0;
+  border: 1px solid ui-colors.$post-list-order-picker-border;
+  background-color: ui-colors.$post-list-order-picker-background;
+}
+
+div {
+  display: flex;
+  width: 100%;
+  padding: 7px 60px;
+  justify-content: space-between;
+}
+
+button {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  padding: 5px 20px;
+  border-radius: 30px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.order-button {
+  background-color: ui-colors.$order-button-background ;
+  border: none;
+  color: ui-colors.$order-button-text;
+
+  &:hover {
+    padding: 4px 19px;
+    border: 1px solid ui-colors.$order-button-border;
+  }
+
+  &.selected {
+    border: none;
+    background-color: ui-colors.$sign-up-button-background;
+    color: ui-colors.$selected-order-button-text;
+
+    &:hover {
+      padding: 5px 20px;
+      background-color: ui-colors.$light-blue;
+    }
+  }
+}
+
+.button-icon {
+  font-size: 27px;
+}
+
+.button-text {
+  line-height: 100%;
+  margin-left: 5px;
+}

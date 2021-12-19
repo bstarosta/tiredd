@@ -1,0 +1,14 @@
+<div>
+  <button class="order-button" [ngClass]="{'selected': selectedOrder==='hot'}" (click)="onHotOrderPicked()">
+    <span class="material-icons button-icon">local_fire_department</span>
+    <span class="button-text">{{"hot" | translate}}</span>
+  </button>
+  <button class="order-button" [ngClass]="{'selected': selectedOrder==='new'}" (click)="onNewOrderPicked()">
+    <span class="material-icons button-icon">brightness_5</span>
+    <span class="button-text">{{"new" | translate}}</span>
+  </button>
+  <button class="order-button" [ngClass]="{'selected': selectedOrder==='top'}" (click)="onTopOrderPicked()">
+    <span class="material-icons button-icon">landscape</span>
+    <span class="button-text">{{"top" | translate}}</span>
+  </button>
+</div>

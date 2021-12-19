@@ -6,5 +6,8 @@
   "search": "Search",
   "home": "Home",
   "filter": "Filter",
-  "comments": "Comments"
+  "comments": "Comments",
+  "hot": "Hot",
+  "new": "New",
+  "top": "Top"
 }

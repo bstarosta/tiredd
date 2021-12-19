@@ -14,10 +14,11 @@ import {MatIconModule} from "@angular/material/icon";
 import {RouterModule} from "@angular/router";
 import { PostListItemComponent } from './post-list-item/post-list-item.component';
 import { PostListComponent } from './post-list/post-list.component';
+import { PostListOrderPickerComponent } from './post-list-order-picker/post-list-order-picker.component';
 
 
 @NgModule({
-  declarations: [LanguagePickerComponent, HeaderComponent, SearchbarComponent, SubtireddSelectComponent, UserAvatarComponent, PostListItemComponent, PostListComponent],
+  declarations: [LanguagePickerComponent, HeaderComponent, SearchbarComponent, SubtireddSelectComponent, UserAvatarComponent, PostListItemComponent, PostListComponent, PostListOrderPickerComponent],
   imports: [
     CommonModule,
     TranslateModule,
@@ -28,13 +29,14 @@ import { PostListComponent } from './post-list/post-list.component';
     MatIconModule,
     RouterModule
   ],
-  exports: [
-    LanguagePickerComponent,
-    TranslateModule,
-    HeaderComponent,
-    PostListItemComponent,
-    PostListComponent
-  ]
+    exports: [
+        LanguagePickerComponent,
+        TranslateModule,
+        HeaderComponent,
+        PostListItemComponent,
+        PostListComponent,
+        PostListOrderPickerComponent
+    ]
 })
 export class SharedModule {
 }
