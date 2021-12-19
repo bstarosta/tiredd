@@ -3,9 +3,7 @@
 :host {
   display: flex;
   width: 20%;
-  margin-top: 20px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 20px auto 0 auto;
   border: 1px solid ui-colors.$popular-communities-border;
   background-color: ui-colors.$popular-communities-background;
 }
@@ -41,16 +39,14 @@ img {
 .center-button {
   display: flex;
   justify-content: center;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding: 10px 0;
 }
 
 .join-community-button {
   border: none;
   background-color: ui-colors.$view-all-communities-button-background;
   width: 90px;
-  margin-left: auto;
-  margin-right: 10px;
+  margin: 0 10px 0 auto;
 
   &:hover {
     background-color: ui-colors.$light-blue;
@@ -74,8 +70,7 @@ button {
   align-items: center;
   width: 100%;
   border-top: 1px solid ui-colors.$popular-communities-item-border;
-  padding-bottom: 8px;
-  padding-top: 8px;
+  padding: 8px 0;
 }
 
 .popular-communities-item-info {
@@ -83,8 +78,7 @@ button {
   flex-direction: row;
   align-items: center;
   width: 100%;
-  padding-bottom: 8px;
-  padding-top: 8px;
+  padding: 8px 0;
   cursor: pointer;
 
   &:hover {
