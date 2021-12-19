@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {PostListOrder} from "../../types/post-list-order";
 
-const DEFAULT_ORDER :PostListOrder = "hot";
+const DEFAULT_ORDER: PostListOrder = "hot";
 
 @Component({
   selector: 'trd-post-list-order-picker',

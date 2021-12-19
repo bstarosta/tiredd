@@ -3,8 +3,7 @@
 :host {
   display: flex;
   flex-direction: row;
-  width: 50%;
-  margin: 20px auto 0;
+  width: 100%;
   border: 1px solid ui-colors.$post-list-order-picker-border;
   background-color: ui-colors.$post-list-order-picker-background;
 }
@@ -27,7 +26,7 @@ button {
 }
 
 .order-button {
-  background-color: ui-colors.$order-button-background ;
+  background-color: ui-colors.$order-button-background;
   border: none;
   color: ui-colors.$order-button-text;
 
