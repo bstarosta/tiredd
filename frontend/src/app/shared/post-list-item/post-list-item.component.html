@@ -1,12 +1,18 @@
 <div class="votes-sidebar">
-  <img src="assets/icons/arrow-empty.png" alt="arrow-empty">
-  <p class="score-text">100</p>
-  <img src="assets/icons/arrow-empty.png" alt="arrow-empty" class="rotate90">
+  <div class="arrow-icon" [ngClass]="{'selected': postInfo.userVote === 'upVote'}"></div>
+  <p class="score-text">{{postInfo.score}}</p>
+  <div class="arrow-icon rotate180" [ngClass]="{'selected': postInfo.userVote === 'downVote'}"></div>
 </div>
 <div class="post-contents">
   <div class="post-info">
-    <p class="subtiredd-name">t/subtiredd</p>
-    <p class="time-text">16 hours ago</p>
+    <p class="subtiredd-name">{{postInfo.subtireddName}}</p>
+    <p class="time-text">{{postInfo.timestamp | date:'d MMM y, H:mm '}}</p>
   </div>
-  <p class="post-title">This is a post</p>
+  <p class="post-title">{{postInfo.title}}</p>
+  <img *ngIf="postInfo.image" src="{{postInfo.image}}" alt="image" class="post-image">
+  <p *ngIf="!postInfo.image" class="post-text">{{postInfo.text}}</p>
+  <div class="comments">
+    <span class="material-icons">comment</span>
+    {{"comments" | translate}}
+  </div>
 </div>
