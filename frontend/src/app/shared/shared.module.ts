@@ -15,11 +15,11 @@ import {RouterModule} from "@angular/router";
 import { PostListItemComponent } from './post-list-item/post-list-item.component';
 import { PostListComponent } from './post-list/post-list.component';
 import { PostListOrderPickerComponent } from './post-list-order-picker/post-list-order-picker.component';
-import { PostsColumnComponent } from './posts-column/posts-column.component';
+import { PostColumnComponent } from './posts-column/post-column.component';
 
 
 @NgModule({
-  declarations: [LanguagePickerComponent, HeaderComponent, SearchbarComponent, SubtireddSelectComponent, UserAvatarComponent, PostListItemComponent, PostListComponent, PostListOrderPickerComponent, PostsColumnComponent],
+  declarations: [LanguagePickerComponent, HeaderComponent, SearchbarComponent, SubtireddSelectComponent, UserAvatarComponent, PostListItemComponent, PostListComponent, PostListOrderPickerComponent, PostColumnComponent],
   imports: [
     CommonModule,
     TranslateModule,
@@ -37,7 +37,7 @@ import { PostsColumnComponent } from './posts-column/posts-column.component';
     PostListItemComponent,
     PostListComponent,
     PostListOrderPickerComponent,
-    PostsColumnComponent
+    PostColumnComponent
   ]
 })
 export class SharedModule {
