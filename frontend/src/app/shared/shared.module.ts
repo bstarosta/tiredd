@@ -16,10 +16,12 @@ import { PostListItemComponent } from './post-list-item/post-list-item.component
 import { PostListComponent } from './post-list/post-list.component';
 import { PostListOrderPickerComponent } from './post-list-order-picker/post-list-order-picker.component';
 import { PostColumnComponent } from './posts-column/post-column.component';
+import { PopularCommunitiesComponent } from '../home/popular-communities/popular-communities.component';
+import { CommunityAvatarComponent } from './community-avatar/community-avatar.component';
 
 
 @NgModule({
-  declarations: [LanguagePickerComponent, HeaderComponent, SearchbarComponent, SubtireddSelectComponent, UserAvatarComponent, PostListItemComponent, PostListComponent, PostListOrderPickerComponent, PostColumnComponent],
+  declarations: [LanguagePickerComponent, HeaderComponent, SearchbarComponent, SubtireddSelectComponent, UserAvatarComponent, PostListItemComponent, PostListComponent, PostListOrderPickerComponent, PostColumnComponent, PopularCommunitiesComponent, CommunityAvatarComponent],
   imports: [
     CommonModule,
     TranslateModule,
@@ -37,7 +39,8 @@ import { PostColumnComponent } from './posts-column/post-column.component';
     PostListItemComponent,
     PostListComponent,
     PostListOrderPickerComponent,
-    PostColumnComponent
+    PostColumnComponent,
+    PopularCommunitiesComponent
   ]
 })
 export class SharedModule {
