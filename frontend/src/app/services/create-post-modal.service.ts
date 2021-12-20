@@ -4,8 +4,8 @@ import {Observable} from "rxjs";
 import {CreatePostModalComponent} from "../shared/create-post-modal/create-post-modal.component";
 
 const CREATE_POST_MODAL_CONFIG: MatDialogConfig = {
-  height: "85vh",
-  width: "50vw"
+  height: "70vh",
+  width: "40vw"
 }
 
 @Injectable({
@@ -17,6 +17,6 @@ export class CreatePostModalService {
   }
 
   openAccountModal(): Observable<any> {
-    return this.matDialog.open(CreatePostModalComponent, {data: CREATE_POST_MODAL_CONFIG}).afterClosed()
+    return this.matDialog.open(CreatePostModalComponent, {...CREATE_POST_MODAL_CONFIG}).afterClosed()
   }
 }

@@ -1,1 +1,7 @@
-<p>create-post-modal works!</p>
+<div class="header">
+  <h2>{{"create-post" | translate}}</h2>
+  <span (click)="onCloseClick()" class="material-icons close-icon">close</span>
+</div>
+<input class="text-input title" [placeholder]="'title' | translate">
+<textarea class="text-input" [placeholder]="'text' | translate"></textarea>
+

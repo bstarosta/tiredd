@@ -12,5 +12,7 @@
   "hot": "Hot",
   "new": "New",
   "top": "Top",
-  "create-post": "Create a post"
+  "create-post": "Create a post",
+  "title": "Title",
+  "text": "Text"
 }
