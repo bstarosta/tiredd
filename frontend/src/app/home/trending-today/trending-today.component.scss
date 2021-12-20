@@ -1,0 +1,60 @@
+@use "../../../style/ui-colors";
+
+:host {
+  display: flex;
+  margin: 20px 0;
+}
+
+.trending-today-content {
+  display: flex;
+  width: 50%;
+  margin: auto;
+}
+
+img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
+
+.post-image-shadow {
+  position: relative;
+  top: -174px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-shadow: inset 0px -160px 70px -70px ui-colors.$trending-today-image-shadow;
+  border-radius: 10px;
+}
+
+.trending-post {
+  height: 170px;
+  width: 95%;
+  margin: auto;
+}
+
+.post-title {
+  position: relative;
+  top: -280px;
+  left: 10px;
+  font-size: 24px;
+  color: ui-colors.$trending-today-text-color;
+}
+
+.post-excerpt {
+  position: relative;
+  width: 80%;
+  top: -275px;
+  left: 10px;
+  font-size: 16px;
+  color: ui-colors.$trending-today-text-color;
+}
+
+.post-subtiredd {
+  position: relative;
+  top: -265px;
+  left: 12px;
+  font-size: 12px;
+  color: ui-colors.$trending-today-text-color;
+}
