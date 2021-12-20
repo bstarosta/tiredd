@@ -8,5 +8,8 @@
   "filter": "Filter",
   "comments": "Comments",
   "popularCommunities": "Popular communities",
-  "joinCommunity": "Join"
+  "joinCommunity": "Join",
+  "hot": "Hot",
+  "new": "New",
+  "top": "Top"
 }
