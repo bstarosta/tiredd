@@ -18,10 +18,11 @@ import { PostListOrderPickerComponent } from './post-list-order-picker/post-list
 import { PostColumnComponent } from './posts-column/post-column.component';
 import { PopularCommunitiesComponent } from '../home/popular-communities/popular-communities.component';
 import { CommunityAvatarComponent } from './community-avatar/community-avatar.component';
+import { CreatePostComponent } from './create-post/create-post.component';
 
 
 @NgModule({
-  declarations: [LanguagePickerComponent, HeaderComponent, SearchbarComponent, SubtireddSelectComponent, UserAvatarComponent, PostListItemComponent, PostListComponent, PostListOrderPickerComponent, PostColumnComponent, PopularCommunitiesComponent, CommunityAvatarComponent],
+  declarations: [LanguagePickerComponent, HeaderComponent, SearchbarComponent, SubtireddSelectComponent, UserAvatarComponent, PostListItemComponent, PostListComponent, PostListOrderPickerComponent, PostColumnComponent, PopularCommunitiesComponent, CommunityAvatarComponent, CreatePostComponent],
   imports: [
     CommonModule,
     TranslateModule,
@@ -32,16 +33,17 @@ import { CommunityAvatarComponent } from './community-avatar/community-avatar.co
     MatIconModule,
     RouterModule
   ],
-  exports: [
-    LanguagePickerComponent,
-    TranslateModule,
-    HeaderComponent,
-    PostListItemComponent,
-    PostListComponent,
-    PostListOrderPickerComponent,
-    PostColumnComponent,
-    PopularCommunitiesComponent
-  ]
+    exports: [
+        LanguagePickerComponent,
+        TranslateModule,
+        HeaderComponent,
+        PostListItemComponent,
+        PostListComponent,
+        PostListOrderPickerComponent,
+        PostColumnComponent,
+        PopularCommunitiesComponent,
+        CreatePostComponent
+    ]
 })
 export class SharedModule {
 }

@@ -41,9 +41,6 @@ export class PostColumnService {
   private postList: BehaviorSubject<PostListItemInfo[]> = new BehaviorSubject<PostListItemInfo[]>(this.posts);
   postList$: Observable<PostListItemInfo[]> = this.postList.asObservable();
 
-  constructor() {
-  }
-
   getPostList(postListOrder: PostListOrder): void {
     this.postList.next(this.posts);
   }
