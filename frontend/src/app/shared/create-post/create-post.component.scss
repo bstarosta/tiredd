@@ -24,6 +24,7 @@ input {
   padding: 0 10px;
   outline: none;
   border-radius: 5px;
+  caret-color: transparent;
 
   &:hover {
     border-color: ui-colors.$create-post-input-border-hover;
