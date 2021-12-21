@@ -16,5 +16,11 @@
   "email": "E-mail",
   "continue": "Continue",
   "comments": "Comments",
-  "alreadySignedUp": "Already signed up?"
+  "alreadySignedUp": "Already signed up?",
+  "error.username.required": "Username is required",
+  "error.email.required": "Email is required",
+  "error.email.email": "Please enter a valid email",
+  "error.password.required": "Password is required",
+  "error.confirmPassword.required": "Please confirm your password",
+  "error.mismatchedPasswords": "Passwords do not match"
 }

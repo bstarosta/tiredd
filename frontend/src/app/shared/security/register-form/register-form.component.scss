@@ -35,8 +35,13 @@ button {
   background-color: ui-colors.$account-dialog-button;
   font-size: 18px;
 
-  &:hover {
+  &:enabled {
+    cursor: pointer;
+  }
+
+  &:hover:enabled {
     background-color: ui-colors.$account-dialog-button-hover;
+
   }
 }
 

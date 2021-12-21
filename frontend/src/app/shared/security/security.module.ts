@@ -10,6 +10,7 @@ import { RegisterFormComponent } from './register-form/register-form.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
+import {ObjectToKeysPipe} from "./object-to-keys.pipe";
 
 
 @NgModule({
@@ -18,15 +19,16 @@ import {MatInputModule} from "@angular/material/input";
     LoginModalComponent,
     RegisterModalComponent,
     AccountModalHeaderComponent,
-    RegisterFormComponent
+    RegisterFormComponent,
+    ObjectToKeysPipe
   ],
-  imports: [
-    CommonModule,
-    MatDialogModule,
-    TranslateModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule
-  ]
+    imports: [
+        CommonModule,
+        MatDialogModule,
+        TranslateModule,
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+    ]
 })
 export class SecurityModule { }

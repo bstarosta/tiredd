@@ -16,5 +16,11 @@
   "email": "E-mail",
   "continue": "Kontynuuj",
   "comments": "Komentarze",
-  "alreadySignedUp": "Masz już konto?"
+  "alreadySignedUp": "Masz już konto?",
+  "error.username.required": "Nazwa użytkownika jest wymagana",
+  "error.email.required": "Email jest wymagany",
+  "error.email.email": "Wprowadź poprawny adres email",
+  "error.password.required": "Hasło jest wymagane",
+  "error.confirmPassword.required": "Potwierdź hasło",
+  "error.mismatchedPasswords": "Hasła nie sa takie same"
 }
