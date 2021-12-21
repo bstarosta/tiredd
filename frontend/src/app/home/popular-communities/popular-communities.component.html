@@ -1,0 +1,17 @@
+<div class="popular-communities-contents">
+  <div class="popular-communities-header">
+    <img alt="" src="{{popularCommunities[0].imageUrl}}">
+    <div class="header-image-shadow">
+    </div>
+    <p class="popular-communities-header-text">{{"popularCommunities" | translate}}</p>
+  </div>
+  <div *ngFor="let community of popularCommunities; let i = index" class="popular-communities-item">
+    <div class="popular-communities-item-info" [routerLink]="['/t', community.name]">
+      <p class="popular-communities-item-text">{{i + 1}}</p>
+      <trd-community-avatar [communityInitial]="community.name.charAt(0).toUpperCase()"></trd-community-avatar>
+      <p class="popular-communities-item-text underline-on-hover">
+        t/{{community.name}}</p>
+    </div>
+    <button class="join-community-button">{{"joinCommunity" | translate}}</button>
+  </div>
+</div>
