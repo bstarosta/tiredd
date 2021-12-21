@@ -1,0 +1,19 @@
+@use "../../../../style/ui-colors";
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+.footer {
+  font-size: 14px;
+  margin-top: 15px;
+}
+
+.sign-up-link {
+  color: ui-colors.$account-dialog-mode-link;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin-left: 10px;
+  font-weight: 500;
+}

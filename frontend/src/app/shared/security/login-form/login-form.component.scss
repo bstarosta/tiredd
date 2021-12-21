@@ -10,7 +10,7 @@ form {
 
   ::ng-deep {
     mat-form-field:not(.mat-form-field-invalid).mat-focused {
-       .mat-form-field-label {
+      .mat-form-field-label {
         color: ui-colors.$account-dialog-mat-form-field;
       }
 
@@ -48,4 +48,3 @@ button {
 
   }
 }
-

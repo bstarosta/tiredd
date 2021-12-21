@@ -11,6 +11,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {ObjectToKeysPipe} from "./object-to-keys.pipe";
+import { LoginFormComponent } from './login-form/login-form.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import {ObjectToKeysPipe} from "./object-to-keys.pipe";
     RegisterModalComponent,
     AccountModalHeaderComponent,
     RegisterFormComponent,
-    ObjectToKeysPipe
+    ObjectToKeysPipe,
+    LoginFormComponent
   ],
     imports: [
         CommonModule,

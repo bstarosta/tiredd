@@ -9,10 +9,23 @@ import {AccountModalMode} from "../../../services/account-modal.service";
 })
 export class AccountModalComponent implements OnInit {
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: AccountModalMode, private matDialogRef: MatDialogRef<AccountModalComponent>) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: AccountModalMode, private matDialogRef: MatDialogRef<AccountModalComponent>) {
+    this.mode = data;
+  }
+
+
+  mode: AccountModalMode;
 
   onCloseClick(): void {
     this.matDialogRef.close();
+  }
+
+  onLoginSuccess(): void {
+    this.matDialogRef.close();
+  }
+
+  switchMode(mode: AccountModalMode) {
+    this.mode = mode;
   }
 
   ngOnInit(): void {

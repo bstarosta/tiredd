@@ -3,26 +3,26 @@
     <mat-label>{{"username" | translate}}</mat-label>
     <input matInput formControlName="username">
     <mat-error
-      *ngFor="let error of username.errors | objectToKeys">{{defaultFormErrorKeys["username"][error] | translate}}</mat-error>
+      *ngFor="let error of username.errors | objectToKeys">{{formErrorMessageKeys["username"][error] | translate}}</mat-error>
   </mat-form-field>
   <mat-form-field>
     <mat-label>{{"email" | translate}}</mat-label>
     <input matInput formControlName="email">
     <mat-error
-      *ngFor="let error of email.errors | objectToKeys">{{defaultFormErrorKeys["email"][error] | translate}}</mat-error>
+      *ngFor="let error of email.errors | objectToKeys">{{formErrorMessageKeys["email"][error] | translate}}</mat-error>
   </mat-form-field>
   <ng-container formGroupName="password">
     <mat-form-field>
       <mat-label>{{"password" | translate}}</mat-label>
       <input type="password" matInput formControlName="password">
       <mat-error
-        *ngFor="let error of password.errors | objectToKeys">{{defaultFormErrorKeys["password"][error] | translate}}</mat-error>
+        *ngFor="let error of password.errors | objectToKeys">{{formErrorMessageKeys["password"][error] | translate}}</mat-error>
     </mat-form-field>
     <mat-form-field>
       <mat-label>{{"confirmPassword" | translate}}</mat-label>
       <input type="password" matInput formControlName="confirmPassword" [errorStateMatcher]="passwordErrorStateMatcher">
       <mat-error
-        *ngFor="let error of confirmPassword.errors | objectToKeys">{{defaultFormErrorKeys["confirmPassword"][error] | translate}}</mat-error>
+        *ngFor="let error of confirmPassword.errors | objectToKeys">{{formErrorMessageKeys["confirmPassword"][error] | translate}}</mat-error>
       <mat-error *ngIf="passwordGroup.hasError('differentPasswords')">{{"error.mismatchedPasswords" | translate}}</mat-error>
     </mat-form-field>
   </ng-container>

@@ -30,7 +30,7 @@ export class RegisterFormComponent implements OnInit {
 
 
   passwordErrorStateMatcher: ParentErrorStateMatcher = new ParentErrorStateMatcher();
-  defaultFormErrorKeys: ValidationErrors = REGISTER_FORM_ERROR_MESSAGE_KEYS;
+  formErrorMessageKeys: ValidationErrors = REGISTER_FORM_ERROR_MESSAGE_KEYS;
 
   form: FormGroup = new FormGroup({
     username: new FormControl('', Validators.required),
