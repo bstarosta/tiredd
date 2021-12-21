@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 import {AccountModalMode} from "../../../services/account-modal.service";
 
 @Component({
@@ -6,9 +6,8 @@ import {AccountModalMode} from "../../../services/account-modal.service";
   templateUrl: './register-modal.component.html',
   styleUrls: ['./register-modal.component.scss']
 })
-export class RegisterModalComponent implements OnInit {
+export class RegisterModalComponent {
 
-  constructor() { }
 
   @Output() closeClick: EventEmitter<void> = new EventEmitter<void>();
   @Output() logInLinkClick: EventEmitter<AccountModalMode> = new EventEmitter<AccountModalMode>();
@@ -19,9 +18,6 @@ export class RegisterModalComponent implements OnInit {
 
   onCloseClick(): void {
     this.closeClick.emit();
-  }
-
-  ngOnInit(): void {
   }
 
 }

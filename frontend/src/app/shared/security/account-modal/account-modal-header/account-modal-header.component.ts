@@ -1,13 +1,11 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 @Component({
   selector: 'trd-account-modal-header',
   templateUrl: './account-modal-header.component.html',
   styleUrls: ['./account-modal-header.component.scss']
 })
-export class AccountModalHeaderComponent implements OnInit {
-
-  constructor() { }
+export class AccountModalHeaderComponent {
 
   @Input() titleKey: string;
   @Input() messageKey: string;
@@ -16,9 +14,6 @@ export class AccountModalHeaderComponent implements OnInit {
 
   onCloseClick() {
     this.closeClick.emit()
-  }
-
-  ngOnInit(): void {
   }
 
 }

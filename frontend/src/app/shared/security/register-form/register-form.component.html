@@ -1,4 +1,4 @@
-<form [formGroup]="form">
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
   <mat-form-field>
     <mat-label>{{"username" | translate}}</mat-label>
     <input matInput formControlName="username">
@@ -26,5 +26,5 @@
       <mat-error *ngIf="passwordGroup.hasError('differentPasswords')">{{"error.mismatchedPasswords" | translate}}</mat-error>
     </mat-form-field>
   </ng-container>
-  <button [disabled]="form.invalid">{{"continue" | translate}}</button>
+  <button type="submit" [disabled]="form.invalid">{{"signUpLink" | translate}}</button>
 </form>

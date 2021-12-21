@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, Inject} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {AccountModalMode} from "../../../services/account-modal.service";
 
@@ -7,12 +7,11 @@ import {AccountModalMode} from "../../../services/account-modal.service";
   templateUrl: './account-modal.component.html',
   styleUrls: ['./account-modal.component.scss']
 })
-export class AccountModalComponent implements OnInit {
+export class AccountModalComponent {
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: AccountModalMode, private matDialogRef: MatDialogRef<AccountModalComponent>) {
     this.mode = data;
   }
-
 
   mode: AccountModalMode;
 
@@ -26,9 +25,6 @@ export class AccountModalComponent implements OnInit {
 
   switchMode(mode: AccountModalMode) {
     this.mode = mode;
-  }
-
-  ngOnInit(): void {
   }
 
 }

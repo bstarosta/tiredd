@@ -11,5 +11,5 @@
     <mat-error
       *ngFor="let error of password.errors | objectToKeys">{{formErrorMessageKeys["password"][error] | translate}}</mat-error>
   </mat-form-field>
-  <button type="submit" [disabled]="form.invalid">{{"continue" | translate}}</button>
+  <button type="submit" [disabled]="form.invalid">{{"logInLink" | translate}}</button>
 </form>

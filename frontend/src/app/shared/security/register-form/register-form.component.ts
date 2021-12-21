@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 import {FormControl, FormGroup, ValidationErrors, Validators} from "@angular/forms";
 import {matchPasswordsValidator} from "../validators/match-password-validator";
 import {ParentErrorStateMatcher} from "../parent-error-state-matcher";
+import {RegisterFormOutput} from "../../../interfaces/register-form-output";
 
 const REGISTER_FORM_ERROR_MESSAGE_KEYS: ValidationErrors = {
   username: {
@@ -24,10 +25,10 @@ const REGISTER_FORM_ERROR_MESSAGE_KEYS: ValidationErrors = {
   templateUrl: './register-form.component.html',
   styleUrls: ['./register-form.component.scss']
 })
-export class RegisterFormComponent implements OnInit {
+export class RegisterFormComponent {
 
-  constructor() { }
 
+  @Output() formSubmitted: EventEmitter<RegisterFormOutput> = new EventEmitter<RegisterFormOutput>()
 
   passwordErrorStateMatcher: ParentErrorStateMatcher = new ParentErrorStateMatcher();
   formErrorMessageKeys: ValidationErrors = REGISTER_FORM_ERROR_MESSAGE_KEYS;
@@ -40,6 +41,14 @@ export class RegisterFormComponent implements OnInit {
       confirmPassword: new FormControl('', [Validators.required])
     }, [matchPasswordsValidator])
   });
+
+  onSubmit(): void {
+    const userRegistrationData: RegisterFormOutput = {
+      ...this.form.value,
+      password: this.password.value
+    }
+    this.formSubmitted.emit(userRegistrationData);
+  }
 
   get username() {
     return this.form.get('username');
@@ -59,9 +68,6 @@ export class RegisterFormComponent implements OnInit {
 
   get confirmPassword() {
     return this.form.get('password.confirmPassword');
-  }
-
-  ngOnInit(): void {
   }
 
 }
