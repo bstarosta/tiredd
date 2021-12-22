@@ -1,3 +1,7 @@
+import {AccountModalMode, AccountModalService} from "../../services/account-modal.service";
+import {UserService} from "../../services/user.service";
+import {Observable} from "rxjs";
+import {User} from "../../interfaces/user";
 import {Component} from '@angular/core';
 import {SubtireddSelectItem} from "../../interfaces/subtiredd-select-item";
 import {Router} from "@angular/router";
@@ -9,7 +13,9 @@ import {Router} from "@angular/router";
 })
 export class HeaderComponent {
 
-  constructor(private router: Router) {
+  constructor(private accountModalService: AccountModalService, private userService: UserService, private router: Router) {
+    this.isUserLoggedIn$ = userService.isUserLoggedIn$
+    this.user$ = this.userService.user$;
   }
 
   subtireddSelectItems: SubtireddSelectItem[] = [
@@ -20,14 +26,15 @@ export class HeaderComponent {
     {name: "t/corgi", url: "/t/corgi"},
     {name: "t/dogs", url: "/t/dogs"},
   ]
-  userLoggedIn: boolean = false;
+  user$: Observable<User>
+  isUserLoggedIn$: Observable<Boolean>
 
-  onLogIn(): void {
-    this.userLoggedIn = true
+  openAccountModal(mode: AccountModalMode): void {
+    this.accountModalService.openAccountModal(mode)
   }
 
   onLogOut(): void {
-    this.userLoggedIn = false
+    this.userService.logOutUser();
   }
 
   onSubtireddSelected(selectedSubtiredd: SubtireddSelectItem) {

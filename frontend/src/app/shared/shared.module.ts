@@ -21,7 +21,7 @@ import {CommunityAvatarComponent} from './community-avatar/community-avatar.comp
 import {CreatePostComponent} from './create-post/create-post.component';
 import {CreatePostModalComponent} from './create-post-modal/create-post-modal.component';
 import {MatDialogModule} from "@angular/material/dialog";
-
+import {SecurityModule} from "./security/security.module";
 
 @NgModule({
   declarations: [LanguagePickerComponent, HeaderComponent, SearchbarComponent, SubtireddSelectComponent, UserAvatarComponent, PostListItemComponent, PostListComponent, PostListOrderPickerComponent, PostColumnComponent, PopularCommunitiesComponent, CommunityAvatarComponent, CreatePostComponent, CreatePostModalComponent],
@@ -34,7 +34,8 @@ import {MatDialogModule} from "@angular/material/dialog";
     MatMenuModule,
     MatIconModule,
     RouterModule,
-    MatDialogModule
+    MatDialogModule,
+    SecurityModule
   ],
   exports: [
     LanguagePickerComponent,

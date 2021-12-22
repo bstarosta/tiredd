@@ -1,0 +1,7 @@
+<div class="sidepanel"></div>
+<div class="modal-container">
+  <trd-login-modal (signUpLinkClick)="switchMode($event)" (closeClick)="onCloseClick()"
+                   (loginSuccess)="onLoginSuccess()" *ngIf="mode === 'login' "></trd-login-modal>
+  <trd-register-modal (logInLinkClick)="switchMode($event)"
+                      (closeClick)="onCloseClick()" *ngIf="mode === 'register'"></trd-register-modal>
+</div>
