@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace backend.Models
 {
@@ -12,7 +13,7 @@ namespace backend.Models
         public int SubtireddId { get; set; }
         public Subtiredd Subtiredd { get; set; }
 
-        public int AuthorId { get; set; }
+        public Guid AuthorId { get; set; }
         public User Author { get; set; }
 
         public List<Comment> Comments { get; set; }
