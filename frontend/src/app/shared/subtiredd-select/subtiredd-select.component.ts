@@ -2,7 +2,6 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {SubtireddSelectItem} from "../../interfaces/subtiredd-select-item";
 import {ActivatedRoute} from "@angular/router";
 
-const DEFAULT_SELECTED_SUBTIREDD: SubtireddSelectItem = {name: "Home", url: "/home"};
 
 @Component({
   selector: 'trd-subtiredd-select',
@@ -21,7 +20,11 @@ export class SubtireddSelectComponent implements OnInit {
   }
 
   searchFilter: string;
-  selectedSubtiredd?: SubtireddSelectItem = DEFAULT_SELECTED_SUBTIREDD;
+  selectedSubtiredd: SubtireddSelectItem;
+
+  ngOnInit(): void {
+    this.selectedSubtiredd = this.allSubtireddSelectItems[0];
+  }
 
   onSearchChange(): void {
     this.displayedSubtireddSelectItems = this.allSubtireddSelectItems.filter(
@@ -36,9 +39,6 @@ export class SubtireddSelectComponent implements OnInit {
   onSubtireddSelected(selectedSubtiredd: SubtireddSelectItem) {
     this.selectedSubtiredd = selectedSubtiredd;
     this.subtireddSelected.emit(selectedSubtiredd);
-  }
-
-  ngOnInit(): void {
   }
 
 }

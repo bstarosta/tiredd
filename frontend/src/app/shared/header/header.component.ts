@@ -30,8 +30,8 @@ export class HeaderComponent {
     this.userLoggedIn = false
   }
 
-  onSubtireddSelected(subtireddSelectItem: SubtireddSelectItem) {
-    this.router.navigate([subtireddSelectItem.url]);
+  onSubtireddSelected(selectedSubtiredd: SubtireddSelectItem) {
+    this.router.navigate([selectedSubtiredd.url]);
   }
 
 }

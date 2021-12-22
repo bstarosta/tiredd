@@ -1,5 +1,6 @@
 import {Component, Inject} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogConfig, MatDialogRef} from "@angular/material/dialog";
+import {SubtireddSelectItem} from "../../interfaces/subtiredd-select-item";
 
 @Component({
   selector: 'trd-create-post-modal',
@@ -8,10 +9,24 @@ import {MAT_DIALOG_DATA, MatDialogConfig, MatDialogRef} from "@angular/material/
 })
 export class CreatePostModalComponent {
 
+  subtireddSelectItems: SubtireddSelectItem[] = [
+    {name: "t/awww"},
+    {name: "t/whatswrongwithyourdog"},
+    {name: "t/dachschund"},
+    {name: "t/corgi"},
+    {name: "t/dogs"},
+  ]
+  selectedSubtiredd?: SubtireddSelectItem;
+
   constructor(@Inject(MAT_DIALOG_DATA) config: MatDialogConfig, private matDialogRef: MatDialogRef<CreatePostModalComponent>) {
   }
 
   onCloseClick(): void {
     this.matDialogRef.close();
+  }
+
+  onSubtireddSelected(selectedSubtiredd: SubtireddSelectItem) {
+    this.selectedSubtiredd = selectedSubtiredd;
+    console.log(selectedSubtiredd.name);
   }
 }
