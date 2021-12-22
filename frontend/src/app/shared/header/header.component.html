@@ -1,7 +1,9 @@
 <header>
   <div>
     <img src="assets/images/logo.PNG" alt="logo">
-    <trd-subtiredd-select *ngIf="userLoggedIn">
+    <trd-subtiredd-select *ngIf="userLoggedIn"
+                          [allSubtireddSelectItems]="subtireddSelectItems"
+                          (subtireddSelected)="onSubtireddSelected($event)">
     </trd-subtiredd-select>
   </div>
   <trd-searchbar></trd-searchbar>

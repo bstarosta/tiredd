@@ -1,6 +1,8 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {SubtireddSelectItem} from "../../interfaces/subtiredd-select-item";
 import {ActivatedRoute} from "@angular/router";
+
+const DEFAULT_SELECTED_SUBTIREDD: SubtireddSelectItem = {name: "Home", url: "/home"};
 
 @Component({
   selector: 'trd-subtiredd-select',
@@ -9,24 +11,17 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class SubtireddSelectComponent implements OnInit {
 
-  @Input() userSubtireddList: any;
+  @Input() allSubtireddSelectItems: SubtireddSelectItem[];
+  @Output() subtireddSelected: EventEmitter<SubtireddSelectItem> = new EventEmitter<SubtireddSelectItem>();
 
-  allSubtireddSelectItems: SubtireddSelectItem[] = [
-    {name: "Home", url:"/home"},
-    {name: "t/awww", url: "/t/awww"},
-    {name: "t/whatswrongwithyourdog", url: "/t/whatswrongwithyourdog"},
-    {name: "t/dachschund", url: "/t/dachschund"},
-    {name: "t/corgi", url: "/t/corgi"},
-    {name: "t/dogs", url: "/t/dogs"},
-  ]
   displayedSubtireddSelectItems: SubtireddSelectItem[]
 
   constructor(private route: ActivatedRoute) {
-    route.url.subscribe( url => console.log(url))
+    route.url.subscribe(url => console.log(url))
   }
 
-  searchFilter: string
-  currentLocation: string = "Placeholder";
+  searchFilter: string;
+  selectedSubtiredd?: SubtireddSelectItem = DEFAULT_SELECTED_SUBTIREDD;
 
   onSearchChange(): void {
     this.displayedSubtireddSelectItems = this.allSubtireddSelectItems.filter(
@@ -38,6 +33,10 @@ export class SubtireddSelectComponent implements OnInit {
     this.displayedSubtireddSelectItems = this.allSubtireddSelectItems;
   }
 
+  onSubtireddSelected(selectedSubtiredd: SubtireddSelectItem) {
+    this.selectedSubtiredd = selectedSubtiredd;
+    this.subtireddSelected.emit(selectedSubtiredd);
+  }
 
   ngOnInit(): void {
   }
