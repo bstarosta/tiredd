@@ -36,6 +36,7 @@ namespace backend.Authentication.Controllers
 
             var authClaims = new List<Claim>
             {
+                new Claim(ClaimTypes.Name, user.UserName),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
             };
             var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JWT:Secret"]));
