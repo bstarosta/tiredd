@@ -45,3 +45,20 @@ textarea {
   padding: 10px 10px;
   font-family: Roboto, "Helvetica Neue", sans-serif; // TODO: make sure it's the default font
 }
+
+button {
+  height: 40px;
+  width: 130px;
+  margin: 15px 10px 0 calc(100% - 140px);
+  padding: 5px 0;
+  border-radius: 30px;
+  cursor: pointer;
+  border: none;
+  background-color: ui-colors.$create-post-modal-button-background;
+  font-size: 20px;
+  color: ui-colors.$create-post-modal-button-text;
+
+  &:hover {
+    background-color: ui-colors.$create-post-modal-button-background-hover;
+  }
+}
