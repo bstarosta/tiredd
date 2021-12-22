@@ -18,6 +18,7 @@ import { PostListOrderPickerComponent } from './post-list-order-picker/post-list
 import { PostColumnComponent } from './posts-column/post-column.component';
 import { PopularCommunitiesComponent } from '../home/popular-communities/popular-communities.component';
 import { CommunityAvatarComponent } from './community-avatar/community-avatar.component';
+import {SecurityModule} from "./security/security.module";
 
 
 @NgModule({
@@ -30,18 +31,19 @@ import { CommunityAvatarComponent } from './community-avatar/community-avatar.co
     MatSelectModule,
     MatMenuModule,
     MatIconModule,
-    RouterModule
+    RouterModule,
+    SecurityModule
   ],
-  exports: [
-    LanguagePickerComponent,
-    TranslateModule,
-    HeaderComponent,
-    PostListItemComponent,
-    PostListComponent,
-    PostListOrderPickerComponent,
-    PostColumnComponent,
-    PopularCommunitiesComponent
-  ]
+    exports: [
+        LanguagePickerComponent,
+        TranslateModule,
+        HeaderComponent,
+        PostListItemComponent,
+        PostListComponent,
+        PostListOrderPickerComponent,
+        PostColumnComponent,
+        PopularCommunitiesComponent
+    ]
 })
 export class SharedModule {
 }
