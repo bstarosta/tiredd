@@ -1,11 +1,13 @@
-﻿namespace backend.Models
+﻿using System;
+
+namespace backend.Models
 {
     public class Vote
     {
         public int Id { get; set; }
         public VoteType Type { get; set; }
 
-        public int UserId { get; set; }
+        public Guid UserId { get; set; }
         public User User { get; set; }
 
         public int PostId { get; set; }
