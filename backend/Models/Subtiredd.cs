@@ -10,7 +10,7 @@ namespace backend.Models
         public int Id { get; set; }
         public string Name { get; set; }
 
-        public int AdminId { get; set; }
+        public Guid AdminId { get; set; }
         public User Admin { get; set; }
 
         public List<User> Users { get; set; }

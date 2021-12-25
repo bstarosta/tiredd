@@ -1,4 +1,8 @@
 import {Component, OnInit} from '@angular/core';
+import {AccountModalMode, AccountModalService} from "../../services/account-modal.service";
+import {UserService} from "../../services/user.service";
+import {Observable} from "rxjs";
+import {User} from "../../interfaces/user";
 
 @Component({
   selector: 'trd-header',
@@ -7,17 +11,20 @@ import {Component, OnInit} from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() {
+  constructor(private accountModalService: AccountModalService, private userService: UserService) {
+    this.isUserLoggedIn$ = userService.isUserLoggedIn$
+    this.user$ = this.userService.user$;
   }
 
-  userLoggedIn: boolean = false;
+  user$: Observable<User>
+  isUserLoggedIn$: Observable<Boolean>
 
-  onLogIn(): void {
-    this.userLoggedIn = true
+  openAccountModal(mode: AccountModalMode): void {
+    this.accountModalService.openAccountModal(mode)
   }
 
   onLogOut(): void {
-    this.userLoggedIn = false
+    this.userService.logOutUser();
   }
 
   ngOnInit(): void {
