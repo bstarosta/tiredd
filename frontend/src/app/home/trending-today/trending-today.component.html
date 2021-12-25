@@ -1,9 +1,12 @@
-<div class="trending-today-content">
-  <div *ngFor="let post of trendingPosts" class="trending-post">
-    <img src="{{post.imageUrl ? post.imageUrl : '../../../assets/images/placeholder-image.png'}}" alt="">
-    <div class="post-image-shadow"></div>
-    <p class="post-title">{{post.title}}</p>
-    <p class="post-excerpt">{{post.excerpt}}</p>
-    <p class="post-subtiredd">t/{{post.subtirred}}</p>
+<div>
+  <p class="trending-today-text">{{"trendingToday" | translate}}</p>
+  <div class="trending-today-content">
+    <div *ngFor="let post of trendingPosts" class="trending-post">
+      <img src="{{post.imageUrl ? post.imageUrl : '../../../assets/images/placeholder-image.png'}}" alt="">
+      <div class="post-image-shadow"></div>
+      <p class="post-title">{{post.title}}</p>
+      <p class="post-excerpt">{{post.excerpt}}</p>
+      <p class="post-subtiredd">t/{{post.subtirred}}</p>
+    </div>
   </div>
 </div>
