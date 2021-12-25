@@ -19,7 +19,7 @@ export class UserAvatarComponent implements OnInit {
 
   ngOnInit() {
     this.userInitial = this.username.charAt(0).toUpperCase()
-    this.backgroundColor = this.colorConverterService.calculateBackgroundColor(this.username)
+    this.backgroundColor = this.colorConverterService.backgroundColorFromString(this.username)
   }
 
   onUserLogout(): void {

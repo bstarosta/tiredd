@@ -4,11 +4,10 @@ import {Injectable} from "@angular/core";
   providedIn: 'root'
 })
 export class ColorConverterService {
-  calculateBackgroundColor(stringInput: string) {
-    const stringUniqueHash = [...stringInput].reduce((acc, char) => {
+  backgroundColorFromString(string: string) {
+    const stringHash = [...string].reduce((acc, char) => {
       return char.charCodeAt(0) + ((acc << 5) - acc);
     }, 0);
-    console.log(stringInput, stringUniqueHash)
-    return `hsl(${stringUniqueHash % 360}, 100%, 50%)`;
+    return `hsl(${stringHash % 360}, 100%, 50%)`;
   }
 }

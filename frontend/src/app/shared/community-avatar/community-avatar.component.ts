@@ -17,6 +17,6 @@ export class CommunityAvatarComponent implements OnInit {
 
   ngOnInit(): void {
     this.communityInitial = this.communityName.charAt(0).toUpperCase();
-    this.backgroundColor = this.colorConverterService.calculateBackgroundColor(this.communityName)
+    this.backgroundColor = this.colorConverterService.backgroundColorFromString(this.communityName)
   }
 }
