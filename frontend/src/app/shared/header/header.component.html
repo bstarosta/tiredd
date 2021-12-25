@@ -1,6 +1,6 @@
 <header>
-  <div class="home-logo" [routerLink]="['home']">
-    <img src="assets/images/logo.PNG" alt="logo">
+  <div>
+    <img class="home-logo" [routerLink]="['home']" src="assets/images/logo.PNG" alt="logo">
     <trd-subtiredd-select *ngIf="isUserLoggedIn$ | async">
     </trd-subtiredd-select>
   </div>
