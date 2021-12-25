@@ -30,13 +30,21 @@ img {
 
 .trending-post {
   height: 170px;
-  width: 95%;
-  margin: auto;
+  margin: 0 6px;
+  cursor: pointer;
+}
+
+p {
+  width: 165px;
+  display: inline-block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .post-title {
   position: relative;
-  top: -280px;
+  top: -260px;
   left: 10px;
   font-size: 24px;
   color: ui-colors.$trending-today-text-color;
@@ -44,8 +52,7 @@ img {
 
 .post-excerpt {
   position: relative;
-  width: 80%;
-  top: -275px;
+  top: -260px;
   left: 10px;
   font-size: 16px;
   color: ui-colors.$trending-today-text-color;
@@ -53,7 +60,7 @@ img {
 
 .post-subtiredd {
   position: relative;
-  top: -265px;
+  top: -255px;
   left: 12px;
   font-size: 12px;
   color: ui-colors.$trending-today-text-color;
