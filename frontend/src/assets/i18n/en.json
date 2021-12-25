@@ -26,9 +26,11 @@
   "continue": "Continue",
   "alreadySignedUp": "Already signed up?",
   "error.username.required": "Username is required",
+  "error.username.length": "Username has to be between 3 and 30 characters",
   "error.email.required": "Email is required",
   "error.email.email": "Please enter a valid email",
   "error.password.required": "Password is required",
   "error.confirmPassword.required": "Please confirm your password",
-  "error.mismatchedPasswords": "Passwords do not match"
+  "error.mismatchedPasswords": "Passwords do not match",
+  "error.password.complexity": "Password has to be between 8 and 50 characters, contain at least one capital letter, one digit, and one special character"
 }

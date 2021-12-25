@@ -7,13 +7,16 @@ import {RegisterFormOutput} from "../../../interfaces/register-form-output";
 const REGISTER_FORM_ERROR_MESSAGE_KEYS: ValidationErrors = {
   username: {
     required: "error.username.required",
+    minlength: "error.username.length",
+    maxlength: "error.username.length"
   },
   email: {
     required: "error.email.required",
     email: "error.email.email"
   },
   password : {
-    required: "error.password.required"
+    required: "error.password.required",
+    pattern: "error.password.complexity"
   },
   confirmPassword: {
     required: "error.confirmPassword.required"
@@ -34,10 +37,10 @@ export class RegisterFormComponent {
   formErrorMessageKeys: ValidationErrors = REGISTER_FORM_ERROR_MESSAGE_KEYS;
 
   form: FormGroup = new FormGroup({
-    username: new FormControl('', Validators.required),
+    username: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(30)]),
     email: new FormControl('', [Validators.email, Validators.required]),
     password: new FormGroup({
-      password: new FormControl('', [Validators.required]),
+      password: new FormControl('', [Validators.required, Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,50}$')]),
       confirmPassword: new FormControl('', [Validators.required])
     }, [matchPasswordsValidator])
   });
