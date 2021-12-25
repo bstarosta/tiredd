@@ -30,5 +30,7 @@
   "error.email.email": "Please enter a valid email",
   "error.password.required": "Password is required",
   "error.confirmPassword.required": "Please confirm your password",
-  "error.mismatchedPasswords": "Passwords do not match"
+  "error.mismatchedPasswords": "Passwords do not match",
+  "trendingToday": "Trending today",
+  "postedBy": "Posted by"
 }

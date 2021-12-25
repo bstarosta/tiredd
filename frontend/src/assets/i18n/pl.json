@@ -30,5 +30,7 @@
   "error.email.email": "Wprowadź poprawny adres email",
   "error.password.required": "Hasło jest wymagane",
   "error.confirmPassword.required": "Potwierdź hasło",
-  "error.mismatchedPasswords": "Hasła nie sa takie same"
+  "error.mismatchedPasswords": "Hasła nie sa takie same",
+  "trendingToday": "Popularne dzisiaj",
+  "postedBy": "Dodane przez"
 }
