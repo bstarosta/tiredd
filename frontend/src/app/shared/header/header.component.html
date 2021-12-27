@@ -2,8 +2,8 @@
   <div>
     <img class="home-logo" [routerLink]="['home']" src="assets/images/logo.PNG" alt="logo">
     <trd-header-subtiredd-select *ngIf="isUserLoggedIn$ | async"
-                          [allSubtireddSelectItems]="subtireddSelectItems"
-                          (subtireddSelected)="onSubtireddSelected($event)">
+                                 [allSubtireddSelectItems]="subtireddSelectItems"
+                                 (subtireddSelected)="onSubtireddSelected($event)">
     </trd-header-subtiredd-select>
   </div>
   <trd-searchbar></trd-searchbar>
@@ -13,6 +13,6 @@
     <button *ngIf="!(isUserLoggedIn$ | async)" class="sign-up-button"
             (click)="openAccountModal('register')">{{"signUp" | translate}}</button>
     <trd-language-picker></trd-language-picker>
-    <trd-user-avatar *ngIf="isUserLoggedIn$ | async" (userLoggedOut)="onLogOut()"></trd-user-avatar>
+    <trd-header-user-avatar *ngIf="isUserLoggedIn$ | async" (userLoggedOut)="onLogOut()"></trd-header-user-avatar>
   </div>
 </header>
