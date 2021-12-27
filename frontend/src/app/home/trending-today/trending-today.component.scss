@@ -2,12 +2,12 @@
 
 :host {
   display: flex;
-  margin: 10px 0;
+  margin: 10px 0 20px;
 }
 
 .trending-today-content {
   display: flex;
-  width: 50%;
+  width: 100%;
   margin: auto;
 }
 
@@ -35,7 +35,7 @@ img {
 }
 
 .post-title, .post-excerpt, .post-subtiredd {
-  width: 165px;
+  width: 200px;
   display: inline-block;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -68,7 +68,7 @@ img {
 
 .trending-today-text {
   display: flex;
-  margin: 0 auto 5px auto;
-  width: 50%;
-  padding-left: 10px;
+  margin: 0 auto 3px auto;
+  width: 100%;
+  padding-left: 5px;
 }

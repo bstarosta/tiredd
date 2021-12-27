@@ -1,0 +1,32 @@
+@use "../../../style/ui-colors";
+
+:host {
+  display: flex;
+  width: 100%;
+  border-radius: 3px;
+  border: 1px solid ui-colors.$create-post-border;
+  background-color: ui-colors.$create-post-background;
+  margin: 20px auto;
+}
+
+div {
+  display: flex;
+  width: 100%;
+  padding: 7px 20px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+input {
+  width: calc(100% - 80px);
+  height: 40px;
+  border: 1px solid ui-colors.$create-post-input-border;
+  padding: 0 10px;
+  outline: none;
+  border-radius: 5px;
+  caret-color: transparent;
+
+  &:hover {
+    border-color: ui-colors.$create-post-input-border-hover;
+  }
+}

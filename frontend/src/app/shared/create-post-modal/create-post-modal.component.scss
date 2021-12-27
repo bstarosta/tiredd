@@ -1,0 +1,70 @@
+@use "../../../style/ui-colors";
+
+:host {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.close-icon {
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.text-input {
+  border: 1px solid ui-colors.$create-post-modal-input-border;
+  outline: none;
+  border-radius: 5px;
+  font-size: 16px;
+
+  &:hover {
+    border-color: ui-colors.$create-post-modal-input-border-hover;
+  }
+
+  &:focus {
+    border-color: ui-colors.$create-post-modal-input-border-hover;
+  }
+}
+
+input {
+  height: 55px;
+  margin-bottom: 10px;
+  padding: 0 10px;
+}
+
+textarea {
+  height: calc(100% - 100px);
+  padding: 10px 10px;
+  resize: none;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+button {
+  height: 40px;
+  width: 130px;
+  margin: 15px 10px 0 calc(100% - 140px);
+  padding: 5px 0;
+  border-radius: 30px;
+  cursor: pointer;
+  border: none;
+  background-color: ui-colors.$create-post-modal-button-background;
+  font-size: 20px;
+  color: ui-colors.$create-post-modal-button-text;
+
+  &:hover {
+    background-color: ui-colors.$create-post-modal-button-background-hover;
+  }
+}
+
+trd-create-post-subtiredd-select {
+  margin-bottom: 15px;
+  border-color: ui-colors.$create-post-modal-input-border;
+}
