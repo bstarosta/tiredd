@@ -25,13 +25,13 @@ export class AuthService {
 
 
   loginUser(loginUserData: LoginFormOutput): void {
-    this.httpClient.post(this.baseUrl + 'auth/login', loginUserData, {withCredentials: true}).subscribe( _ => {
+    this.httpClient.post(this.baseUrl + 'auth/login', loginUserData).subscribe( _ => {
       this.userLoggedIn.next();
     });
   }
 
   logoutUser(): void {
-    this.httpClient.post(this.baseUrl + 'auth/logout', null, {withCredentials: true}).subscribe( _ => {
+    this.httpClient.post(this.baseUrl + 'auth/logout', null).subscribe( _ => {
       this.userLoggedOut.next();
     });
   }
