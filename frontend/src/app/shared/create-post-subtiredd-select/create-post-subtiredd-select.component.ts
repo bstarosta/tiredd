@@ -2,13 +2,12 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {SubtireddSelectItem} from "../../interfaces/subtiredd-select-item";
 import {ActivatedRoute} from "@angular/router";
 
-
 @Component({
-  selector: 'trd-subtiredd-select',
-  templateUrl: './subtiredd-select.component.html',
-  styleUrls: ['./subtiredd-select.component.scss']
+  selector: 'trd-create-post-subtiredd-select',
+  templateUrl: './create-post-subtiredd-select.component.html',
+  styleUrls: ['./create-post-subtiredd-select.component.scss']
 })
-export class SubtireddSelectComponent implements OnInit {
+export class CreatePostSubtireddSelectComponent implements OnInit {
 
   @Input() allSubtireddSelectItems: SubtireddSelectItem[];
   @Output() subtireddSelected: EventEmitter<SubtireddSelectItem> = new EventEmitter<SubtireddSelectItem>();
@@ -40,5 +39,4 @@ export class SubtireddSelectComponent implements OnInit {
     this.selectedSubtiredd = selectedSubtiredd;
     this.subtireddSelected.emit(selectedSubtiredd);
   }
-
 }

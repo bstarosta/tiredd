@@ -7,7 +7,7 @@ import {HeaderComponent} from './header/header.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatSelectModule} from "@angular/material/select";
 import {SearchbarComponent} from './searchbar/searchbar.component';
-import {SubtireddSelectComponent} from './subtiredd-select/subtiredd-select.component';
+import {HeaderSubtireddSelectComponent} from './header-subtiredd-select/header-subtiredd-select.component';
 import {UserAvatarComponent} from './user-avatar/user-avatar.component';
 import {MatMenuModule} from "@angular/material/menu";
 import {MatIconModule} from "@angular/material/icon";
@@ -22,9 +22,10 @@ import {CreatePostComponent} from './create-post/create-post.component';
 import {CreatePostModalComponent} from './create-post-modal/create-post-modal.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import {SecurityModule} from "./security/security.module";
+import { CreatePostSubtireddSelectComponent } from './create-post-subtiredd-select/create-post-subtiredd-select.component';
 
 @NgModule({
-  declarations: [LanguagePickerComponent, HeaderComponent, SearchbarComponent, SubtireddSelectComponent, UserAvatarComponent, PostListItemComponent, PostListComponent, PostListOrderPickerComponent, PostColumnComponent, PopularCommunitiesComponent, CommunityAvatarComponent, CreatePostComponent, CreatePostModalComponent],
+  declarations: [LanguagePickerComponent, HeaderComponent, SearchbarComponent, HeaderSubtireddSelectComponent, UserAvatarComponent, PostListItemComponent, PostListComponent, PostListOrderPickerComponent, PostColumnComponent, PopularCommunitiesComponent, CommunityAvatarComponent, CreatePostComponent, CreatePostModalComponent, CreatePostSubtireddSelectComponent],
   imports: [
     CommonModule,
     TranslateModule,

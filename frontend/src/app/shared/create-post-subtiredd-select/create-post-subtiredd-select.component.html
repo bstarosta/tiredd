@@ -1,0 +1,17 @@
+<div class="trigger" [matMenuTriggerFor]="menu" (menuOpened)="onOpen()">
+  <div class="current-location unselectable">{{selectedSubtiredd.name}}</div>
+  <div class="arrow unselectable">
+    <span class="material-icons">expand_more</span>
+  </div>
+</div>
+<mat-menu #menu="matMenu" class="subtiredd-menu">
+  <div class="filter" (click)="$event.stopPropagation();">
+    <input [(ngModel)]="searchFilter" (input)="onSearchChange()"
+           #searchInput (blur)="searchInput.focus()" [placeholder]="'filter' | translate">
+  </div>
+  <button *ngFor="let displayedItem of displayedSubtireddSelectItems" mat-menu-item
+          (click)="onSubtireddSelected(displayedItem)">
+    <span>{{displayedItem.name}}</span>
+  </button>
+</mat-menu>
+
