@@ -2,6 +2,7 @@ import {Component, EventEmitter, Output} from '@angular/core';
 import {AccountModalMode} from "../../../services/account-modal.service";
 import {AuthService} from "../../../services/auth.service";
 import {RegisterFormOutput} from "../../../interfaces/register-form-output";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'trd-register-modal',
@@ -11,8 +12,10 @@ import {RegisterFormOutput} from "../../../interfaces/register-form-output";
 export class RegisterModalComponent {
 
   constructor(private authService: AuthService) {
+    this.usernameConflict$ = authService.usernameConflict$;
   }
 
+  usernameConflict$: Observable<void>;
   @Output() closeClick: EventEmitter<void> = new EventEmitter<void>();
   @Output() logInLinkClick: EventEmitter<AccountModalMode> = new EventEmitter<AccountModalMode>();
 

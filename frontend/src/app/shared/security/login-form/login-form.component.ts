@@ -1,6 +1,8 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup, ValidationErrors, Validators} from "@angular/forms";
 import {LoginFormOutput} from "../../../interfaces/login-form-output";
+import {Observable, Subscription} from "rxjs";
+import {BadCredentialsErrorStateMatcher} from "../BadCredentialsErrorStateMatcher";
 
 const LOGIN_FORM_ERROR_MESSAGE_KEYS: ValidationErrors = {
   username: {
@@ -16,11 +18,13 @@ const LOGIN_FORM_ERROR_MESSAGE_KEYS: ValidationErrors = {
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.scss']
 })
-export class LoginFormComponent {
+export class LoginFormComponent implements OnInit, OnDestroy{
 
-
+  @Input() invalidCredentials$: Observable<void>;
   @Output() formSubmitted: EventEmitter<LoginFormOutput> = new EventEmitter<LoginFormOutput>();
 
+  badCredentialsErrorStateMatcher: BadCredentialsErrorStateMatcher = new BadCredentialsErrorStateMatcher();
+  invalidCredentialsSubscription: Subscription;
   formErrorMessageKeys: ValidationErrors = LOGIN_FORM_ERROR_MESSAGE_KEYS;
 
   form: FormGroup = new FormGroup({
@@ -38,6 +42,16 @@ export class LoginFormComponent {
 
   onSubmit() {
     this.formSubmitted.emit(this.form.value)
+  }
+
+  ngOnInit() {
+    this.invalidCredentialsSubscription = this.invalidCredentials$
+      .subscribe(_ => this.form.setErrors({badCredentials: true})
+      )
+  }
+
+  ngOnDestroy() {
+    this.invalidCredentialsSubscription.unsubscribe();
   }
 
 }

@@ -1,14 +1,16 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup, ValidationErrors, Validators} from "@angular/forms";
 import {matchPasswordsValidator} from "../validators/match-password-validator";
 import {ParentErrorStateMatcher} from "../parent-error-state-matcher";
 import {RegisterFormOutput} from "../../../interfaces/register-form-output";
+import {Observable, Subscription} from "rxjs";
 
 const REGISTER_FORM_ERROR_MESSAGE_KEYS: ValidationErrors = {
   username: {
     required: "error.username.required",
     minlength: "error.username.length",
-    maxlength: "error.username.length"
+    maxlength: "error.username.length",
+    conflict: "error.username.conflict"
   },
   email: {
     required: "error.email.required",
@@ -28,10 +30,12 @@ const REGISTER_FORM_ERROR_MESSAGE_KEYS: ValidationErrors = {
   templateUrl: './register-form.component.html',
   styleUrls: ['./register-form.component.scss']
 })
-export class RegisterFormComponent {
+export class RegisterFormComponent implements OnDestroy, OnInit{
 
+  @Input() usernameConflict$: Observable<void>;
+  @Output() formSubmitted: EventEmitter<RegisterFormOutput> = new EventEmitter<RegisterFormOutput>();
 
-  @Output() formSubmitted: EventEmitter<RegisterFormOutput> = new EventEmitter<RegisterFormOutput>()
+  usernameConflictSubscription: Subscription;
 
   passwordErrorStateMatcher: ParentErrorStateMatcher = new ParentErrorStateMatcher();
   formErrorMessageKeys: ValidationErrors = REGISTER_FORM_ERROR_MESSAGE_KEYS;
@@ -72,6 +76,16 @@ export class RegisterFormComponent {
 
   get confirmPassword() {
     return this.form.get('password.confirmPassword');
+  }
+
+  ngOnDestroy(): void {
+    this.usernameConflictSubscription.unsubscribe();
+  }
+
+  ngOnInit(): void {
+    this.usernameConflictSubscription = this.usernameConflict$.subscribe(_ => {
+      this.username.setErrors({conflict: true})
+    })
   }
 
 }
