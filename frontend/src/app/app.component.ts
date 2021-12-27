@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {TranslateService} from "@ngx-translate/core";
+import {UserService} from "./services/user.service";
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,7 @@ import {TranslateService} from "@ngx-translate/core";
 })
 export class AppComponent implements OnInit{
 
-  constructor(private translateService: TranslateService) {
+  constructor(private translateService: TranslateService, private userService: UserService) {
     translateService.addLangs(['en', 'pl']);
     translateService.setDefaultLang('en');
     translateService.use('pl');
@@ -16,6 +17,6 @@ export class AppComponent implements OnInit{
 
 
   ngOnInit(): void {
-
+    this.userService.getUserData();
   }
 }
