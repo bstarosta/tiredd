@@ -32,5 +32,6 @@
   "error.password.required": "Password is required",
   "error.confirmPassword.required": "Please confirm your password",
   "error.mismatchedPasswords": "Passwords do not match",
-  "error.password.complexity": "Password has to be between 8 and 50 characters, contain at least one capital letter, one digit, and one special character"
+  "trendingToday": "Trending today",
+  "postedBy": "Posted by"
 }

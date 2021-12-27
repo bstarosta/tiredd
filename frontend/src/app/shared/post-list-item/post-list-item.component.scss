@@ -1,10 +1,15 @@
 @use "../../../style/ui-colors";
 
-:host {
+.post {
   display: flex;
   width: 100%;
   border: 1px solid ui-colors.$post-list-item-border;
   background-color: ui-colors.$post-list-item-background;
+  cursor: pointer;
+
+  &:hover {
+    border: 1px solid ui-colors.$post-list-item-border-hover;
+  }
 }
 
 .votes-sidebar {
@@ -61,6 +66,20 @@
 .subtiredd-name {
   text-align: left;
   color: ui-colors.$post-list-item-text;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.dot-separator {
+  margin: 0 8px;
+  color: ui-colors.$post-list-item-light-text;
+}
+
+.posted-by {
+  color: ui-colors.$post-list-item-light-text;
 }
 
 .time-text {

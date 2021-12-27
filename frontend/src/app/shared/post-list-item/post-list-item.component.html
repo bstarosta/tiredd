@@ -1,18 +1,24 @@
-<div class="votes-sidebar">
-  <div class="arrow-icon" [ngClass]="{'selected': post.userVote === 'upVote'}"></div>
-  <p class="score-text">{{post.score}}</p>
-  <div class="arrow-icon rotate180" [ngClass]="{'selected': post.userVote === 'downVote'}"></div>
-</div>
-<div class="post-contents">
-  <div class="post-info">
-    <p class="subtiredd-name">{{post.subtireddName}}</p>
-    <p class="time-text">{{post.timestamp | date:'d MMM y, H:mm '}}</p>
+<div class="post" [routerLink]="['/t', post.subtiredd, post.id]">
+  <div class="votes-sidebar">
+    <div class="arrow-icon" [ngClass]="{'selected': post.userVote === 'upVote'}"></div>
+    <p class="score-text">{{post.score}}</p>
+    <div class="arrow-icon rotate180" [ngClass]="{'selected': post.userVote === 'downVote'}"></div>
   </div>
-  <p class="post-title">{{post.title}}</p>
-  <img *ngIf="post.image" src="{{post.image}}" alt="image" class="post-image">
-  <p *ngIf="!post.image" class="post-text">{{post.text}}</p>
-  <div class="comments">
-    <span class="material-icons">comment</span>
-    {{"comments" | translate}}
+  <div class="post-contents">
+    <div class="post-info">
+      <div>
+        <span class="subtiredd-name" [routerLink]="['/t', post.subtiredd]">t/{{post.subtiredd}}</span>
+        <span class="dot-separator">•</span>
+        <span class="posted-by">{{"postedBy" | translate}} u/{{post.author}}</span>
+      </div>
+      <p class="time-text">{{post.timestamp | date:'d MMM y, H:mm '}}</p>
+    </div>
+    <p class="post-title">{{post.title}}</p>
+    <img *ngIf="post.image" src="{{post.image}}" alt="image" class="post-image">
+    <p *ngIf="!post.image" class="post-text">{{post.text}}</p>
+    <div class="comments" [routerLink]="['/t', post.subtiredd, post.id]" [fragment]="'comments'">
+      <span class="material-icons">comment</span>
+      {{"comments" | translate}}
+    </div>
   </div>
 </div>
