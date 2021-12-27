@@ -23,9 +23,10 @@ import {CreatePostModalComponent} from './create-post-modal/create-post-modal.co
 import {MatDialogModule} from "@angular/material/dialog";
 import {SecurityModule} from "./security/security.module";
 import { CreatePostSubtireddSelectComponent } from './create-post-subtiredd-select/create-post-subtiredd-select.component';
+import { HeaderUserAvatarComponent } from './header-user-avatar/header-user-avatar.component';
 
 @NgModule({
-  declarations: [LanguagePickerComponent, HeaderComponent, SearchbarComponent, HeaderSubtireddSelectComponent, UserAvatarComponent, PostListItemComponent, PostListComponent, PostListOrderPickerComponent, PostColumnComponent, PopularCommunitiesComponent, CommunityAvatarComponent, CreatePostComponent, CreatePostModalComponent, CreatePostSubtireddSelectComponent],
+  declarations: [LanguagePickerComponent, HeaderComponent, SearchbarComponent, HeaderSubtireddSelectComponent, UserAvatarComponent, PostListItemComponent, PostListComponent, PostListOrderPickerComponent, PostColumnComponent, PopularCommunitiesComponent, CommunityAvatarComponent, CreatePostComponent, CreatePostModalComponent, CreatePostSubtireddSelectComponent, HeaderUserAvatarComponent],
   imports: [
     CommonModule,
     TranslateModule,
