@@ -9,7 +9,7 @@ import {SubtireddSelectItem} from "../../interfaces/subtiredd-select-item";
 })
 export class CreatePostModalComponent {
 
-  userId?: string;
+  userId: string;
   subtireddSelectItems: SubtireddSelectItem[] = [
     {name: "awww"},
     {name: "whatswrongwithyourdog"},
