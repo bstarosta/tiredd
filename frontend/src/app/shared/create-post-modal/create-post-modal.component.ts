@@ -10,11 +10,11 @@ import {SubtireddSelectItem} from "../../interfaces/subtiredd-select-item";
 export class CreatePostModalComponent {
 
   subtireddSelectItems: SubtireddSelectItem[] = [
-    {name: "t/awww"},
-    {name: "t/whatswrongwithyourdog"},
-    {name: "t/dachschund"},
-    {name: "t/corgi"},
-    {name: "t/dogs"},
+    {name: "awww"},
+    {name: "whatswrongwithyourdog"},
+    {name: "dachschund"},
+    {name: "corgi"},
+    {name: "dogs"},
   ]
   selectedSubtiredd?: SubtireddSelectItem;
 
