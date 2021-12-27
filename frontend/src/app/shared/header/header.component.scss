@@ -30,7 +30,7 @@ button {
 }
 
 .log-in-button {
-  background-color: ui-colors.$log-in-button-background ;
+  background-color: ui-colors.$log-in-button-background;
   border: 1px solid ui-colors.$log-in-button-border;
   margin: 0 10px 0 40px;
 
@@ -55,7 +55,7 @@ trd-language-picker {
   margin: auto 10px;
 }
 
-trd-subtiredd-select {
+trd-header-subtiredd-select {
   margin-right: 20px;
 }
 
@@ -63,7 +63,7 @@ trd-user-avatar {
   margin-right: 20px;
 }
 
-img{
+img {
   width: 140px;
   height: 50px;
   margin: 0 20px;

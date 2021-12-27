@@ -1,5 +1,5 @@
 import {Component, Inject} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogConfig, MatDialogRef} from "@angular/material/dialog";
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {SubtireddSelectItem} from "../../interfaces/subtiredd-select-item";
 
 @Component({
@@ -9,6 +9,7 @@ import {SubtireddSelectItem} from "../../interfaces/subtiredd-select-item";
 })
 export class CreatePostModalComponent {
 
+  userId?: string;
   subtireddSelectItems: SubtireddSelectItem[] = [
     {name: "awww"},
     {name: "whatswrongwithyourdog"},
@@ -18,7 +19,8 @@ export class CreatePostModalComponent {
   ]
   selectedSubtiredd?: SubtireddSelectItem;
 
-  constructor(@Inject(MAT_DIALOG_DATA) config: MatDialogConfig, private matDialogRef: MatDialogRef<CreatePostModalComponent>) {
+  constructor(@Inject(MAT_DIALOG_DATA) data: string, private matDialogRef: MatDialogRef<CreatePostModalComponent>) {
+    this.userId = data;
   }
 
   onCloseClick(): void {
