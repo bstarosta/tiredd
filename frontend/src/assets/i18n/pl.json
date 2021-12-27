@@ -35,6 +35,8 @@
   "error.confirmPassword.required": "Potwierdź hasło",
   "error.mismatchedPasswords": "Hasła nie sa takie same",
   "error.badCredentials": "Niepoprawna nazwa użytkownika lub hasło",
+  "registerSuccessTitle": "Udało się!",
+  "registerSuccessMessage": "Twoje konto zostało utworzone. Możesz się teraz zalogować na swoje konto",
   "trendingToday": "Popularne dzisiaj",
   "popularPosts": "Popularne posty",
   "postedBy": "Dodane przez",
