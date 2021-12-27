@@ -4,7 +4,7 @@ import {ActivatedRoute} from "@angular/router";
 
 
 @Component({
-  selector: 'trd-subtiredd-select',
+  selector: 'trd-header-subtiredd-select',
   templateUrl: './header-subtiredd-select.component.html',
   styleUrls: ['./header-subtiredd-select.component.scss']
 })

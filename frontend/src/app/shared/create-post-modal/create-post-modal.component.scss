@@ -44,7 +44,7 @@ textarea {
   height: calc(100% - 100px);
   padding: 10px 10px;
   resize: none;
-  font-family: Roboto, "Helvetica Neue", sans-serif; // TODO: make sure it's the default font
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
 button {
@@ -64,7 +64,7 @@ button {
   }
 }
 
-trd-subtiredd-select {
+trd-create-post-subtiredd-select {
   margin-bottom: 15px;
   border-color: ui-colors.$create-post-modal-input-border;
 }

@@ -2,8 +2,8 @@
   <h2>{{"create-post" | translate}}</h2>
   <span (click)="onCloseClick()" class="material-icons close-icon">close</span>
 </div>
-<trd-subtiredd-select [allSubtireddSelectItems]="subtireddSelectItems"
-                      (subtireddSelected)="onSubtireddSelected($event)"></trd-subtiredd-select>
+<trd-create-post-subtiredd-select [allSubtireddSelectItems]="subtireddSelectItems"
+                      (subtireddSelected)="onSubtireddSelected($event)"></trd-create-post-subtiredd-select>
 <input class="text-input title" [placeholder]="'title' | translate">
 <textarea class="text-input" [placeholder]="'text' | translate"></textarea>
 <button>

@@ -1,10 +1,10 @@
 <header>
   <div>
     <img class="home-logo" [routerLink]="['home']" src="assets/images/logo.PNG" alt="logo">
-    <trd-subtiredd-select *ngIf="isUserLoggedIn$ | async"
+    <trd-header-subtiredd-select *ngIf="isUserLoggedIn$ | async"
                           [allSubtireddSelectItems]="subtireddSelectItems"
                           (subtireddSelected)="onSubtireddSelected($event)">
-    </trd-subtiredd-select>
+    </trd-header-subtiredd-select>
   </div>
   <trd-searchbar></trd-searchbar>
   <div>

@@ -1,7 +1,7 @@
 @use "../../../style/ui-colors";
 
 :host {
-  height: 40px;
+  height: 35px;
 }
 
 ::ng-deep {
@@ -14,7 +14,7 @@
 
 .trigger {
   display: flex;
-  height: 38px;
+  height: 35px;
   width: 273px;
   border: 1px solid ui-colors.$create-post-subtiredd-select-border;
   border-radius: 4px;
@@ -34,6 +34,10 @@
     span {
       line-height: 38px;
     }
+  }
+
+  &:hover, &:focus, &:active {
+    border-color: ui-colors.$create-post-subtiredd-select-border-focus;
   }
 }
 
