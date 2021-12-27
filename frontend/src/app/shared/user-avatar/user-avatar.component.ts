@@ -8,7 +8,7 @@ import {ColorConverterService} from "../../services/color-converter.service";
 })
 export class UserAvatarComponent implements OnInit {
 
-  @Input() username: string = "John" // TODO: Remove default value
+  @Input() username: string;
   userInitial: string;
   backgroundColor: string;
 

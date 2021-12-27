@@ -9,6 +9,6 @@
     <button *ngIf="!(isUserLoggedIn$ | async)" class="log-in-button" (click)="openAccountModal('login')">{{"logIn" | translate}}</button>
     <button *ngIf="!(isUserLoggedIn$ | async)" class="sign-up-button" (click)="openAccountModal('register')">{{"signUp" | translate}}</button>
     <trd-language-picker></trd-language-picker>
-    <trd-user-avatar *ngIf="isUserLoggedIn$ | async" (userLoggedOut)="onLogOut()"></trd-user-avatar>
+    <trd-user-avatar *ngIf="isUserLoggedIn$ | async" (userLoggedOut)="onLogOut()" [username]="(user$ | async).userName"></trd-user-avatar>
   </div>
 </header>
