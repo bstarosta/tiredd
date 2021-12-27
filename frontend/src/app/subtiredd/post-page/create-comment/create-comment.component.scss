@@ -1,0 +1,63 @@
+@use "../../../../style/ui-colors";
+
+:host {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  width: 100%;
+}
+
+.comment-input-field {
+  margin: 10px 10px 0 10px;
+  border: 1px solid ui-colors.$light-gray;
+  border-bottom: none;
+  border-radius: 5px 5px 0 0;
+
+  ::ng-deep .mat-form-field-flex {
+    background-color: ui-colors.$almost-white-blue;
+  }
+
+  ::ng-deep .mat-focused .mat-form-field-label {
+    color: ui-colors.$votes-sidebar-background;
+  }
+
+  ::ng-deep .mat-form-field-underline {
+    bottom: 0;
+    background-color: ui-colors.$votes-sidebar-background;
+  }
+
+  ::ng-deep .mat-form-field-ripple {
+    background-color: ui-colors.$votes-sidebar-background;
+  }
+
+  ::ng-deep .mat-form-field-wrapper {
+    padding-bottom: 0;
+  }
+}
+
+.add-comment-button {
+  border: none;
+  background-color: ui-colors.$add-comment-button-background;
+  width: 90px;
+  margin: 5px 10px 5px auto;
+
+  &:hover {
+    background-color: ui-colors.$light-blue;
+  }
+}
+
+button {
+  height: 25px;
+  border-radius: 15px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.comment-input-toolbar {
+  display: flex;
+  margin: 0 10px 0 10px;
+  border: 1px solid ui-colors.$light-gray;
+  border-top: none;
+  border-radius: 0 0 5px 5px;
+}
+
