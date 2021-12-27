@@ -32,6 +32,7 @@
   "error.confirmPassword.required": "Please confirm your password",
   "error.mismatchedPasswords": "Passwords do not match",
   "trendingToday": "Trending today",
+  "popularPosts": "Popular posts",
   "postedBy": "Posted by",
   "create-post": "Create a post",
   "title": "Title",
