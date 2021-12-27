@@ -3,5 +3,6 @@
   <textarea matInput [(ngModel)]="commentText"></textarea>
 </mat-form-field>
 <div class="comment-input-toolbar">
-  <button class="add-comment-button" (click)="onAddCommentClicked()">{{"addComment" | translate}}</button>
+  <button class="add-comment-button" (click)="onAddCommentClicked()"
+          [disabled]="isCommentEmpty()">{{"addComment" | translate}}</button>
 </div>

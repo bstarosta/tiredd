@@ -41,8 +41,9 @@
   width: 90px;
   margin: 5px 10px 5px auto;
 
-  &:hover {
+  &:hover:enabled {
     background-color: ui-colors.$light-blue;
+    cursor: pointer;
   }
 }
 
@@ -50,7 +51,6 @@ button {
   height: 25px;
   border-radius: 15px;
   font-size: 14px;
-  cursor: pointer;
 }
 
 .comment-input-toolbar {

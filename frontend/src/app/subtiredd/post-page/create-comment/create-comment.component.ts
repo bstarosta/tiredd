@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'trd-create-comment',
@@ -9,9 +9,14 @@ export class CreateCommentComponent implements OnInit {
 
   commentText: string
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
+  }
+
+  isCommentEmpty() {
+    return !this.commentText
   }
 
   onAddCommentClicked() {
