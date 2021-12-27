@@ -1,13 +1,17 @@
 <header>
   <div>
     <img class="home-logo" [routerLink]="['home']" src="assets/images/logo.PNG" alt="logo">
-    <trd-subtiredd-select *ngIf="isUserLoggedIn$ | async">
-    </trd-subtiredd-select>
+    <trd-header-subtiredd-select *ngIf="isUserLoggedIn$ | async"
+                          [allSubtireddSelectItems]="subtireddSelectItems"
+                          (subtireddSelected)="onSubtireddSelected($event)">
+    </trd-header-subtiredd-select>
   </div>
   <trd-searchbar></trd-searchbar>
   <div>
-    <button *ngIf="!(isUserLoggedIn$ | async)" class="log-in-button" (click)="openAccountModal('login')">{{"logIn" | translate}}</button>
-    <button *ngIf="!(isUserLoggedIn$ | async)" class="sign-up-button" (click)="openAccountModal('register')">{{"signUp" | translate}}</button>
+    <button *ngIf="!(isUserLoggedIn$ | async)" class="log-in-button"
+            (click)="openAccountModal('login')">{{"logIn" | translate}}</button>
+    <button *ngIf="!(isUserLoggedIn$ | async)" class="sign-up-button"
+            (click)="openAccountModal('register')">{{"signUp" | translate}}</button>
     <trd-language-picker></trd-language-picker>
     <trd-user-avatar *ngIf="isUserLoggedIn$ | async" (userLoggedOut)="onLogOut()" [username]="(user$ | async).userName"></trd-user-avatar>
   </div>

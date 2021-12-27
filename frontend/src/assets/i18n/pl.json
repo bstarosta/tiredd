@@ -34,5 +34,10 @@
   "error.confirmPassword.required": "Potwierdź hasło",
   "error.mismatchedPasswords": "Hasła nie sa takie same",
   "trendingToday": "Popularne dzisiaj",
-  "postedBy": "Dodane przez"
+  "popularPosts": "Popularne posty",
+  "postedBy": "Dodane przez",
+  "create-post": "Stwórz posta",
+  "title": "Tytuł",
+  "text": "Tekst",
+  "post": "Opublikuj"
 }
