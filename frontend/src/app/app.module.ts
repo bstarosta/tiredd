@@ -9,6 +9,8 @@ import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import {FormsModule} from "@angular/forms";
 import {SharedModule} from "./shared/shared.module";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {BASE_URL} from "./utils/base-url";
+import {API_BASE_URL} from "./utils/api-base-url";
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http);
@@ -34,7 +36,10 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
         SharedModule,
         BrowserAnimationsModule
     ],
-    providers: [],
+    providers: [{
+      provide: API_BASE_URL,
+      useValue: BASE_URL
+    }],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

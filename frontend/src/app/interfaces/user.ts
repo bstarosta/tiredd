@@ -1,5 +1,6 @@
 export interface User {
-  username: string;
-  joinedSubtiredds?: any;
-  moderatedSubtiredds?: any;
+  id: string
+  userName: string;
+  subtiredds?: any;
+  managedSubtiredds?: any;
 }

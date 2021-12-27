@@ -1,5 +1,7 @@
 import {Component, EventEmitter, Output} from '@angular/core';
 import {AccountModalMode} from "../../../services/account-modal.service";
+import {AuthService} from "../../../services/auth.service";
+import {RegisterFormOutput} from "../../../interfaces/register-form-output";
 
 @Component({
   selector: 'trd-register-modal',
@@ -8,11 +10,18 @@ import {AccountModalMode} from "../../../services/account-modal.service";
 })
 export class RegisterModalComponent {
 
+  constructor(private authService: AuthService) {
+  }
 
   @Output() closeClick: EventEmitter<void> = new EventEmitter<void>();
   @Output() logInLinkClick: EventEmitter<AccountModalMode> = new EventEmitter<AccountModalMode>();
 
-  onLogInLinkClick() {
+  onFormSubmitted(userRegisterData: RegisterFormOutput): void {
+    console.log("level-up")
+    this.authService.registerUser(userRegisterData);
+  }
+
+  onLogInLinkClick(): void {
     this.logInLinkClick.emit("login");
   }
 

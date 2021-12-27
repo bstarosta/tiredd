@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Output} from '@angular/core';
 import {AccountModalMode} from "../../../services/account-modal.service";
-import {UserService} from "../../../services/user.service";
 import {LoginFormOutput} from "../../../interfaces/login-form-output";
+import {AuthService} from "../../../services/auth.service";
 
 @Component({
   selector: 'trd-login-modal',
@@ -10,14 +10,14 @@ import {LoginFormOutput} from "../../../interfaces/login-form-output";
 })
 export class LoginModalComponent {
 
-  constructor(private userService: UserService) { }
+  constructor(private authService: AuthService) { }
 
   @Output() closeClick: EventEmitter<void> = new EventEmitter<void>();
   @Output() signUpLinkClick: EventEmitter<AccountModalMode> = new EventEmitter<AccountModalMode>();
   @Output() loginSuccess: EventEmitter<void> = new EventEmitter<void>();
 
   loginUser(userCredentials: LoginFormOutput): void {
-    this.userService.logInUser()
+    this.authService.loginUser(userCredentials);
     this.loginSuccess.emit();
   }
 

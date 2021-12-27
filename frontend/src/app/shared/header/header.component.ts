@@ -3,6 +3,7 @@ import {AccountModalMode, AccountModalService} from "../../services/account-moda
 import {UserService} from "../../services/user.service";
 import {Observable} from "rxjs";
 import {User} from "../../interfaces/user";
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'trd-header',
@@ -11,7 +12,8 @@ import {User} from "../../interfaces/user";
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private accountModalService: AccountModalService, private userService: UserService) {
+  constructor(private accountModalService: AccountModalService, private userService: UserService,
+              private authService: AuthService) {
     this.isUserLoggedIn$ = userService.isUserLoggedIn$
     this.user$ = this.userService.user$;
   }
@@ -24,7 +26,7 @@ export class HeaderComponent implements OnInit {
   }
 
   onLogOut(): void {
-    this.userService.logOutUser();
+    this.authService.logoutUser();
   }
 
   ngOnInit(): void {

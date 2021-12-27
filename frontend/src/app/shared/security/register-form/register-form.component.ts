@@ -50,6 +50,7 @@ export class RegisterFormComponent {
       ...this.form.value,
       password: this.password.value
     }
+    console.log("clicked");
     this.formSubmitted.emit(userRegistrationData);
   }
 
