@@ -1,19 +1,14 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 @Component({
   selector: 'trd-header-user-avatar',
   templateUrl: './header-user-avatar.component.html',
   styleUrls: ['./header-user-avatar.component.scss']
 })
-export class HeaderUserAvatarComponent implements OnInit {
+export class HeaderUserAvatarComponent {
 
   @Output() userLoggedOut: EventEmitter<void> = new EventEmitter<void>();
-
-  constructor() {
-  }
-
-  ngOnInit(): void {
-  }
+  @Input() userName: string;
 
   onUserLogout(): void {
     this.userLoggedOut.emit();
