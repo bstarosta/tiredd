@@ -1,19 +1,24 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup, ValidationErrors, Validators} from "@angular/forms";
 import {matchPasswordsValidator} from "../validators/match-password-validator";
 import {ParentErrorStateMatcher} from "../parent-error-state-matcher";
 import {RegisterFormOutput} from "../../../interfaces/register-form-output";
+import {Observable, Subscription} from "rxjs";
 
 const REGISTER_FORM_ERROR_MESSAGE_KEYS: ValidationErrors = {
   username: {
     required: "error.username.required",
+    minlength: "error.username.length",
+    maxlength: "error.username.length",
+    conflict: "error.username.conflict"
   },
   email: {
     required: "error.email.required",
     email: "error.email.email"
   },
   password : {
-    required: "error.password.required"
+    required: "error.password.required",
+    pattern: "error.password.complexity"
   },
   confirmPassword: {
     required: "error.confirmPassword.required"
@@ -25,19 +30,21 @@ const REGISTER_FORM_ERROR_MESSAGE_KEYS: ValidationErrors = {
   templateUrl: './register-form.component.html',
   styleUrls: ['./register-form.component.scss']
 })
-export class RegisterFormComponent {
+export class RegisterFormComponent implements OnDestroy, OnInit{
 
+  @Input() usernameConflict$: Observable<void>;
+  @Output() formSubmitted: EventEmitter<RegisterFormOutput> = new EventEmitter<RegisterFormOutput>();
 
-  @Output() formSubmitted: EventEmitter<RegisterFormOutput> = new EventEmitter<RegisterFormOutput>()
+  usernameConflictSubscription: Subscription;
 
   passwordErrorStateMatcher: ParentErrorStateMatcher = new ParentErrorStateMatcher();
   formErrorMessageKeys: ValidationErrors = REGISTER_FORM_ERROR_MESSAGE_KEYS;
 
   form: FormGroup = new FormGroup({
-    username: new FormControl('', Validators.required),
+    username: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(30)]),
     email: new FormControl('', [Validators.email, Validators.required]),
     password: new FormGroup({
-      password: new FormControl('', [Validators.required]),
+      password: new FormControl('', [Validators.required, Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,50}$')]),
       confirmPassword: new FormControl('', [Validators.required])
     }, [matchPasswordsValidator])
   });
@@ -47,6 +54,7 @@ export class RegisterFormComponent {
       ...this.form.value,
       password: this.password.value
     }
+    console.log("clicked");
     this.formSubmitted.emit(userRegistrationData);
   }
 
@@ -68,6 +76,16 @@ export class RegisterFormComponent {
 
   get confirmPassword() {
     return this.form.get('password.confirmPassword');
+  }
+
+  ngOnDestroy(): void {
+    this.usernameConflictSubscription.unsubscribe();
+  }
+
+  ngOnInit(): void {
+    this.usernameConflictSubscription = this.usernameConflict$.subscribe(_ => {
+      this.username.setErrors({conflict: true})
+    })
   }
 
 }

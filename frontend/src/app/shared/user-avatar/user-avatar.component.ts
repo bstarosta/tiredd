@@ -8,7 +8,7 @@ import {ColorConverterService} from "../../services/color-converter.service";
 })
 export class UserAvatarComponent implements OnInit {
 
-  @Input() username: string = "John" // TODO: Remove default value
+  @Input() userName: string = "john";
   userInitial: string;
   backgroundColor: string;
 
@@ -16,7 +16,7 @@ export class UserAvatarComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.userInitial = this.username.charAt(0).toUpperCase()
-    this.backgroundColor = this.colorConverterService.backgroundColorFromString(this.username)
+    this.userInitial = this.userName.charAt(0).toUpperCase()
+    this.backgroundColor = this.colorConverterService.backgroundColorFromString(this.userName)
   }
 }

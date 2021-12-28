@@ -6,6 +6,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using backend.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -49,7 +50,11 @@ namespace backend.Authentication.Controllers
             );
             var accessToken = new JwtSecurityTokenHandler().WriteToken(token);
 
-            Response.Cookies.Append("access_token", accessToken);
+            var cookieOptions = new CookieOptions
+            {
+                HttpOnly = true
+            };
+            Response.Cookies.Append("access_token", accessToken, cookieOptions);
             return Ok(new
             {
                 token = accessToken,

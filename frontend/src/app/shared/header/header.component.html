@@ -13,6 +13,6 @@
     <button *ngIf="!(isUserLoggedIn$ | async)" class="sign-up-button"
             (click)="openAccountModal('register')">{{"signUp" | translate}}</button>
     <trd-language-picker></trd-language-picker>
-    <trd-header-user-avatar *ngIf="isUserLoggedIn$ | async" (userLoggedOut)="onLogOut()"></trd-header-user-avatar>
+    <trd-header-user-avatar *ngIf="isUserLoggedIn$ | async" [userName]="(user$ | async).userName" (userLoggedOut)="onLogOut()"></trd-header-user-avatar>
   </div>
 </header>

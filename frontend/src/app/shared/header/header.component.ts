@@ -1,10 +1,11 @@
+import {Component} from '@angular/core';
 import {AccountModalMode, AccountModalService} from "../../services/account-modal.service";
 import {UserService} from "../../services/user.service";
 import {Observable} from "rxjs";
 import {User} from "../../interfaces/user";
-import {Component} from '@angular/core';
 import {SubtireddSelectItem} from "../../interfaces/subtiredd-select-item";
 import {Router} from "@angular/router";
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'trd-header',
@@ -13,7 +14,8 @@ import {Router} from "@angular/router";
 })
 export class HeaderComponent {
 
-  constructor(private accountModalService: AccountModalService, private userService: UserService, private router: Router) {
+  constructor(private accountModalService: AccountModalService, private userService: UserService, private router: Router,
+              private authService: AuthService) {
     this.isUserLoggedIn$ = userService.isUserLoggedIn$
     this.user$ = this.userService.user$;
   }
@@ -34,7 +36,7 @@ export class HeaderComponent {
   }
 
   onLogOut(): void {
-    this.userService.logOutUser();
+    this.authService.logoutUser();
   }
 
   onSubtireddSelected(selectedSubtiredd: SubtireddSelectItem) {
