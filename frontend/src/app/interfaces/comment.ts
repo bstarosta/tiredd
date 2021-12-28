@@ -1,4 +1,7 @@
 export interface Comment {
-  comment: string // TODO: Only placeholder model
+  id: string
+  author: string
+  timestamp: Date
+  text: string
   replies: Comment[]
 }

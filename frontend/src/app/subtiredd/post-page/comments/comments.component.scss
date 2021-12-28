@@ -7,3 +7,13 @@
   border: 1px solid ui-colors.$comments-border;
   background-color: ui-colors.$comments-background;
 }
+
+.create-comment {
+  display: flex;
+  width: calc(100% - 20px);
+  margin: 10px 10px;
+}
+
+.comments-list {
+  margin: 10px 15px;
+}

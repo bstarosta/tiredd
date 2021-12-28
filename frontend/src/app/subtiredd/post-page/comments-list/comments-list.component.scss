@@ -18,6 +18,10 @@
   margin: 5px auto;
 }
 
+.comment-column {
+  width: 100%;
+}
+
 .comment {
   display: flex;
   flex-direction: row;
@@ -46,7 +50,7 @@
 }
 
 .comment-text {
-  margin: 3px 0 0 10px;
+  margin: 3px 30px 0 10px;
   text-align: justify;
 }
 
@@ -55,6 +59,7 @@
   color: ui-colors.$comment-light-text;
   cursor: pointer;
   margin: 3px 0 3px 5px;
+  width: fit-content;
 
   &:hover {
     color: ui-colors.$comment-light-text-hover;
@@ -68,4 +73,9 @@
 .reply-text {
   font-size: 12px;
   line-height: 22px;
+}
+
+.create-reply-comment {
+  width: calc(100% - 35px);
+  margin: 0 0 10px 8px;
 }
