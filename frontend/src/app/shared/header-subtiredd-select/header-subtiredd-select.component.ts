@@ -1,6 +1,26 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {SubtireddSelectItem} from "../../interfaces/subtiredd-select-item";
-import {ActivatedRoute} from "@angular/router";
+import {NavigationEnd, Router} from "@angular/router";
+import {filter} from "rxjs/operators";
+
+export interface HeaderSubtireddSelectItem {
+  url?: string;
+  name: string;
+  icon?: string;
+  onClick?: Function;
+}
+
+
+
+const  subtireddSelectItems: HeaderSubtireddSelectItem[] = [
+  {name: "home", url: "/home", icon: "home"},
+  {name: "createCommunity", icon: "add" },
+  {name: "t/awww", url: "/t/awww"},
+  {name: "t/whatswrongwithyourdog", url: "/t/whatswrongwithyourdog"},
+  {name: "t/dachschund", url: "/t/dachschund"},
+  {name: "t/corgi", url: "/t/corgi"},
+  {name: "t/dogs", url: "/t/dogs"},
+]
 
 
 @Component({
@@ -10,20 +30,32 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class HeaderSubtireddSelectComponent implements OnInit {
 
-  @Input() allSubtireddSelectItems: SubtireddSelectItem[];
+  allSubtireddSelectItems: HeaderSubtireddSelectItem[] = subtireddSelectItems;
   @Output() subtireddSelected: EventEmitter<SubtireddSelectItem> = new EventEmitter<SubtireddSelectItem>();
 
-  displayedSubtireddSelectItems: SubtireddSelectItem[]
+  displayedSubtireddSelectItems: HeaderSubtireddSelectItem[]
 
-  constructor(private route: ActivatedRoute) {
-    route.url.subscribe(url => console.log(url))
+  constructor(private router: Router) {
+    this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe( event => {
+      if (event instanceof NavigationEnd) {
+        this.selectedSubtireddSelectItem = this.createCurrentSubtireddSelectItem(event.url)
+      }
+    })
+  }
+
+  createCurrentSubtireddSelectItem(url: string): HeaderSubtireddSelectItem {
+    return {
+      name: url.substr(1),
+      url: url,
+      icon: url === "/home" ? "home" : null
+    }
   }
 
   searchFilter: string;
-  selectedSubtiredd: SubtireddSelectItem;
+  selectedSubtireddSelectItem: HeaderSubtireddSelectItem;
 
   ngOnInit(): void {
-    this.selectedSubtiredd = this.allSubtireddSelectItems[0];
+    this.selectedSubtireddSelectItem = this.allSubtireddSelectItems[0];
   }
 
   onSearchChange(): void {
@@ -36,8 +68,8 @@ export class HeaderSubtireddSelectComponent implements OnInit {
     this.displayedSubtireddSelectItems = this.allSubtireddSelectItems;
   }
 
-  onSubtireddSelected(selectedSubtiredd: SubtireddSelectItem) {
-    this.selectedSubtiredd = selectedSubtiredd;
+  onSubtireddSelected(selectedSubtiredd: HeaderSubtireddSelectItem) {
+    this.selectedSubtireddSelectItem = selectedSubtiredd;
     this.subtireddSelected.emit(selectedSubtiredd);
   }
 

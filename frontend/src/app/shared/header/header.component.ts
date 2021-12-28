@@ -20,14 +20,6 @@ export class HeaderComponent {
     this.user$ = this.userService.user$;
   }
 
-  subtireddSelectItems: SubtireddSelectItem[] = [
-    {name: "Home", url: "/home"},
-    {name: "t/awww", url: "/t/awww"},
-    {name: "t/whatswrongwithyourdog", url: "/t/whatswrongwithyourdog"},
-    {name: "t/dachschund", url: "/t/dachschund"},
-    {name: "t/corgi", url: "/t/corgi"},
-    {name: "t/dogs", url: "/t/dogs"},
-  ]
   user$: Observable<User>
   isUserLoggedIn$: Observable<Boolean>
 
