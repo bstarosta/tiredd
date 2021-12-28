@@ -37,5 +37,7 @@
   "create-post": "Create a post",
   "title": "Title",
   "text": "Text",
+  "image": "Image",
+  "imageUrl": "Image url",
   "post": "Post"
 }

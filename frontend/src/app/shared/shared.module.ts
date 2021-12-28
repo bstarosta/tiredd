@@ -22,8 +22,9 @@ import {CreatePostComponent} from './create-post/create-post.component';
 import {CreatePostModalComponent} from './create-post-modal/create-post-modal.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import {SecurityModule} from "./security/security.module";
-import { CreatePostSubtireddSelectComponent } from './create-post-subtiredd-select/create-post-subtiredd-select.component';
-import { HeaderUserAvatarComponent } from './header-user-avatar/header-user-avatar.component';
+import {CreatePostSubtireddSelectComponent} from './create-post-subtiredd-select/create-post-subtiredd-select.component';
+import {HeaderUserAvatarComponent} from './header-user-avatar/header-user-avatar.component';
+import {MatTabsModule} from "@angular/material/tabs";
 
 @NgModule({
   declarations: [LanguagePickerComponent, HeaderComponent, SearchbarComponent, HeaderSubtireddSelectComponent, UserAvatarComponent, PostListItemComponent, PostListComponent, PostListOrderPickerComponent, PostColumnComponent, PopularCommunitiesComponent, CommunityAvatarComponent, CreatePostComponent, CreatePostModalComponent, CreatePostSubtireddSelectComponent, HeaderUserAvatarComponent],
@@ -37,7 +38,8 @@ import { HeaderUserAvatarComponent } from './header-user-avatar/header-user-avat
     MatIconModule,
     RouterModule,
     MatDialogModule,
-    SecurityModule
+    SecurityModule,
+    MatTabsModule
   ],
   exports: [
     LanguagePickerComponent,

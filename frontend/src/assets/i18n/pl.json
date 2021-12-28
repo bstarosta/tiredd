@@ -37,5 +37,7 @@
   "create-post": "Stwórz posta",
   "title": "Tytuł",
   "text": "Tekst",
+  "image": "Zdjęcie",
+  "imageUrl": "Link do zdjęcia",
   "post": "Opublikuj"
 }
