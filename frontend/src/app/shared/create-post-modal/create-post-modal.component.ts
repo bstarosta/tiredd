@@ -45,6 +45,14 @@ export class CreatePostModalComponent implements OnInit {
     this.textSelected = event.index == 0;
   }
 
+  isTitleEmpty(): Boolean {
+    return !this.title
+  }
+
+  isContentEmpty(): Boolean {
+    return this.textSelected ? !this.text : !this.imageUrl;
+  }
+
   onPostClick() {
     if (this.textSelected) {
       console.log("Subtiredd name: " + this.selectedSubtiredd.name);

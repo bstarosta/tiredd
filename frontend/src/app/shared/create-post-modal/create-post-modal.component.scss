@@ -78,14 +78,21 @@ button {
   margin: 15px 10px 0 calc(100% - 140px);
   padding: 5px 0;
   border-radius: 30px;
-  cursor: pointer;
   border: none;
-  background-color: ui-colors.$create-post-modal-button-background;
   font-size: 20px;
-  color: ui-colors.$create-post-modal-button-text;
+  background-color: ui-colors.$create-post-modal-button-background;
+  color: ui-colors.$create-post-modal-button-text-disabled;
 
-  &:hover {
+  &:enabled {
+    background-color: ui-colors.$create-post-modal-button-background;
+    color: ui-colors.$create-post-modal-button-text;
+    cursor: pointer;
+  }
+
+  &:hover:enabled {
     background-color: ui-colors.$create-post-modal-button-background-hover;
+    color: ui-colors.$create-post-modal-button-text;
+    cursor: pointer;
   }
 }
 
