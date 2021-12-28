@@ -1,1 +1,19 @@
-<p>comments-list works!</p>
+<div *ngFor="let comment of comments" class="comment">
+  <div class="avatar-column">
+    <trd-user-avatar class="author-avatar" [userName]="'Test'"></trd-user-avatar>
+    <div class="comment-line"></div>
+  </div>
+  <div>
+    <div class="comment-info">
+      <p class="comment-author">Comment author</p>
+      <span class="dot-separator">•</span>
+      <p class="comment-timestamp">18 Dec 2021, 19:21</p>
+    </div>
+    <p class="comment-text">{{comment.comment}}</p>
+    <div class="reply">
+      <span class="material-icons reply-icon">comment</span>
+      <span class="reply-text">{{"reply" | translate}}</span>
+    </div>
+    <trd-comments-list [comments]="comment.replies"></trd-comments-list>
+  </div>
+</div>

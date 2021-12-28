@@ -1,0 +1,71 @@
+@use "../../../../style/ui-colors";
+
+:host {
+  width: 100%;
+}
+
+.avatar-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.comment-line {
+  background-color: ui-colors.$comment-line-background;
+  height: 100%;
+  min-height: 4px;
+  width: 4px;
+  border-radius: 2px;
+  margin: 5px auto;
+}
+
+.comment {
+  display: flex;
+  flex-direction: row;
+}
+
+.comment-info {
+  display: flex;
+  flex-direction: row;
+  margin-left: 10px;
+}
+
+.comment-author {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.dot-separator {
+  margin: 0 8px;
+  color: ui-colors.$comment-light-text;
+}
+
+.comment-timestamp {
+  color: ui-colors.$comment-light-text;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.comment-text {
+  margin: 3px 0 0 10px;
+  text-align: justify;
+}
+
+.reply {
+  display: flex;
+  color: ui-colors.$comment-light-text;
+  cursor: pointer;
+  margin: 3px 0 3px 5px;
+
+  &:hover {
+    color: ui-colors.$comment-light-text-hover;
+  }
+}
+
+.reply-icon {
+  transform: scale(0.7);
+}
+
+.reply-text {
+  font-size: 12px;
+  line-height: 22px;
+}
