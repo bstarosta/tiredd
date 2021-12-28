@@ -41,17 +41,18 @@ import {MatTabsModule} from "@angular/material/tabs";
     SecurityModule,
     MatTabsModule
   ],
-  exports: [
-    LanguagePickerComponent,
-    TranslateModule,
-    HeaderComponent,
-    PostListItemComponent,
-    PostListComponent,
-    PostListOrderPickerComponent,
-    PostColumnComponent,
-    PopularCommunitiesComponent,
-    CreatePostComponent
-  ]
+    exports: [
+        LanguagePickerComponent,
+        TranslateModule,
+        HeaderComponent,
+        PostListItemComponent,
+        PostListComponent,
+        PostListOrderPickerComponent,
+        PostColumnComponent,
+        PopularCommunitiesComponent,
+        CreatePostComponent,
+        CommunityAvatarComponent
+    ]
 })
 export class SharedModule {
 }

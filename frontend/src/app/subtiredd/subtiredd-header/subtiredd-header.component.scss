@@ -1,0 +1,50 @@
+@use "../../../style/ui-colors";
+
+:host {
+  width: 100%;
+}
+
+img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  margin-bottom: -5px;
+}
+
+.title-banner {
+  background-color: ui-colors.$subtiredd-header-title-background;
+}
+
+.title-banner-content {
+  display: flex;
+  width: 60%;
+  margin: auto;
+  align-items: center;
+}
+
+trd-community-avatar {
+  transform: scale(1.7, 1.7);
+  margin-bottom: 20px;
+}
+
+span {
+  font-size: 30px;
+  margin-left: 30px;
+  font-weight: bold;
+}
+
+button {
+  height: 30px;
+  padding-right: 30px;
+  padding-left: 30px;
+  border-radius: 30px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  background-color: ui-colors.$subtiredd-header-button-background;
+  margin: 0 30px;
+
+  &:hover {
+    background-color: ui-colors.$subtiredd-header-button-background-hover;
+  }
+}
