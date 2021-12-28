@@ -4,26 +4,20 @@
 </div>
 <trd-create-post-subtiredd-select [allSubtireddSelectItems]="subtireddSelectItems"
                                   (subtireddSelected)="onSubtireddSelected($event)"></trd-create-post-subtiredd-select>
-<mat-tab-group dynamicHeight>
+<mat-tab-group dynamicHeight (selectedTabChange)="onTabSelected($event)">
   <mat-tab label="{{'text' | translate}}">
-<!--    <ng-template mat-tab-label>-->
-<!--      Text-->
-<!--    </ng-template>-->
     <div class="tab">
-      <input class="text-input title" [placeholder]="'title' | translate">
-      <textarea class="text-input" [placeholder]="'text' | translate"></textarea>
+      <input class="text-input title" [placeholder]="'title' | translate" [(ngModel)]="title">
+      <textarea class="text-input" [placeholder]="'text' | translate" [(ngModel)]="text"></textarea>
     </div>
   </mat-tab>
   <mat-tab label="{{'image' | translate}}">
-<!--    <ng-template mat-tab-label>-->
-<!--      Image-->
-<!--    </ng-template>-->
     <div class="tab">
-      <input class="text-input title" [placeholder]="'title' | translate">
-      <textarea class="text-input" [placeholder]="'imageUrl' | translate"></textarea>
+      <input class="text-input title" [placeholder]="'title' | translate" [(ngModel)]="title">
+      <textarea class="text-input" [placeholder]="'imageUrl' | translate" [(ngModel)]="imageUrl"></textarea>
     </div>
   </mat-tab>
 </mat-tab-group>
-<button>
+<button (click)="onPostClick()">
   <span>{{"post" | translate}}</span>
 </button>
