@@ -1,0 +1,23 @@
+<div class="header">
+  <h2>{{"create-post" | translate}}</h2>
+  <span (click)="onCloseClick()" class="material-icons close-icon">close</span>
+</div>
+<trd-create-post-subtiredd-select [allSubtireddSelectItems]="subtireddSelectItems"
+                                  (subtireddSelected)="onSubtireddSelected($event)"></trd-create-post-subtiredd-select>
+<mat-tab-group dynamicHeight (selectedTabChange)="onTabSelected($event)">
+  <mat-tab label="{{'text' | translate}}">
+    <div class="tab">
+      <input class="text-input title" [placeholder]="'title' | translate" [(ngModel)]="title">
+      <textarea class="text-input" [placeholder]="'text' | translate" [(ngModel)]="text"></textarea>
+    </div>
+  </mat-tab>
+  <mat-tab label="{{'image' | translate}}">
+    <div class="tab">
+      <input class="text-input title" [placeholder]="'title' | translate" [(ngModel)]="title">
+      <textarea class="text-input" [placeholder]="'imageUrl' | translate" [(ngModel)]="imageUrl"></textarea>
+    </div>
+  </mat-tab>
+</mat-tab-group>
+<button (click)="onPostClick()" [disabled]="isTitleEmpty() || isContentEmpty()">
+  <span>{{"post" | translate}}</span>
+</button>

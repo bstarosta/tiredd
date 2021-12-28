@@ -1,15 +1,19 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <mat-form-field>
     <mat-label>{{"username" | translate}}</mat-label>
-    <input matInput formControlName="username">
+    <input matInput formControlName="username" [errorStateMatcher]="badCredentialsErrorStateMatcher">
     <mat-error
       *ngFor="let error of username.errors | objectToKeys">{{formErrorMessageKeys["username"][error] | translate}}</mat-error>
   </mat-form-field>
   <mat-form-field>
     <mat-label>{{"password" | translate}}</mat-label>
-    <input type="password" matInput formControlName="password">
+    <input type="password" matInput formControlName="password" [errorStateMatcher]="badCredentialsErrorStateMatcher">
     <mat-error
       *ngFor="let error of password.errors | objectToKeys">{{formErrorMessageKeys["password"][error] | translate}}</mat-error>
   </mat-form-field>
+  <div class="error-display">
+    <p *ngIf="form.hasError('badCredentials')"
+       class="invalid-credentials-message">{{"error.badCredentials" | translate}}</p>
+  </div>
   <button type="submit" [disabled]="form.invalid">{{"logInLink" | translate}}</button>
 </form>

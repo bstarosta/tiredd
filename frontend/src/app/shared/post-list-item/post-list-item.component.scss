@@ -3,6 +3,7 @@
 .post {
   display: flex;
   width: 100%;
+  border-radius: 3px;
   border: 1px solid ui-colors.$post-list-item-border;
   background-color: ui-colors.$post-list-item-background;
   cursor: pointer;

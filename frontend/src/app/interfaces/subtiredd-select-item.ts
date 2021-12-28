@@ -1,4 +1,4 @@
 export interface SubtireddSelectItem {
   name: string;
-  url: string;
+  url?: string;
 }

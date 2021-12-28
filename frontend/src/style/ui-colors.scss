@@ -12,9 +12,9 @@ $sign-up-button-background: $ultra-light-blue;
 $searchbar-border: $black;
 $searchbar-border-focus: $bright-blue;
 
-$subtiredd-select-border: $black;
-$subtiredd-filter-border: $black;
-$subtiredd-filter-border-focus: $bright-blue;
+$header-subtiredd-select-border: $black;
+$header-subtiredd-filter-border: $black;
+$header-subtiredd-filter-border-focus: $bright-blue;
 
 $language-picker-border: $blue;
 
@@ -32,6 +32,7 @@ $order-button-border: $light-blue;
 $order-button-background: $white;
 $order-button-text: $light-blue;
 $selected-order-button-background: $ultra-light-blue;
+$selected-order-button-background-hover: $light-blue;
 $selected-order-button-text: $dark-blue;
 
 $popular-communities-background: $white;
@@ -51,6 +52,30 @@ $account-dialog-button-hover: $light-blue;
 $account-dialog-mat-form-field: $light-blue;
 $account-dialog-mode-link: $light-blue;
 $account-dialog-button-text: $black;
+$account-dialog-error: $red;
+
+$create-post-background: $white;
+$create-post-border: $light-gray;
+$create-post-input-border: $light-gray;
+$create-post-input-border-hover: $bright-blue;
+
+$create-post-modal-input-border: $light-gray;
+$create-post-modal-input-border-hover: $bright-blue;
+$create-post-modal-button-background: $ultra-light-blue;
+$create-post-modal-button-background-hover: $light-blue;
+$create-post-modal-button-text: $dark-blue;
+$create-post-modal-button-text-disabled: $light-gray;
+
+$create-post-subtiredd-select-border: $light-gray;
+$create-post-subtiredd-select-border-focus: $bright-blue;
+$create-post-subtiredd-filter-border: $light-gray;
+$create-post-subtiredd-filter-border-focus: $bright-blue;
+$create-post-select-item-border: $light-gray;
+$create-post-select-item-hover: $ultra-light-blue;
+
+$create-post-tab-background-active: $ultra-light-blue;
+$create-post-tab-text-active: $dark-blue;
+$create-post-tab-ink-bar: $blue;
 
 $comments-border: $light-gray;
 $comments-background: $white;

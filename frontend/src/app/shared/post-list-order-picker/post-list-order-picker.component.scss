@@ -4,6 +4,7 @@
   display: flex;
   flex-direction: row;
   width: 100%;
+  border-radius: 3px;
   border: 1px solid ui-colors.$post-list-order-picker-border;
   background-color: ui-colors.$post-list-order-picker-background;
 }
@@ -42,7 +43,7 @@ button {
 
     &:hover {
       padding: 5px 20px;
-      background-color: ui-colors.$light-blue;
+      background-color: ui-colors.$selected-order-button-background-hover;
     }
   }
 }

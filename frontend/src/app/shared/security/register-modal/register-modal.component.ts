@@ -1,5 +1,9 @@
 import {Component, EventEmitter, Output} from '@angular/core';
 import {AccountModalMode} from "../../../services/account-modal.service";
+import {AuthService} from "../../../services/auth.service";
+import {RegisterFormOutput} from "../../../interfaces/register-form-output";
+import {Observable} from "rxjs";
+import {take} from "rxjs/operators";
 
 @Component({
   selector: 'trd-register-modal',
@@ -8,11 +12,22 @@ import {AccountModalMode} from "../../../services/account-modal.service";
 })
 export class RegisterModalComponent {
 
+  constructor(private authService: AuthService) {
+    this.usernameConflict$ = authService.usernameConflict$;
+    authService.userRegistered$.pipe(take(1)).subscribe(_ => this.displaySuccessMessage = true)
+  }
 
+  displaySuccessMessage: boolean = false;
+  usernameConflict$: Observable<void>;
   @Output() closeClick: EventEmitter<void> = new EventEmitter<void>();
   @Output() logInLinkClick: EventEmitter<AccountModalMode> = new EventEmitter<AccountModalMode>();
 
-  onLogInLinkClick() {
+  onFormSubmitted(userRegisterData: RegisterFormOutput): void {
+    console.log("level-up")
+    this.authService.registerUser(userRegisterData);
+  }
+
+  onLogInLinkClick(): void {
     this.logInLinkClick.emit("login");
   }
 
