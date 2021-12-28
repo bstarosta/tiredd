@@ -1,7 +1,7 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {SubtireddSelectItem} from "../../interfaces/subtiredd-select-item";
+import {Component, OnInit} from '@angular/core';
 import {NavigationEnd, Router} from "@angular/router";
 import {filter} from "rxjs/operators";
+import {SubtireddSelectItemsService} from "../../services/subtiredd-select-items.service";
 
 export interface HeaderSubtireddSelectItem {
   url?: string;
@@ -11,18 +11,6 @@ export interface HeaderSubtireddSelectItem {
 }
 
 
-
-const  subtireddSelectItems: HeaderSubtireddSelectItem[] = [
-  {name: "home", url: "/home", icon: "home"},
-  {name: "createCommunity", icon: "add" },
-  {name: "t/awww", url: "/t/awww"},
-  {name: "t/whatswrongwithyourdog", url: "/t/whatswrongwithyourdog"},
-  {name: "t/dachschund", url: "/t/dachschund"},
-  {name: "t/corgi", url: "/t/corgi"},
-  {name: "t/dogs", url: "/t/dogs"},
-]
-
-
 @Component({
   selector: 'trd-header-subtiredd-select',
   templateUrl: './header-subtiredd-select.component.html',
@@ -30,17 +18,16 @@ const  subtireddSelectItems: HeaderSubtireddSelectItem[] = [
 })
 export class HeaderSubtireddSelectComponent implements OnInit {
 
-  allSubtireddSelectItems: HeaderSubtireddSelectItem[] = subtireddSelectItems;
-  @Output() subtireddSelected: EventEmitter<SubtireddSelectItem> = new EventEmitter<SubtireddSelectItem>();
-
+  allSubtireddSelectItems: HeaderSubtireddSelectItem[]
   displayedSubtireddSelectItems: HeaderSubtireddSelectItem[]
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private subtireddSelectItemsService: SubtireddSelectItemsService) {
     this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe( event => {
       if (event instanceof NavigationEnd) {
         this.selectedSubtireddSelectItem = this.createCurrentSubtireddSelectItem(event.url)
       }
     })
+    this.subtireddSelectItemsService.subtireddSelectItems$.subscribe(items => this.allSubtireddSelectItems = items)
   }
 
   createCurrentSubtireddSelectItem(url: string): HeaderSubtireddSelectItem {
@@ -67,10 +54,4 @@ export class HeaderSubtireddSelectComponent implements OnInit {
     this.searchFilter = null;
     this.displayedSubtireddSelectItems = this.allSubtireddSelectItems;
   }
-
-  onSubtireddSelected(selectedSubtiredd: HeaderSubtireddSelectItem) {
-    this.selectedSubtireddSelectItem = selectedSubtiredd;
-    this.subtireddSelected.emit(selectedSubtiredd);
-  }
-
 }

@@ -15,10 +15,10 @@
            #searchInput (blur)="searchInput.focus()" [placeholder]="'filter' | translate">
   </div>
   <div class="select-item" *ngFor="let displayedItem of displayedSubtireddSelectItems" mat-menu-item
-       (click)="onSubtireddSelected(displayedItem)">
+       (click)="displayedItem.onClick(displayedItem.url)">
     <trd-community-avatar *ngIf="!displayedItem.icon"
                           [communityName]="displayedItem.name.substr(2)"></trd-community-avatar>
     <span *ngIf="displayedItem.icon" class="material-icons icon">{{displayedItem.icon}}</span>
-    <span class="item-name">{{displayedItem.name | translate}}</span>
+    <span class="item-name">{{displayedItem.name}}</span>
   </div>
 </mat-menu>
