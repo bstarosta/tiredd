@@ -3,9 +3,27 @@
   <span (click)="onCloseClick()" class="material-icons close-icon">close</span>
 </div>
 <trd-create-post-subtiredd-select [allSubtireddSelectItems]="subtireddSelectItems"
-                      (subtireddSelected)="onSubtireddSelected($event)"></trd-create-post-subtiredd-select>
-<input class="text-input title" [placeholder]="'title' | translate">
-<textarea class="text-input" [placeholder]="'text' | translate"></textarea>
+                                  (subtireddSelected)="onSubtireddSelected($event)"></trd-create-post-subtiredd-select>
+<mat-tab-group dynamicHeight>
+  <mat-tab label="{{'text' | translate}}">
+<!--    <ng-template mat-tab-label>-->
+<!--      Text-->
+<!--    </ng-template>-->
+    <div class="tab">
+      <input class="text-input title" [placeholder]="'title' | translate">
+      <textarea class="text-input" [placeholder]="'text' | translate"></textarea>
+    </div>
+  </mat-tab>
+  <mat-tab label="{{'image' | translate}}">
+<!--    <ng-template mat-tab-label>-->
+<!--      Image-->
+<!--    </ng-template>-->
+    <div class="tab">
+      <input class="text-input title" [placeholder]="'title' | translate">
+      <textarea class="text-input" [placeholder]="'imageUrl' | translate"></textarea>
+    </div>
+  </mat-tab>
+</mat-tab-group>
 <button>
   <span>{{"post" | translate}}</span>
 </button>
