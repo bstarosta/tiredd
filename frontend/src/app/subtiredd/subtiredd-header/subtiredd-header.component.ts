@@ -1,19 +1,30 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
+import {AccountModalService} from "../../services/account-modal.service";
 
 @Component({
   selector: 'trd-subtiredd-header',
   templateUrl: './subtiredd-header.component.html',
   styleUrls: ['./subtiredd-header.component.scss']
 })
-export class SubtireddHeaderComponent implements OnInit {
+export class SubtireddHeaderComponent {
 
   @Input() subtireddName: string;
+  @Input() isUserLoggedIn: Boolean;
+  // TODO: get from service
+  hasUserJoined: Boolean = true;
   imageUrl = "https://www.countryandtownhouse.co.uk/wp-content/uploads/2017/01/knitting.jpg";
+  changeText: Boolean = false;
 
-  constructor() {
+  constructor(private accountModalService: AccountModalService) {
   }
 
-  ngOnInit(): void {
+  onJoinClick() {
+    if (this.isUserLoggedIn) {
+      // join
+      console.log("Joined")
+    } else {
+      this.accountModalService.openAccountModal("register");
+    }
   }
 
 }

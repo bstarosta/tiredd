@@ -44,5 +44,7 @@
   "text": "Text",
   "image": "Image",
   "imageUrl": "Image url",
-  "post": "Post"
+  "post": "Post",
+  "joined": "Joined",
+  "leave": "Leave"
 }

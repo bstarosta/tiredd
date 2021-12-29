@@ -45,5 +45,7 @@
   "text": "Tekst",
   "image": "Zdjęcie",
   "imageUrl": "Link do zdjęcia",
-  "post": "Opublikuj"
+  "post": "Opublikuj",
+  "joined": "Dołączono",
+  "leave": "Opuść"
 }
