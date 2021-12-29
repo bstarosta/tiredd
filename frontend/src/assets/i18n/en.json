@@ -47,5 +47,8 @@
   "imageUrl": "Image url",
   "post": "Post",
   "joined": "Joined",
-  "leave": "Leave"
+  "leave": "Leave",
+  "aboutCommunity": "About Community",
+  "ofMembers": "members",
+  "created": "Created"
 }
