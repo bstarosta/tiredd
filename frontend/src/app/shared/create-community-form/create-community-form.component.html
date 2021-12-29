@@ -1,0 +1,35 @@
+<form [formGroup]="form">
+  <div class="form-field" [ngClass]="{'error': name.invalid && name.touched}">
+    <label>{{"communityName" | translate}}</label>
+    <input formControlName="name">
+    <div class="error-display">
+      <ng-container *ngIf="name.touched">
+        <p *ngFor="let error of name.errors | objectToKeys"
+           class="error-message">{{validationErrorsMessageKeys["name"][error] | translate}}</p>
+      </ng-container>
+    </div>
+  </div>
+  <div class="form-field" [ngClass]="{'error': imageUrl.invalid && imageUrl.touched}">
+    <label for="imageUrl">{{"backgroundImage" | translate}}</label>
+    <input id="imageUrl" formControlName="imageUrl">
+    <div class="error-display">
+      <ng-container *ngIf="imageUrl.touched">
+        <p *ngFor="let error of imageUrl.errors | objectToKeys"
+           class="error-message">{{validationErrorsMessageKeys["imageUrl"][error] | translate}}</p>
+      </ng-container>
+    </div>
+  </div>
+  <div class="form-field" [ngClass]="{'error': description.invalid && description.touched}">
+    <label>{{"communityDescription" | translate}}</label>
+    <textarea formControlName="description" draggable="false"></textarea>
+    <div class="error-display">
+      <ng-container *ngIf="description.touched">
+        <p *ngFor="let error of description.errors | objectToKeys"
+           class="error-message">{{validationErrorsMessageKeys["description"][error] | translate}}</p>
+      </ng-container>
+    </div>
+  </div>
+  <div class="form-footer">
+    <button type="submit">{{"create" | translate}}</button>
+  </div>
+</form>

@@ -15,15 +15,18 @@ import { LoginFormComponent } from './login-form/login-form.component';
 
 
 @NgModule({
-  declarations: [
-    AccountModalComponent,
-    LoginModalComponent,
-    RegisterModalComponent,
-    AccountModalHeaderComponent,
-    RegisterFormComponent,
-    ObjectToKeysPipe,
-    LoginFormComponent
-  ],
+    declarations: [
+        AccountModalComponent,
+        LoginModalComponent,
+        RegisterModalComponent,
+        AccountModalHeaderComponent,
+        RegisterFormComponent,
+        ObjectToKeysPipe,
+        LoginFormComponent
+    ],
+    exports: [
+        ObjectToKeysPipe
+    ],
     imports: [
         CommonModule,
         MatDialogModule,

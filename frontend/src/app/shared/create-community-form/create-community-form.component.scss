@@ -1,0 +1,73 @@
+@use "../../../style/ui-colors";
+
+.error {
+  color: ui-colors.$create-community-error;
+
+  input, textarea {
+    border-color: ui-colors.$create-community-error;
+  }
+}
+
+label {
+  margin-bottom: 4px;
+}
+
+.error-message {
+  color: ui-colors.$create-community-error;
+  font-size: 12px;
+}
+
+.error-display {
+  padding-top: 4px;
+  min-height: 24px;
+}
+
+input, textarea {
+  margin-top: 4px;
+  width: calc(100% - 20px);
+  outline: none;
+  height: 40px;
+  border: 1px solid ui-colors.$create-community-input-border;
+  border-radius: 5px;
+
+  &:hover {
+    border-color: ui-colors.$create-community-input-border-hover;
+  }
+
+  &:focus{
+    border-color: ui-colors.$create-community-input-border-hover;
+  }
+}
+
+input {
+  padding: 0 10px;
+}
+
+
+
+textarea {
+  padding: 5px 10px;
+  height: 7em;
+}
+
+button {
+  height: 40px;
+  width: 130px;
+  margin: 10px 0 0 calc(100% - 130px);
+  padding: 5px 0;
+  border-radius: 30px;
+  border: none;
+  font-size: 20px;
+  background-color: ui-colors.$create-community-button-background;
+  color: ui-colors.$create-community-button-text-disabled;
+
+  &:enabled {
+    color: ui-colors.$create-community-button-text;
+    cursor: pointer;
+  }
+
+  &:hover:enabled {
+    background-color: ui-colors.$create-community-button-background-hover;
+    color: ui-colors.$create-community-button-text;
+  }
+}

@@ -5,13 +5,15 @@ import {Router} from "@angular/router";
 import {TranslateService} from "@ngx-translate/core";
 import {merge} from "rxjs/operators";
 import {HeaderSubtireddSelectItem} from "../interfaces/header-subtiredd-select-item";
+import {CreateCommunityModalService} from "./create-community-modal.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class SubtireddSelectItemsService {
 
-  constructor(private userService: UserService, private router: Router, private translateService: TranslateService)
+  constructor(private userService: UserService, private router: Router, private translateService: TranslateService,
+              private createCommunityModalService: CreateCommunityModalService)
   {
     userService.user$.pipe(merge(translateService.onLangChange)).subscribe(_ => this.createNewSubtireddList());
   }
@@ -35,7 +37,7 @@ export class SubtireddSelectItemsService {
   }
 
   openCreateCommunityModal = (): void => {
-    console.log("modal się otwiera");
+    this.createCommunityModalService.openCreateCommunityModal();
   }
 
   navigateToUrl = (url: string): void => {
