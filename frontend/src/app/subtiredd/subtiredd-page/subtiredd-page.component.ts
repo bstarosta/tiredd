@@ -1,22 +1,27 @@
-import {Component} from '@angular/core';
+import {Component, OnDestroy} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {UserService} from "../../services/user.service";
-import {Observable} from "rxjs";
+import {Observable, Subscription} from "rxjs";
 
 @Component({
   selector: 'trd-subtiredd-page',
   templateUrl: './subtiredd-page.component.html',
   styleUrls: ['./subtiredd-page.component.scss']
 })
-export class SubtireddPageComponent {
+export class SubtireddPageComponent implements OnDestroy {
 
   isUserLoggedIn$: Observable<Boolean>;
+  routeSubscription: Subscription;
 
   constructor(private route: ActivatedRoute, private userService: UserService) {
-    this.subtireddName = route.snapshot.paramMap.get("name");
+    this.routeSubscription = route.paramMap.subscribe(paramMap => this.subtireddName = paramMap.get("name"));
     this.isUserLoggedIn$ = userService.isUserLoggedIn$;
   }
 
   subtireddName: string
+
+  ngOnDestroy(): void {
+    this.routeSubscription.unsubscribe();
+  }
 
 }
