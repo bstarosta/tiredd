@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {ViewportScroller} from "@angular/common";
 import {PostListItemInfo} from "../../interfaces/post-list-item-info";
@@ -8,7 +8,7 @@ import {PostListItemInfo} from "../../interfaces/post-list-item-info";
   templateUrl: './post-page.component.html',
   styleUrls: ['./post-page.component.scss']
 })
-export class PostPageComponent implements OnInit {
+export class PostPageComponent implements OnInit, AfterViewInit {
 
   post: PostListItemInfo = {
     id: '1',
@@ -23,12 +23,15 @@ export class PostPageComponent implements OnInit {
   };
 
   constructor(private route: ActivatedRoute, private scroller: ViewportScroller) {
+    scroller.setOffset([0, 64])
   }
 
   ngOnInit(): void {
   }
 
-  scrollToComments() {
-    this.scroller.scrollToAnchor("comments")
+  ngAfterViewInit(): void {
+    const scrollToComments = this.route.snapshot.fragment === "comments"
+    if (scrollToComments)
+      this.scroller.scrollToAnchor("comments")
   }
 }

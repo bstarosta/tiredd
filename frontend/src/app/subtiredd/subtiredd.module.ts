@@ -10,6 +10,7 @@ import { CreateCommentComponent } from './post-page/create-comment/create-commen
 import { CommentsListComponent } from './post-page/comments-list/comments-list.component';
 import {MatInputModule} from "@angular/material/input";
 import {FormsModule} from "@angular/forms";
+import { CommunityDetailsComponent } from './post-page/community-details/community-details.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import {FormsModule} from "@angular/forms";
     PostPageComponent,
     CommentsComponent,
     CreateCommentComponent,
-    CommentsListComponent
+    CommentsListComponent,
+    CommunityDetailsComponent
   ],
   imports: [
     CommonModule,
