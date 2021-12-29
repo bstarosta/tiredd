@@ -35,8 +35,8 @@ namespace backend
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo {Title = "backend", Version = "v1"}); });
 
             var connectionString =
-                "server=localhost;user=root;password=root;database=tiredd"; // TODO: Extract password as env variable
-            var serverVersion = new MySqlServerVersion(new Version(8, 0, 26));
+                $"server={Configuration["MySQL:Server"]};user={Configuration["MySQL:User"]};password={Configuration["MySQL:Password"]};database={Configuration["MySQL:Database"]}";
+            var serverVersion = new MySqlServerVersion(new Version(Configuration["MySQL:Version"]));
             services.AddDbContext<TireddDbContext>(
                 dbContextOptions => dbContextOptions
                     .UseMySql(connectionString, serverVersion)
