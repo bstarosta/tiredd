@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Comment} from "../../../interfaces/comment";
 import {UserService} from "../../../services/user.service";
 import {Observable} from "rxjs";
+import {AccountModalService} from "../../../services/account-modal.service";
 
 @Component({
   selector: 'trd-comments-list',
@@ -14,7 +15,7 @@ export class CommentsListComponent implements OnInit {
   showReplyInput: Boolean[]
   isUserLoggedIn$: Observable<Boolean>
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private accountModalService: AccountModalService) {
     this.isUserLoggedIn$ = userService.isUserLoggedIn$
   }
 
@@ -23,6 +24,11 @@ export class CommentsListComponent implements OnInit {
   }
 
   onReplyToggle(commentIndex: number) {
-    this.showReplyInput[commentIndex] = !this.showReplyInput[commentIndex]
+    this.isUserLoggedIn$.subscribe(isUserLoggedIn => {
+      if (isUserLoggedIn)
+        this.showReplyInput[commentIndex] = !this.showReplyInput[commentIndex]
+      else
+        this.accountModalService.openAccountModal('login')
+    })
   }
 }

@@ -50,5 +50,6 @@
   "addComment": "Comment",
   "reply": "Reply",
   "ofMembers": "members",
-  "created": "Created"
+  "created": "Created",
+  "logInOrSignUpToComment": "Log in or sign up to leave a comment"
 }

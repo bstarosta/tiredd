@@ -10,7 +10,7 @@
       <p class="comment-timestamp">{{comment.timestamp | date:'d MMM y, H:mm '}}</p>
     </div>
     <p class="comment-text">{{comment.text}}</p>
-    <div *ngIf="isUserLoggedIn$ | async" class="reply" (click)="onReplyToggle(commentIndex)">
+    <div class="reply" (click)="onReplyToggle(commentIndex)">
       <span class="material-icons reply-icon">comment</span>
       <span class="reply-text">{{"reply" | translate}}</span>
     </div>
