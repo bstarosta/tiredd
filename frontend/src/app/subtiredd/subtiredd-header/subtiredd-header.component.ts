@@ -11,7 +11,7 @@ export class SubtireddHeaderComponent {
   @Input() subtireddName: string;
   @Input() isUserLoggedIn: Boolean;
   // TODO: get from service
-  hasUserJoined: Boolean = true;
+  hasUserJoined: Boolean = false;
   imageUrl = "https://www.countryandtownhouse.co.uk/wp-content/uploads/2017/01/knitting.jpg";
   changeText: Boolean = false;
 
@@ -20,8 +20,10 @@ export class SubtireddHeaderComponent {
 
   onJoinClick() {
     if (this.isUserLoggedIn) {
-      // join
-      console.log("Joined")
+      if (this.hasUserJoined)
+        console.log("Leave")
+      else
+        console.log("Join")
     } else {
       this.accountModalService.openAccountModal("register");
     }
