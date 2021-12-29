@@ -14,7 +14,7 @@ export class CommentsComponent implements OnInit {
   commentsList$: Observable<Comment[]>
 
   constructor(private route: ActivatedRoute, private postCommentsService: PostCommentsService) {
-    const postId = route.snapshot.paramMap.get("id")
+    const postId = route.snapshot.paramMap.get("postId")
     postCommentsService.getCommentsList(postId)
     this.commentsList$ = postCommentsService.commentsList$
   }

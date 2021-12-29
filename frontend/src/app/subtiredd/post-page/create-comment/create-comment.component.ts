@@ -13,7 +13,7 @@ export class CreateCommentComponent implements OnInit {
   commentText: string
 
   constructor(private route: ActivatedRoute) {
-    this.postId = route.snapshot.paramMap.get("id")
+    this.postId = route.snapshot.paramMap.get("postId")
   }
 
   ngOnInit(): void {
