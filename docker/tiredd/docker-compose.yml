@@ -6,15 +6,30 @@ services:
       MYSQL_DATABASE: ${MYSQL_DATABASE}
     ports:
       - 3306:3306
+    volumes:
+      - mysql-data:/var/lib/mysql
     restart: on-failure
   frontend:
     build:
       context: ../../frontend
     ports:
-      - 4200:80
+      - ${FRONTEND_PORT}:80
     restart: on-failure
   backend:
     build:
       context: ../../backend
+    depends_on:
+      - mysql
+    environment:
+      JWT__ValidAudience: http://localhost:${FRONTEND_PORT}
+      JWT__ValidIssuer: http://localhost:${BACKEND_PORT}
+      JWT__Secret: ${BACKEND_JWT_SECRET}
+      MySQL__Version: ${MYSQL_VERSION}
+      MySQL__Server: mysql
+      MySQL__User: root
+      MySQL__Password: ${MYSQL_ROOT_PASSWORD}
+      MySQL__Database: ${MYSQL_DATABASE}
     ports:
-      - 8080:80
+      - ${BACKEND_PORT}:80
+volumes:
+  mysql-data:
