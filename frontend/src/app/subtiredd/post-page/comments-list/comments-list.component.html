@@ -14,7 +14,8 @@
       <span class="material-icons reply-icon">comment</span>
       <span class="reply-text">{{"reply" | translate}}</span>
     </div>
-    <trd-create-comment *ngIf="showReplyInput[commentIndex]" class="create-reply-comment"></trd-create-comment>
+    <trd-create-comment *ngIf="showReplyInput[commentIndex]" [parentCommentId]="comment.id"
+                        class="create-reply-comment"></trd-create-comment>
     <trd-comments-list [comments]="comment.replies"></trd-comments-list>
   </div>
 </div>

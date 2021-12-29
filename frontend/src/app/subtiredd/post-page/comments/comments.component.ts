@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Observable} from "rxjs";
+import {PostCommentsService} from "../../../services/post-comments.service";
+import {ActivatedRoute} from "@angular/router";
+import {Comment} from "../../../interfaces/comment";
 
 @Component({
   selector: 'trd-comments',
@@ -7,7 +11,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CommentsComponent implements OnInit {
 
-  constructor() { }
+  commentsList$: Observable<Comment[]>
+
+  constructor(private route: ActivatedRoute, private postCommentsService: PostCommentsService) {
+    const postId = route.snapshot.paramMap.get("id")
+    postCommentsService.getCommentsList(postId)
+    this.commentsList$ = postCommentsService.commentsList$
+  }
 
   ngOnInit(): void {
   }
