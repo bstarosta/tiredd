@@ -45,5 +45,8 @@
   "text": "Text",
   "image": "Image",
   "imageUrl": "Image url",
-  "post": "Post"
+  "post": "Post",
+  "commentPlaceholder": "What are your thoughts?",
+  "addComment": "Comment",
+  "reply": "Reply"
 }

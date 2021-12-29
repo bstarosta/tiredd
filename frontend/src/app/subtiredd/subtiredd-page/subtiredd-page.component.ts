@@ -9,7 +9,7 @@ import {ActivatedRoute} from "@angular/router";
 export class SubtireddPageComponent {
 
   constructor(private route: ActivatedRoute) {
-    this.subtireddName = route.snapshot.paramMap.get("name");
+    this.subtireddName = route.snapshot.paramMap.get("subtireddName");
   }
 
   subtireddName: string

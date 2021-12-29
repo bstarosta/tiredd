@@ -50,7 +50,8 @@ import {MatTabsModule} from "@angular/material/tabs";
     PostListOrderPickerComponent,
     PostColumnComponent,
     PopularCommunitiesComponent,
-    CreatePostComponent
+    CreatePostComponent,
+    UserAvatarComponent
   ]
 })
 export class SharedModule {

@@ -46,5 +46,8 @@
   "text": "Tekst",
   "image": "Zdjęcie",
   "imageUrl": "Link do zdjęcia",
-  "post": "Opublikuj"
+  "post": "Opublikuj",
+  "commentPlaceholder": "Co masz na myśli?",
+  "addComment": "Skomentuj",
+  "reply": "Odpowiedz"
 }
