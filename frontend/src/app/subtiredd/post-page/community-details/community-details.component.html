@@ -1,9 +1,20 @@
-<div class="community-details-content" [routerLink]="['/t', community.name]">
-  <div class="community-details-header">
+<div [routerLink]="['/t', community.name]">
+  <div class="header">
     <img alt="" src="{{community.imageUrl}}">
   </div>
-  <div class="community-profile">
+  <div class="avatar-and-name">
     <trd-community-avatar [communityName]="community.name"></trd-community-avatar>
-    <p class="community-name-text">t/{{community.name}}</p>
+    <p class="name-text">t/{{community.name}}</p>
+  </div>
+  <div class="content">
+    <div class="description">{{community.description}}</div>
+    <div class="membersInfo">
+      <span class="number">{{community.numberOfMembers | number}}</span>
+      <span class="members">{{"ofMembers" | translate}}</span>
+    </div>
+    <div class="createdAt">
+      <span class="material-icons">cake</span>
+      <span class="date">{{"created" | translate}} {{community.createDate | date:'d MMM y'}}</span>
+    </div>
   </div>
 </div>

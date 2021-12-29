@@ -49,5 +49,7 @@
   "post": "Opublikuj",
   "commentPlaceholder": "Co masz na myśli?",
   "addComment": "Skomentuj",
-  "reply": "Odpowiedz"
+  "reply": "Odpowiedz",
+  "ofMembers": "członków",
+  "created": "Utworzono"
 }

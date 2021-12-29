@@ -6,11 +6,12 @@
   height: fit-content;
   margin: 1px auto;
   border-radius: 3px;
-  border: 1px solid ui-colors.$popular-communities-border;
-  background-color: ui-colors.$popular-communities-background;
+  border: 1px solid ui-colors.$community-details-border;
+  background-color: ui-colors.$community-details-background;
+  cursor: pointer;
 }
 
-.community-details-header {
+.header {
   height: 90px;
   position: relative;
 }
@@ -22,12 +23,7 @@ img {
   border-radius: 3px 3px 0 0;
 }
 
-.community-details-content {
-  width: 100%;
-  cursor: pointer;
-}
-
-.community-profile {
+.avatar-and-name {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -35,11 +31,49 @@ img {
   margin: 25px 30px;
 }
 
-.community-name-text {
+.name-text {
   margin: 0 20px;
   font-size: 22px;
 }
 
 trd-community-avatar {
   transform: scale(1.5, 1.5);
+}
+
+.content {
+  margin: 15px 20px;
+}
+
+.description {
+  font-size: 14px;
+  text-align: justify;
+}
+
+.membersInfo {
+  display: flex;
+  flex-direction: column;
+  margin-top: 15px;
+}
+
+.number {
+  display: flex;
+  margin: auto;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.members {
+  display: flex;
+  margin: auto;
+}
+
+.createdAt {
+  display: flex;
+  margin: 15px auto 0;
+  align-items: center;
+}
+
+.date {
+  margin-left: 5px;
+  padding-top: 3px;
 }

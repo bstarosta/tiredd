@@ -48,5 +48,7 @@
   "post": "Post",
   "commentPlaceholder": "What are your thoughts?",
   "addComment": "Comment",
-  "reply": "Reply"
+  "reply": "Reply",
+  "ofMembers": "members",
+  "created": "Created"
 }
