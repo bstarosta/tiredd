@@ -1,14 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {NavigationEnd, Router} from "@angular/router";
 import {filter} from "rxjs/operators";
 import {SubtireddSelectItemsService} from "../../services/subtiredd-select-items.service";
-
-export interface HeaderSubtireddSelectItem {
-  url?: string;
-  name: string;
-  icon?: string;
-  onClick?: Function;
-}
+import {HeaderSubtireddSelectItem} from "../../interfaces/header-subtiredd-select-item";
 
 
 @Component({
@@ -16,12 +10,13 @@ export interface HeaderSubtireddSelectItem {
   templateUrl: './header-subtiredd-select.component.html',
   styleUrls: ['./header-subtiredd-select.component.scss']
 })
-export class HeaderSubtireddSelectComponent implements OnInit {
+export class HeaderSubtireddSelectComponent{
 
-  allSubtireddSelectItems: HeaderSubtireddSelectItem[]
-  displayedSubtireddSelectItems: HeaderSubtireddSelectItem[]
+  allSubtireddSelectItems: HeaderSubtireddSelectItem[];
+  displayedSubtireddSelectItems: HeaderSubtireddSelectItem[];
 
   constructor(private router: Router, private subtireddSelectItemsService: SubtireddSelectItemsService) {
+    this.selectedSubtireddSelectItem = this.createCurrentSubtireddSelectItem(this.router.url);
     this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe( event => {
       if (event instanceof NavigationEnd) {
         this.selectedSubtireddSelectItem = this.createCurrentSubtireddSelectItem(event.url)
@@ -30,19 +25,28 @@ export class HeaderSubtireddSelectComponent implements OnInit {
     this.subtireddSelectItemsService.subtireddSelectItems$.subscribe(items => this.allSubtireddSelectItems = items)
   }
 
-  createCurrentSubtireddSelectItem(url: string): HeaderSubtireddSelectItem {
-    return {
-      name: url.substr(1),
-      url: url,
-      icon: url === "/home" ? "home" : null
-    }
-  }
-
   searchFilter: string;
   selectedSubtireddSelectItem: HeaderSubtireddSelectItem;
 
-  ngOnInit(): void {
-    this.selectedSubtireddSelectItem = this.allSubtireddSelectItems[0];
+  createCurrentSubtireddSelectItem(url: string): HeaderSubtireddSelectItem {
+    if(!url) {
+      url ="/home"
+    }
+
+    const urlFragments: string[] = url.split("/")
+    if(urlFragments[1] === "home")
+      return {
+        name: "home",
+        url: "/home",
+        icon: "home"
+      }
+    else
+    {
+      return {
+        name: "t/" + urlFragments[2],
+        url: "/t/" + urlFragments[2]
+      }
+    }
   }
 
   onSearchChange(): void {
