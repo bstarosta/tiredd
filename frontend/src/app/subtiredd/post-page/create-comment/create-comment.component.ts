@@ -1,5 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
+import {UserService} from "../../../services/user.service";
+import {Observable} from "rxjs";
+import {map} from "rxjs/operators";
 
 @Component({
   selector: 'trd-create-comment',
@@ -9,11 +12,13 @@ import {ActivatedRoute} from "@angular/router";
 export class CreateCommentComponent implements OnInit {
 
   postId: string
+  userId$: Observable<string>
   @Input() parentCommentId: string
   commentText: string
 
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute, private userService: UserService) {
     this.postId = route.snapshot.paramMap.get("postId")
+    this.userId$ = userService.user$.pipe(map(user => user.id))
   }
 
   ngOnInit(): void {

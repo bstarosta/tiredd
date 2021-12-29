@@ -9,6 +9,7 @@ import {PostListItemInfo} from "../../interfaces/post-list-item-info";
 export class PostListItemComponent implements OnInit {
 
   @Input() post?: PostListItemInfo;
+  @Input() addRoutesToPost = true;
 
   constructor() {
   }
