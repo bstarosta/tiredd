@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {ColorConverterService} from "../../services/color-converter.service";
 
 @Component({
@@ -6,7 +6,7 @@ import {ColorConverterService} from "../../services/color-converter.service";
   templateUrl: './community-avatar.component.html',
   styleUrls: ['./community-avatar.component.scss']
 })
-export class CommunityAvatarComponent implements OnInit {
+export class CommunityAvatarComponent implements OnInit, OnChanges {
 
   @Input() communityName: string
   communityInitial: string
@@ -15,8 +15,16 @@ export class CommunityAvatarComponent implements OnInit {
   constructor(private colorConverterService: ColorConverterService) {
   }
 
-  ngOnInit(): void {
+  private setUserInitialAndColor(): void {
     this.communityInitial = this.communityName.charAt(0).toUpperCase();
     this.backgroundColor = this.colorConverterService.backgroundColorFromString(this.communityName)
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    this.setUserInitialAndColor();
+  }
+
+  ngOnInit(): void {
+    this.setUserInitialAndColor();
   }
 }
