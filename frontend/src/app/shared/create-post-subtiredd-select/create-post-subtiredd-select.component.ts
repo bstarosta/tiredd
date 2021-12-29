@@ -15,7 +15,7 @@ export class CreatePostSubtireddSelectComponent implements OnInit {
   displayedSubtireddSelectItems: SubtireddSelectItem[]
 
   constructor(private route: ActivatedRoute) {
-    route.url.subscribe(url => console.log(url))
+    route.url.subscribe()
   }
 
   searchFilter: string;

@@ -5,7 +5,7 @@
 }
 
 ::ng-deep {
-  .mat-menu-panel.subtiredd-menu {
+  .mat-menu-panel.header-subtiredd-menu {
     max-width: none;
     width: 275px;
     max-height: 40vh;
@@ -22,6 +22,8 @@
   cursor: pointer;
 
   .current-location {
+    display: flex;
+    align-items: center;
     height: 38px;
     line-height: 38px;
     padding-left: 10px;
@@ -54,5 +56,28 @@
       border-color: ui-colors.$header-subtiredd-filter-border-focus;
     }
   }
+
+
 }
 
+.select-item {
+  align-items: center;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.icon {
+  padding-left: 4px;
+  display: block;
+  font-size: 30px;
+}
+
+.item-name {
+  margin-left: 5px;
+  text-overflow: ellipsis;
+}
+
+trd-community-avatar {
+  display: inline-block;
+  transform: scale(0.7, 0.7);
+}
