@@ -6,7 +6,8 @@
     <span class="members">{{"ofMembers" | translate}}</span>
   </div>
   <div class="createdAt">
-    <span class="material-icons">cake</span>
+    <span class="material-icons icon">cake</span>
     <span class="date">{{"created" | translate}} {{createDate | localizedDate:'d MMM y'}}</span>
   </div>
+  <button (click)="onCreatePostClick()">{{"create-post" | translate}}</button>
 </div>
