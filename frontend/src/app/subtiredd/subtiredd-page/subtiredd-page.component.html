@@ -5,5 +5,5 @@
     <trd-create-post *ngIf="isUserLoggedIn$ | async"></trd-create-post>
     <trd-posts-column></trd-posts-column>
   </div>
-  <trd-about-community></trd-about-community>
+  <trd-about-community [isUserLoggedIn]="isUserLoggedIn$ | async"></trd-about-community>
 </div>
