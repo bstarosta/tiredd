@@ -12,6 +12,7 @@ import {CreateCommentComponent} from './post-page/create-comment/create-comment.
 import {CommentsListComponent} from './post-page/comments-list/comments-list.component';
 import {MatInputModule} from "@angular/material/input";
 import {FormsModule} from "@angular/forms";
+import { PostCommunityDetailsComponent } from './post-page/community-details/post-community-details.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import {FormsModule} from "@angular/forms";
     CreateCommentComponent,
     CommentsListComponent,
     SubtireddHeaderComponent,
-    AboutCommunityComponent
+    AboutCommunityComponent,
+    PostCommunityDetailsComponent
   ],
   imports: [
     CommonModule,

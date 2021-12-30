@@ -40,7 +40,7 @@
   "trendingToday": "Trending today",
   "popularPosts": "Popular posts",
   "postedBy": "Posted by",
-  "create-post": "Create a post",
+  "createPost": "Create a post",
   "title": "Title",
   "text": "Text",
   "image": "Image",
@@ -51,7 +51,8 @@
   "reply": "Reply",
   "joined": "Joined",
   "leave": "Leave",
-  "aboutCommunity": "About Community",
+  "aboutCommunity": "About community",
   "ofMembers": "members",
-  "created": "Created"
+  "created": "Created",
+  "logInOrSignUpToComment": "Log in or sign up to leave a comment"
 }

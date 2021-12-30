@@ -1,4 +1,4 @@
-<div class="post" [routerLink]="['/t', post.subtiredd, post.id]">
+<div class="post" [ngClass]="{'clickable-post': addRoutesToPost}" [routerLink]="['/t', post.subtiredd, post.id]">
   <div class="votes-sidebar">
     <div class="arrow-icon" [ngClass]="{'selected': post.userVote === 'upVote'}"></div>
     <p class="score-text">{{post.score}}</p>
@@ -16,7 +16,8 @@
     <p class="post-title">{{post.title}}</p>
     <img *ngIf="post.image" src="{{post.image}}" alt="image" class="post-image">
     <p *ngIf="!post.image" class="post-text">{{post.text}}</p>
-    <div class="comments" [routerLink]="['/t', post.subtiredd, post.id]" [fragment]="'comments'">
+    <div *ngIf="addRoutesToPost" class="comments" [routerLink]="['/t', post.subtiredd, post.id]"
+         [fragment]="'comments'">
       <span class="material-icons">comment</span>
       {{"comments" | translate}}
     </div>

@@ -1,22 +1,22 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {Component, Input} from '@angular/core';
+import {UserService} from "../../../services/user.service";
+import {Observable} from "rxjs";
+import {map} from "rxjs/operators";
 
 @Component({
   selector: 'trd-create-comment',
   templateUrl: './create-comment.component.html',
   styleUrls: ['./create-comment.component.scss']
 })
-export class CreateCommentComponent implements OnInit {
+export class CreateCommentComponent {
 
-  postId: string
+  @Input() postId: string
   @Input() parentCommentId: string
+  userId$: Observable<string>
   commentText: string
 
-  constructor(private route: ActivatedRoute) {
-    this.postId = route.snapshot.paramMap.get("postId")
-  }
-
-  ngOnInit(): void {
+  constructor(private userService: UserService) {
+    this.userId$ = userService.user$.pipe(map(user => user.id))
   }
 
   isCommentEmpty() {

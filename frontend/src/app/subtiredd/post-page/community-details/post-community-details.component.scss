@@ -1,28 +1,47 @@
-@use "../../../style/ui-colors";
+@use "../../../../style/ui-colors";
 
 :host {
   display: flex;
-  flex-direction: column;
   width: 100%;
   height: fit-content;
-  margin-top: 20px;
+  margin: 1px auto;
   border-radius: 3px;
-  background-color: ui-colors.$about-community-background;
+  border: 1px solid ui-colors.$community-details-border;
+  background-color: ui-colors.$community-details-background;
+  cursor: pointer;
 }
 
 .header {
-  display: flex;
-  align-items: center;
-  height: 40px;
-  padding-left: 15px;
+  height: 90px;
+  position: relative;
+}
+
+img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
   border-radius: 3px 3px 0 0;
-  background-color: ui-colors.$about-community-header-background;
-  color: ui-colors.$about-community-header-text;
+}
+
+.avatar-and-name {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  margin: 25px 30px;
+}
+
+.name-text {
+  margin: 0 20px;
+  font-size: 22px;
+}
+
+trd-community-avatar {
+  transform: scale(1.5, 1.5);
 }
 
 .content {
   margin: 15px 20px;
-  color: ui-colors.$about-community-text;
 }
 
 .description {
@@ -72,7 +91,7 @@ button {
   cursor: pointer;
   border: none;
   background-color: ui-colors.$subtiredd-header-button-background;
-  margin: 15px auto 0 auto;
+  margin: 15px auto;
 
   &:hover {
     background-color: ui-colors.$subtiredd-header-button-background-hover;

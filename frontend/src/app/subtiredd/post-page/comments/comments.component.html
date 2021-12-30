@@ -1,2 +1,11 @@
-<trd-create-comment class="create-comment"></trd-create-comment>
+<trd-create-comment *ngIf="isUserLoggedIn$ | async" [postId]="postId" class="create-comment"></trd-create-comment>
+<div *ngIf="!(isUserLoggedIn$ | async)" class="log-in-message">
+  <p class="log-in-message-text">{{"logInOrSignUpToComment" | translate}}</p>
+  <div class="buttons">
+    <button *ngIf="!(isUserLoggedIn$ | async)" class="log-in-button"
+            (click)="openAccountModal('login')">{{"logIn" | translate}}</button>
+    <button *ngIf="!(isUserLoggedIn$ | async)" class="sign-up-button"
+            (click)="openAccountModal('register')">{{"signUp" | translate}}</button>
+  </div>
+</div>
 <trd-comments-list class="comments-list" [comments]="commentsList$ | async"></trd-comments-list>

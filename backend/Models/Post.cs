@@ -9,6 +9,7 @@ namespace backend.Models
         public string Title { get; set; }
         public string Text { get; set; }
         public int Score { get; set; }
+        public DateTime CreatedAt { get; set; }
 
         public int SubtireddId { get; set; }
         public Subtiredd Subtiredd { get; set; }

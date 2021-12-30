@@ -1,5 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {AccountModalService} from "../../services/account-modal.service";
+import {UserService} from "../../services/user.service";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'trd-subtiredd-header',
@@ -9,24 +11,32 @@ import {AccountModalService} from "../../services/account-modal.service";
 export class SubtireddHeaderComponent {
 
   @Input() subtireddName: string;
-  @Input() isUserLoggedIn: Boolean;
-  // TODO: get from service
-  hasUserJoined: Boolean = false;
   imageUrl = "https://www.countryandtownhouse.co.uk/wp-content/uploads/2017/01/knitting.jpg";
-  changeText: Boolean = false;
+  hasUserJoined: Boolean = false;
+  isMouseOver: Boolean = false;
+  isUserLoggedIn: Boolean = false
+  isUserLoggedInSubscription: Subscription
 
-  constructor(private accountModalService: AccountModalService) {
+  constructor(private userService: UserService, private accountModalService: AccountModalService) {
+    this.isUserLoggedInSubscription = userService.isUserLoggedIn$.subscribe(isUserLoggedIn => this.onLoginStatusChanged(isUserLoggedIn))
   }
 
-  onJoinClick() {
+  onLoginStatusChanged(isUserLoggedIn: boolean) {
+    this.isUserLoggedIn = isUserLoggedIn;
+    if (!isUserLoggedIn)
+      this.hasUserJoined = false
+  }
+
+  ngOnDestroy(): void {
+    this.isUserLoggedInSubscription.unsubscribe()
+  }
+
+  onJoinClick(event: Event) {
+    event.stopPropagation()
     if (this.isUserLoggedIn) {
-      if (this.hasUserJoined)
-        console.log("Leave")
-      else
-        console.log("Join")
+      this.hasUserJoined = !this.hasUserJoined
     } else {
-      this.accountModalService.openAccountModal("register");
+      this.accountModalService.openAccountModal('login');
     }
   }
-
 }

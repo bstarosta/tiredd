@@ -1,2 +1,7 @@
-<trd-post-list-item [post]="post"></trd-post-list-item>
-<trd-comments></trd-comments>
+<div class="row">
+  <div class="column">
+    <trd-post-list-item [post]="post" [addRoutesToPost]="false"></trd-post-list-item>
+    <trd-comments id="comments"></trd-comments>
+  </div>
+  <trd-post-community-details></trd-post-community-details>
+</div>

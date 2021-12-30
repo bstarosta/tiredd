@@ -1,6 +1,31 @@
 :host {
   display: flex;
-  flex-direction: column;
-  width: 50%;
+  width: 70%;
   margin: 20px auto;
+  flex-direction: column;
+}
+
+span {
+  padding-bottom: 3px;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  padding: 0 5px;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  margin-right: 30px;
+}
+
+trd-comments {
+  margin: 20px 0;
+}
+
+trd-post-community-details {
+  width: 30%;
 }
