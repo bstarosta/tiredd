@@ -20,7 +20,7 @@
   "newToTiredd": "Nowy na Tiredd?",
   "logInLink": "Zaloguj się",
   "signUpLink": "Zarejestruj się",
-  "username" : "Nazwa użytkownika",
+  "username": "Nazwa użytkownika",
   "password": "Hasło",
   "confirmPassword": "Powtórz hasło",
   "email": "E-mail",
@@ -50,6 +50,9 @@
   "commentPlaceholder": "Co masz na myśli?",
   "addComment": "Skomentuj",
   "reply": "Odpowiedz",
+  "joined": "Dołączono",
+  "leave": "Opuść",
+  "aboutCommunity": "Szczegóły Społeczności",
   "ofMembers": "członków",
   "created": "Utworzono",
   "logInOrSignUpToComment": "Zaloguj lub zarejestruj się aby dodać komentarz"

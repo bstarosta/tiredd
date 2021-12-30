@@ -25,9 +25,10 @@ import {SecurityModule} from "./security/security.module";
 import {CreatePostSubtireddSelectComponent} from './create-post-subtiredd-select/create-post-subtiredd-select.component';
 import {HeaderUserAvatarComponent} from './header-user-avatar/header-user-avatar.component';
 import {MatTabsModule} from "@angular/material/tabs";
+import { LocalizedDatePipe } from './localized-date.pipe';
 
 @NgModule({
-  declarations: [LanguagePickerComponent, HeaderComponent, SearchbarComponent, HeaderSubtireddSelectComponent, UserAvatarComponent, PostListItemComponent, PostListComponent, PostListOrderPickerComponent, PostColumnComponent, PopularCommunitiesComponent, CommunityAvatarComponent, CreatePostComponent, CreatePostModalComponent, CreatePostSubtireddSelectComponent, HeaderUserAvatarComponent],
+  declarations: [LanguagePickerComponent, HeaderComponent, SearchbarComponent, HeaderSubtireddSelectComponent, UserAvatarComponent, PostListItemComponent, PostListComponent, PostListOrderPickerComponent, PostColumnComponent, PopularCommunitiesComponent, CommunityAvatarComponent, CreatePostComponent, CreatePostModalComponent, CreatePostSubtireddSelectComponent, HeaderUserAvatarComponent, LocalizedDatePipe],
   imports: [
     CommonModule,
     TranslateModule,
@@ -52,7 +53,8 @@ import {MatTabsModule} from "@angular/material/tabs";
     PopularCommunitiesComponent,
     CreatePostComponent,
     UserAvatarComponent,
-    CommunityAvatarComponent
+    CommunityAvatarComponent,
+    LocalizedDatePipe
   ]
 })
 export class SharedModule {

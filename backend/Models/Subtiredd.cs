@@ -9,6 +9,8 @@ namespace backend.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public string Description { get; set; }
+        public DateTime CreateDateTime { get; set; }
 
         public Guid AdminId { get; set; }
         public User Admin { get; set; }
