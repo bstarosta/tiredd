@@ -14,7 +14,7 @@ export class SubtireddPageComponent implements OnDestroy {
   routeSubscription: Subscription;
 
   constructor(private route: ActivatedRoute, private userService: UserService) {
-    this.routeSubscription = route.paramMap.subscribe(paramMap => this.subtireddName = paramMap.get("name"));
+    this.routeSubscription = route.paramMap.subscribe(paramMap => this.subtireddName = paramMap.get("subtireddName"));
     this.isUserLoggedIn$ = userService.isUserLoggedIn$;
   }
 

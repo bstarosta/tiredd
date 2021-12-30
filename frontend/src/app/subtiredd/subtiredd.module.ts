@@ -7,18 +7,29 @@ import {PostPageComponent} from './post-page/post-page.component';
 import {SubtireddHeaderComponent} from './subtiredd-header/subtiredd-header.component';
 import {SharedModule} from "../shared/shared.module";
 import {AboutCommunityComponent} from './about-community/about-community.component';
+import {CommentsComponent} from './post-page/comments/comments.component';
+import {CreateCommentComponent} from './post-page/create-comment/create-comment.component';
+import {CommentsListComponent} from './post-page/comments-list/comments-list.component';
+import {MatInputModule} from "@angular/material/input";
+import {FormsModule} from "@angular/forms";
 
 
 @NgModule({
   declarations: [
     SubtireddPageComponent,
     PostPageComponent,
+    CommentsComponent,
+    CreateCommentComponent,
+    CommentsListComponent,
     SubtireddHeaderComponent,
     AboutCommunityComponent
   ],
   imports: [
     CommonModule,
     SubtireddRoutingModule,
+    SharedModule,
+    MatInputModule,
+    FormsModule,
     SharedModule
   ]
 })

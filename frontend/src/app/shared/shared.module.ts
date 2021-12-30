@@ -42,19 +42,20 @@ import { LocalizedDatePipe } from './localized-date.pipe';
     SecurityModule,
     MatTabsModule
   ],
-    exports: [
-        LanguagePickerComponent,
-        TranslateModule,
-        HeaderComponent,
-        PostListItemComponent,
-        PostListComponent,
-        PostListOrderPickerComponent,
-        PostColumnComponent,
-        PopularCommunitiesComponent,
-        CreatePostComponent,
-        CommunityAvatarComponent,
-        LocalizedDatePipe
-    ]
+  exports: [
+    LanguagePickerComponent,
+    TranslateModule,
+    HeaderComponent,
+    PostListItemComponent,
+    PostListComponent,
+    PostListOrderPickerComponent,
+    PostColumnComponent,
+    PopularCommunitiesComponent,
+    CreatePostComponent,
+    UserAvatarComponent,
+    CommunityAvatarComponent,
+    LocalizedDatePipe
+  ]
 })
 export class SharedModule {
 }
