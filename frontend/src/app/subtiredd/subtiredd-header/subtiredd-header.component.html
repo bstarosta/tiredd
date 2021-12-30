@@ -3,10 +3,8 @@
   <div class="title-banner-content">
     <trd-community-avatar [communityName]="subtireddName"></trd-community-avatar>
     <span class="title">{{subtireddName}}</span>
-    <button (click)="onJoinClick()" (mouseover)="changeText=true" (mouseout)="changeText=false">
-      <span *ngIf="!hasUserJoined">{{"joinCommunity" | translate}}</span>
-      <span *ngIf="hasUserJoined && !changeText">{{"joined" | translate}}</span>
-      <span *ngIf="hasUserJoined && changeText">{{"leave" | translate}}</span>
+    <button (click)="onJoinClick($event)" (mouseover)="isMouseOver=true" (mouseout)="isMouseOver=false">
+      {{(hasUserJoined ? (isMouseOver ? "leave" : "joined") : "joinCommunity") | translate}}
     </button>
   </div>
 </div>

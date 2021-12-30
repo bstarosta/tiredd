@@ -27,7 +27,7 @@ export class CommentsListComponent implements OnInit, OnDestroy {
   }
 
   hideAllReplies() {
-    this.showReplyInput = this.showReplyInput.map(_ => false)
+    this.showReplyInput = this.showReplyInput?.map(_ => false)
   }
 
   ngOnInit(): void {

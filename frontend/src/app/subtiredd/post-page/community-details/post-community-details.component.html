@@ -16,5 +16,8 @@
       <span class="material-icons">cake</span>
       <span class="date">{{"created" | translate}} {{community.createDate | date:'d MMM y'}}</span>
     </div>
+    <button (click)="onJoinClick($event)" (mouseover)="isMouseOver=true" (mouseout)="isMouseOver=false">
+      {{(hasUserJoined ? (isMouseOver ? "leave" : "joined") : "joinCommunity") | translate}}
+    </button>
   </div>
 </div>

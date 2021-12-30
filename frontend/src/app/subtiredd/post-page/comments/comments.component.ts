@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {Observable} from "rxjs";
 import {PostCommentsService} from "../../../services/post-comments.service";
 import {ActivatedRoute} from "@angular/router";
@@ -11,8 +11,9 @@ import {AccountModalMode, AccountModalService} from "../../../services/account-m
   templateUrl: './comments.component.html',
   styleUrls: ['./comments.component.scss']
 })
-export class CommentsComponent implements OnInit {
+export class CommentsComponent {
 
+  postId: string
   commentsList$: Observable<Comment[]>
   isUserLoggedIn$: Observable<Boolean>
 
@@ -22,13 +23,10 @@ export class CommentsComponent implements OnInit {
     private userService: UserService,
     private accountModalService: AccountModalService
   ) {
-    const postId = route.snapshot.paramMap.get("postId")
-    postCommentsService.getCommentsList(postId)
+    this.postId = route.snapshot.paramMap.get("postId")
+    postCommentsService.getCommentsList(this.postId)
     this.commentsList$ = postCommentsService.commentsList$
     this.isUserLoggedIn$ = userService.isUserLoggedIn$
-  }
-
-  ngOnInit(): void {
   }
 
   openAccountModal(mode: AccountModalMode): void {

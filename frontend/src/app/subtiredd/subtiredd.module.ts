@@ -12,7 +12,7 @@ import {CreateCommentComponent} from './post-page/create-comment/create-comment.
 import {CommentsListComponent} from './post-page/comments-list/comments-list.component';
 import {MatInputModule} from "@angular/material/input";
 import {FormsModule} from "@angular/forms";
-import { CommunityDetailsComponent } from './post-page/community-details/community-details.component';
+import { PostCommunityDetailsComponent } from './post-page/community-details/post-community-details.component';
 
 
 @NgModule({
@@ -24,7 +24,7 @@ import { CommunityDetailsComponent } from './post-page/community-details/communi
     CommentsListComponent,
     SubtireddHeaderComponent,
     AboutCommunityComponent,
-    CommunityDetailsComponent
+    PostCommunityDetailsComponent
   ],
   imports: [
     CommonModule,
