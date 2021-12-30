@@ -27,9 +27,11 @@ import {HeaderUserAvatarComponent} from './header-user-avatar/header-user-avatar
 import {MatTabsModule} from "@angular/material/tabs";
 import { CreateCommunityModalComponent } from './create-community-modal/create-community-modal.component';
 import { CreateCommunityFormComponent } from './create-community-form/create-community-form.component';
+import { SuccessSnackbarComponent } from './success-toast/success-snackbar.component';
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 
 @NgModule({
-  declarations: [LanguagePickerComponent, HeaderComponent, SearchbarComponent, HeaderSubtireddSelectComponent, UserAvatarComponent, PostListItemComponent, PostListComponent, PostListOrderPickerComponent, PostColumnComponent, PopularCommunitiesComponent, CommunityAvatarComponent, CreatePostComponent, CreatePostModalComponent, CreatePostSubtireddSelectComponent, HeaderUserAvatarComponent, CreateCommunityModalComponent, CreateCommunityFormComponent],
+  declarations: [LanguagePickerComponent, HeaderComponent, SearchbarComponent, HeaderSubtireddSelectComponent, UserAvatarComponent, PostListItemComponent, PostListComponent, PostListOrderPickerComponent, PostColumnComponent, PopularCommunitiesComponent, CommunityAvatarComponent, CreatePostComponent, CreatePostModalComponent, CreatePostSubtireddSelectComponent, HeaderUserAvatarComponent, CreateCommunityModalComponent, CreateCommunityFormComponent, SuccessSnackbarComponent],
     imports: [
         CommonModule,
         TranslateModule,
@@ -42,7 +44,8 @@ import { CreateCommunityFormComponent } from './create-community-form/create-com
         MatDialogModule,
         SecurityModule,
         MatTabsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        MatSnackBarModule
     ],
   exports: [
     LanguagePickerComponent,

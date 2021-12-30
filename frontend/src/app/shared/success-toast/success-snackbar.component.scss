@@ -1,0 +1,18 @@
+@use "../../../style/ui-colors";
+
+:host {
+  display: flex;
+  width: 100%;
+  color: black;
+  align-content: center;
+}
+
+p {
+  line-height: 24px;
+  margin-right: 50px;
+  vertical-align: center ;
+}
+
+span {
+  color: ui-colors.$success-snackbar-tick;
+}

@@ -55,6 +55,7 @@
   "error.communityName.conflict": "Nazwa społeczności jest już zajęta",
   "error.communityBackground.required": "Tło społeczności jest wymagane",
   "error.communityDescription.required": "Opis społeczności jest wymagany",
-  "create": "Utwórz"
+  "create": "Utwórz",
+  "createCommunitySuccess": "Pomyslnie utworzono społeczność"
 
 }

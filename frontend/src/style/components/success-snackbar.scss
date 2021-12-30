@@ -1,0 +1,7 @@
+@use "../../style/ui-colors";
+
+.success-snackbar {
+  background-color: ui-colors.$snackbar-background;
+  border: 3px solid ui-colors.$success-snackbar-border;
+  max-width: 40vw;
+}
