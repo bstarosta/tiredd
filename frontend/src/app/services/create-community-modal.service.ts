@@ -4,8 +4,9 @@ import {Observable} from "rxjs";
 import {CreateCommunityModalComponent} from "../shared/create-community-modal/create-community-modal.component";
 
 const CREATE_COMMUNITY_MODAL_CONFIG: MatDialogConfig = {
-  height: "70vh",
-  width: "30vw"
+  height: "75vh",
+  width: "30vw",
+  disableClose: true
 }
 
 @Injectable({

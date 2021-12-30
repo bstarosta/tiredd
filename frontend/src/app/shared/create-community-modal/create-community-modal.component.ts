@@ -1,22 +1,24 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, Inject} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
+import {CreateCommunityFormOutput} from "../../interfaces/create-community-form-output";
 
 @Component({
   selector: 'trd-create-community-modal',
   templateUrl: './create-community-modal.component.html',
   styleUrls: ['./create-community-modal.component.scss']
 })
-export class CreateCommunityModalComponent implements OnInit {
+export class CreateCommunityModalComponent {
 
   constructor(@Inject(MAT_DIALOG_DATA) data: string, private matDialogRef: MatDialogRef<CreateCommunityModalComponent>) {
 
   }
 
-  onCloseClick() {
-    this.matDialogRef.close();
+  onFormSubmit(communityData: CreateCommunityFormOutput) {
+    this.onCloseClick();
   }
 
-  ngOnInit(): void {
+  onCloseClick() {
+    this.matDialogRef.close();
   }
 
 }

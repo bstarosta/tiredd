@@ -1,7 +1,10 @@
-<form [formGroup]="form">
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
   <div class="form-field" [ngClass]="{'error': name.invalid && name.touched}">
     <label>{{"communityName" | translate}}</label>
-    <input formControlName="name">
+    <div class="name-input">
+      <span>t/</span>
+      <input formControlName="name">
+    </div>
     <div class="error-display">
       <ng-container *ngIf="name.touched">
         <p *ngFor="let error of name.errors | objectToKeys"
@@ -30,6 +33,6 @@
     </div>
   </div>
   <div class="form-footer">
-    <button type="submit">{{"create" | translate}}</button>
+    <button [disabled]="form.invalid" type="submit">{{"create" | translate}}</button>
   </div>
 </form>
