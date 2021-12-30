@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {UserService} from "../../../services/user.service";
 import {Observable} from "rxjs";
 import {map} from "rxjs/operators";
@@ -8,7 +8,7 @@ import {map} from "rxjs/operators";
   templateUrl: './create-comment.component.html',
   styleUrls: ['./create-comment.component.scss']
 })
-export class CreateCommentComponent implements OnInit {
+export class CreateCommentComponent {
 
   @Input() postId: string
   @Input() parentCommentId: string
@@ -17,9 +17,6 @@ export class CreateCommentComponent implements OnInit {
 
   constructor(private userService: UserService) {
     this.userId$ = userService.user$.pipe(map(user => user.id))
-  }
-
-  ngOnInit(): void { // TODO: Delete empty inits
   }
 
   isCommentEmpty() {

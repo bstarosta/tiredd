@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {PostListItemInfo} from "../../interfaces/post-list-item-info";
 
 @Component({
@@ -6,14 +6,11 @@ import {PostListItemInfo} from "../../interfaces/post-list-item-info";
   templateUrl: './post-list-item.component.html',
   styleUrls: ['./post-list-item.component.scss']
 })
-export class PostListItemComponent implements OnInit {
+export class PostListItemComponent {
 
   @Input() post?: PostListItemInfo;
   @Input() addRoutesToPost = true;
 
   constructor() {
-  }
-
-  ngOnInit(): void {
   }
 }

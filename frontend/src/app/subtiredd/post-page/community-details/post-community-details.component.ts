@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy} from '@angular/core';
 import {Subscription} from "rxjs";
 import {UserService} from "../../../services/user.service";
 import {AccountModalService} from "../../../services/account-modal.service";
@@ -8,7 +8,7 @@ import {AccountModalService} from "../../../services/account-modal.service";
   templateUrl: './post-community-details.component.html',
   styleUrls: ['./post-community-details.component.scss']
 })
-export class PostCommunityDetailsComponent implements OnInit, OnDestroy {
+export class PostCommunityDetailsComponent implements OnDestroy {
 
   community = {
     name: 'subtiredd',
@@ -30,9 +30,6 @@ export class PostCommunityDetailsComponent implements OnInit, OnDestroy {
     this.isUserLoggedIn = isUserLoggedIn;
     if (!isUserLoggedIn)
       this.hasUserJoined = false
-  }
-
-  ngOnInit(): void {
   }
 
   ngOnDestroy(): void {
