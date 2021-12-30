@@ -1,7 +1,7 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {Comment} from "../../../interfaces/comment";
 import {UserService} from "../../../services/user.service";
-import {Observable} from "rxjs";
+import {Subscription} from "rxjs";
 import {AccountModalService} from "../../../services/account-modal.service";
 
 @Component({
@@ -9,26 +9,39 @@ import {AccountModalService} from "../../../services/account-modal.service";
   templateUrl: './comments-list.component.html',
   styleUrls: ['./comments-list.component.scss']
 })
-export class CommentsListComponent implements OnInit {
+export class CommentsListComponent implements OnInit, OnDestroy {
 
   @Input() comments: Comment[]
   showReplyInput: Boolean[]
-  isUserLoggedIn$: Observable<Boolean>
+  isUserLoggedIn: Boolean = false
+  isUserLoggedInSubscription: Subscription
 
   constructor(private userService: UserService, private accountModalService: AccountModalService) {
-    this.isUserLoggedIn$ = userService.isUserLoggedIn$
+    this.isUserLoggedInSubscription = userService.isUserLoggedIn$.subscribe(isUserLoggedIn => this.onLoginStatusChanged(isUserLoggedIn))
+  }
+
+  onLoginStatusChanged(isUserLoggedIn: boolean) {
+    this.isUserLoggedIn = isUserLoggedIn;
+    if (!isUserLoggedIn)
+      this.hideAllReplies();
+  }
+
+  hideAllReplies() {
+    this.showReplyInput = this.showReplyInput.map(_ => false)
   }
 
   ngOnInit(): void {
     this.showReplyInput = this.comments.map(() => false)
   }
 
+  ngOnDestroy(): void {
+    this.isUserLoggedInSubscription.unsubscribe()
+  }
+
   onReplyToggle(commentIndex: number) {
-    this.isUserLoggedIn$.subscribe(isUserLoggedIn => {
-      if (isUserLoggedIn)
-        this.showReplyInput[commentIndex] = !this.showReplyInput[commentIndex]
-      else
-        this.accountModalService.openAccountModal('login')
-    })
+    if (this.isUserLoggedIn)
+      this.showReplyInput[commentIndex] = !this.showReplyInput[commentIndex]
+    else
+      this.accountModalService.openAccountModal('login')
   }
 }
