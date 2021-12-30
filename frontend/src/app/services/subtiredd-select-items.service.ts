@@ -1,22 +1,25 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from "rxjs";
-import {HeaderSubtireddSelectItem} from "../shared/header-subtiredd-select/header-subtiredd-select.component";
 import {UserService} from "./user.service";
 import {Router} from "@angular/router";
 import {TranslateService} from "@ngx-translate/core";
 import {merge} from "rxjs/operators";
+import {HeaderSubtireddSelectItem} from "../interfaces/header-subtiredd-select-item";
+import {CreateCommunityModalService} from "./create-community-modal.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class SubtireddSelectItemsService {
 
-  constructor(private userService: UserService, private router: Router, private translateService: TranslateService) {
-    userService.user$.pipe(merge(translateService.onLangChange)).subscribe(_ => this.createNewSubtireddList())
+  constructor(private userService: UserService, private router: Router, private translateService: TranslateService,
+              private createCommunityModalService: CreateCommunityModalService)
+  {
+    userService.user$.pipe(merge(translateService.onLangChange)).subscribe(_ => this.createNewSubtireddList());
   }
 
   private subtireddSelectItems: BehaviorSubject<HeaderSubtireddSelectItem[]> = new BehaviorSubject<HeaderSubtireddSelectItem[]>([]);
-  subtireddSelectItems$: Observable<HeaderSubtireddSelectItem[]> = this.subtireddSelectItems.asObservable()
+  subtireddSelectItems$: Observable<HeaderSubtireddSelectItem[]> = this.subtireddSelectItems.asObservable();
 
   addDefaultItems(): HeaderSubtireddSelectItem[] {
     const homeItem: HeaderSubtireddSelectItem = {
@@ -34,7 +37,7 @@ export class SubtireddSelectItemsService {
   }
 
   openCreateCommunityModal = (): void => {
-    console.log("modal się otwiera");
+    this.createCommunityModalService.openCreateCommunityModal();
   }
 
   navigateToUrl = (url: string): void => {

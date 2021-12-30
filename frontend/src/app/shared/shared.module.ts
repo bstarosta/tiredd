@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {TranslateModule} from "@ngx-translate/core";
 import {LanguagePickerComponent} from "./language-picker/language-picker.component";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HeaderComponent} from './header/header.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatSelectModule} from "@angular/material/select";
@@ -25,10 +25,14 @@ import {SecurityModule} from "./security/security.module";
 import {CreatePostSubtireddSelectComponent} from './create-post-subtiredd-select/create-post-subtiredd-select.component';
 import {HeaderUserAvatarComponent} from './header-user-avatar/header-user-avatar.component';
 import {MatTabsModule} from "@angular/material/tabs";
+import { CreateCommunityModalComponent } from './create-community-modal/create-community-modal.component';
+import { CreateCommunityFormComponent } from './create-community-form/create-community-form.component';
+import { SuccessSnackbarComponent } from './success-toast/success-snackbar.component';
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 import { LocalizedDatePipe } from './localized-date.pipe';
 
 @NgModule({
-  declarations: [LanguagePickerComponent, HeaderComponent, SearchbarComponent, HeaderSubtireddSelectComponent, UserAvatarComponent, PostListItemComponent, PostListComponent, PostListOrderPickerComponent, PostColumnComponent, PopularCommunitiesComponent, CommunityAvatarComponent, CreatePostComponent, CreatePostModalComponent, CreatePostSubtireddSelectComponent, HeaderUserAvatarComponent, LocalizedDatePipe],
+  declarations: [LanguagePickerComponent, HeaderComponent, SearchbarComponent, HeaderSubtireddSelectComponent, UserAvatarComponent, PostListItemComponent, PostListComponent, PostListOrderPickerComponent, PostColumnComponent, PopularCommunitiesComponent, CommunityAvatarComponent, CreatePostComponent, CreatePostModalComponent, CreatePostSubtireddSelectComponent, HeaderUserAvatarComponent, LocalizedDatePipe, CreateCommunityModalComponent, CreateCommunityFormComponent, SuccessSnackbarComponent],
   imports: [
     CommonModule,
     TranslateModule,
@@ -40,7 +44,9 @@ import { LocalizedDatePipe } from './localized-date.pipe';
     RouterModule,
     MatDialogModule,
     SecurityModule,
-    MatTabsModule
+    MatTabsModule,
+    ReactiveFormsModule,
+    MatSnackBarModule
   ],
   exports: [
     LanguagePickerComponent,
