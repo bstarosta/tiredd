@@ -1,1 +1,8 @@
-<p>{{subtireddName}}</p>
+<trd-subtiredd-header subtireddName="{{subtireddName}}"></trd-subtiredd-header>
+<div class="row">
+  <div class="column">
+    <trd-create-post *ngIf="isUserLoggedIn$ | async"></trd-create-post>
+    <trd-posts-column></trd-posts-column>
+  </div>
+  <trd-about-community [isUserLoggedIn]="isUserLoggedIn$ | async"></trd-about-community>
+</div>

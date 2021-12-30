@@ -1,5 +1,7 @@
-<button (click)="scrollToComments()">Go to comments</button>
-<p>Post {{postId}}</p>
-<p [style.height]="'1000px'"></p>
-<p id="comments">Comments</p>
-<p [style.height]="'1000px'"></p>
+<div class="row">
+  <div class="column">
+    <trd-post-list-item [post]="post" [addRoutesToPost]="false"></trd-post-list-item>
+    <trd-comments id="comments"></trd-comments>
+  </div>
+  <trd-post-community-details></trd-post-community-details>
+</div>

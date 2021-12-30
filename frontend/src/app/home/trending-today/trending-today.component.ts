@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {TrendingPost} from "../../interfaces/trending-post";
 
 @Component({
@@ -6,7 +6,7 @@ import {TrendingPost} from "../../interfaces/trending-post";
   templateUrl: './trending-today.component.html',
   styleUrls: ['./trending-today.component.scss']
 })
-export class TrendingTodayComponent implements OnInit {
+export class TrendingTodayComponent {
 
   trendingPosts: TrendingPost[] = [
     {
@@ -41,8 +41,4 @@ export class TrendingTodayComponent implements OnInit {
 
   constructor() {
   }
-
-  ngOnInit(): void {
-  }
-
 }

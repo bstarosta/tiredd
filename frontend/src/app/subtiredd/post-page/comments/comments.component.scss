@@ -1,0 +1,68 @@
+@use "../../../../style/ui-colors";
+
+:host {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border: 1px solid ui-colors.$comments-border;
+  background-color: ui-colors.$comments-background;
+}
+
+.create-comment {
+  display: flex;
+  width: calc(100% - 40px);
+  margin: 20px 20px 0 20px;
+}
+
+.comments-list {
+  margin: 20px 15px 10px 15px;
+}
+
+.log-in-message {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid ui-colors.$comments-log-in-or-sign-up-message-border;
+  border-radius: 3px;
+  margin: 20px 20px 0 20px;
+  padding: 10px 10px 0 10px;
+}
+
+.log-in-message-text {
+  width: 100%;
+  line-height: 30px;
+  min-height: 40px;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+}
+
+.log-in-button {
+  background-color: ui-colors.$log-in-button-background;
+  border: 1px solid ui-colors.$log-in-button-border;
+  margin-right: 10px;
+
+  &:hover {
+    border-width: 2px;
+  }
+}
+
+.sign-up-button {
+  border: none;
+  background-color: ui-colors.$sign-up-button-background;
+
+  &:hover {
+    background-color: ui-colors.$light-blue;
+  }
+}
+
+button {
+  height: 30px;
+  padding-right: 20px;
+  padding-left: 20px;
+  border-radius: 30px;
+  font-size: 20px;
+  white-space: nowrap;
+  cursor: pointer;
+}

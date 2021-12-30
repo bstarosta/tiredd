@@ -1,0 +1,8 @@
+<mat-form-field class="comment-input-field" appearance="fill">
+  <mat-label>{{"commentPlaceholder" | translate}}</mat-label>
+  <textarea matInput [(ngModel)]="commentText"></textarea>
+</mat-form-field>
+<div class="comment-input-toolbar">
+  <button class="add-comment-button" (click)="onAddCommentClicked()"
+          [disabled]="isCommentEmpty()">{{"addComment" | translate}}</button>
+</div>

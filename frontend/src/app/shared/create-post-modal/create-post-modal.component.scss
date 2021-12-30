@@ -37,6 +37,10 @@
   height: 3px;
 }
 
+.mat-tab-group {
+  margin: auto 0;
+}
+
 .tab {
   display: flex;
   flex-direction: column;
@@ -75,7 +79,7 @@ textarea {
 button {
   height: 40px;
   width: 130px;
-  margin: 15px 10px 0 calc(100% - 140px);
+  margin: auto 10px 0 calc(100% - 140px);
   padding: 5px 0;
   border-radius: 30px;
   border: none;
@@ -97,6 +101,6 @@ button {
 }
 
 trd-create-post-subtiredd-select {
-  margin-bottom: 15px;
+  margin-top: 20px;
   border-color: ui-colors.$create-post-modal-input-border;
 }

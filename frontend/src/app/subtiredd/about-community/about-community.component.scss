@@ -1,0 +1,80 @@
+@use "../../../style/ui-colors";
+
+:host {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: fit-content;
+  margin-top: 20px;
+  border-radius: 3px;
+  background-color: ui-colors.$about-community-background;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  padding-left: 15px;
+  border-radius: 3px 3px 0 0;
+  background-color: ui-colors.$about-community-header-background;
+  color: ui-colors.$about-community-header-text;
+}
+
+.content {
+  margin: 15px 20px;
+  color: ui-colors.$about-community-text;
+}
+
+.description {
+  font-size: 14px;
+  text-align: justify;
+}
+
+.membersInfo {
+  display: flex;
+  flex-direction: column;
+  margin-top: 15px;
+}
+
+.number {
+  display: flex;
+  margin: auto;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.members {
+  display: flex;
+  margin: auto;
+}
+
+.createdAt {
+  display: flex;
+  margin: 15px auto 0;
+  align-items: center;
+}
+
+.date {
+  margin-left: 5px;
+  padding-top: 3px;
+}
+
+button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+  height: 30px;
+  padding-right: 30px;
+  padding-left: 30px;
+  border-radius: 30px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  background-color: ui-colors.$subtiredd-header-button-background;
+  margin: 15px auto 0 auto;
+
+  &:hover {
+    background-color: ui-colors.$subtiredd-header-button-background-hover;
+  }
+}

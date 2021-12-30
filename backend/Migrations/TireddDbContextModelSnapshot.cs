@@ -242,6 +242,9 @@ namespace backend.Migrations
                     b.Property<string>("AuthorId1")
                         .HasColumnType("varchar(255)");
 
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime(6)");
+
                     b.Property<int>("ParentCommentId")
                         .HasColumnType("int");
 
@@ -273,6 +276,9 @@ namespace backend.Migrations
 
                     b.Property<string>("AuthorId1")
                         .HasColumnType("varchar(255)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime(6)");
 
                     b.Property<int>("Score")
                         .HasColumnType("int");
@@ -306,6 +312,12 @@ namespace backend.Migrations
 
                     b.Property<string>("AdminId1")
                         .HasColumnType("varchar(255)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Name")
                         .HasColumnType("longtext");
@@ -347,6 +359,9 @@ namespace backend.Migrations
             modelBuilder.Entity("backend.Models.User", b =>
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime(6)");
 
                     b.HasDiscriminator().HasValue("User");
                 });

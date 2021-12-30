@@ -20,7 +20,7 @@
   "newToTiredd": "Nowy na Tiredd?",
   "logInLink": "Zaloguj się",
   "signUpLink": "Zarejestruj się",
-  "username" : "Nazwa użytkownika",
+  "username": "Nazwa użytkownika",
   "password": "Hasło",
   "confirmPassword": "Powtórz hasło",
   "email": "E-mail",
@@ -41,7 +41,7 @@
   "trendingToday": "Popularne dzisiaj",
   "popularPosts": "Popularne posty",
   "postedBy": "Dodane przez",
-  "create-post": "Stwórz posta",
+  "createPost": "Stwórz posta",
   "title": "Tytuł",
   "text": "Tekst",
   "image": "Zdjęcie",
@@ -56,6 +56,14 @@
   "error.communityBackground.required": "Tło społeczności jest wymagane",
   "error.communityDescription.required": "Opis społeczności jest wymagany",
   "create": "Utwórz",
-  "createCommunitySuccess": "Pomyslnie utworzono społeczność"
-
+  "createCommunitySuccess": "Pomyslnie utworzono społeczność",
+  "commentPlaceholder": "Co masz na myśli?",
+  "addComment": "Skomentuj",
+  "reply": "Odpowiedz",
+  "joined": "Dołączono",
+  "leave": "Opuść",
+  "aboutCommunity": "Szczegóły społeczności",
+  "ofMembers": "członków",
+  "created": "Utworzono",
+  "logInOrSignUpToComment": "Zaloguj lub zarejestruj się aby dodać komentarz"
 }
