@@ -20,7 +20,7 @@
   "newToTiredd": "New to Tiredd?",
   "logInLink": "Log In",
   "signUpLink": "Sign Up",
-  "username" : "Username",
+  "username": "Username",
   "password": "Password",
   "confirmPassword": "Confirm password",
   "email": "E-mail",
@@ -48,5 +48,10 @@
   "post": "Post",
   "commentPlaceholder": "What are your thoughts?",
   "addComment": "Comment",
-  "reply": "Reply"
+  "reply": "Reply",
+  "joined": "Joined",
+  "leave": "Leave",
+  "aboutCommunity": "About Community",
+  "ofMembers": "members",
+  "created": "Created"
 }

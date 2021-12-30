@@ -1,0 +1,13 @@
+<div class="header">{{"aboutCommunity" | translate}}</div>
+<div class="content">
+  <div class="description">{{description}}</div>
+  <div class="membersInfo">
+    <span class="number">{{numberOfMembers | number}}</span>
+    <span class="members">{{"ofMembers" | translate}}</span>
+  </div>
+  <div class="createdAt">
+    <span class="material-icons icon">cake</span>
+    <span class="date">{{"created" | translate}} {{createDate | localizedDate:'d MMM y'}}</span>
+  </div>
+  <button (click)="onCreatePostClick()">{{"create-post" | translate}}</button>
+</div>

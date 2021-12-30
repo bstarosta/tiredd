@@ -11,7 +11,7 @@
         <span class="dot-separator">•</span>
         <span class="posted-by">{{"postedBy" | translate}} u/{{post.author}}</span>
       </div>
-      <p class="time-text">{{post.timestamp | date:'d MMM y, H:mm '}}</p>
+      <p class="time-text">{{post.timestamp | localizedDate:'d MMM y, H:mm '}}</p>
     </div>
     <p class="post-title">{{post.title}}</p>
     <img *ngIf="post.image" src="{{post.image}}" alt="image" class="post-image">
