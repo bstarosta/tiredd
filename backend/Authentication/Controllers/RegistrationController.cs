@@ -32,7 +32,8 @@ namespace backend.Authentication.Controllers
             var user = new User()
             {
                 Email = model.Email,
-                UserName = model.Username
+                UserName = model.Username,
+                CreatedAt = DateTime.Now
             };
             var result = await userManager.CreateAsync(user, model.Password);
             Console.WriteLine(result.ToString());
