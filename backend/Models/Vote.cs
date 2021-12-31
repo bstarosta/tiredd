@@ -7,7 +7,7 @@ namespace backend.Models
         public int Id { get; set; }
         public VoteType Type { get; set; }
 
-        public Guid UserId { get; set; }
+        public string UserId { get; set; }
         public User User { get; set; }
 
         public int PostId { get; set; }
