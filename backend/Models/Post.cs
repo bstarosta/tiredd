@@ -17,7 +17,7 @@ namespace backend.Models
         public int SubtireddId { get; set; }
         public Subtiredd Subtiredd { get; set; }
 
-        public Guid AuthorId { get; set; }
+        public string AuthorId { get; set; }
         public User Author { get; set; }
 
         public List<Comment> Comments { get; set; }
