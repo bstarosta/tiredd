@@ -15,7 +15,6 @@ namespace backend.Controllers
     [ApiController]
     public class SubtireddController : ControllerBase
     {
-
         private readonly TireddDbContext tireddDbContext;
 
         public SubtireddController(TireddDbContext tireddDbContext)
@@ -25,7 +24,7 @@ namespace backend.Controllers
 
         [Authorize]
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] CreateSubtireddModel model )
+        public async Task<IActionResult> Create([FromBody] CreateSubtireddModel model)
         {
             var existingSubtiredd = await tireddDbContext.Subtiredds.FirstOrDefaultAsync(s => s.Name == model.Name);
             if (existingSubtiredd != null)
@@ -41,7 +40,7 @@ namespace backend.Controllers
                 Description = model.Description,
                 CreatedAt = DateTime.Now
             };
-            var createdSubtiredd =  await tireddDbContext.AddAsync(subtiredd);
+            var createdSubtiredd = await tireddDbContext.AddAsync(subtiredd);
             await tireddDbContext.SaveChangesAsync();
 
             return new ObjectResult(createdSubtiredd.Entity) {StatusCode = StatusCodes.Status201Created};

@@ -27,7 +27,7 @@ namespace backend.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreatePostModel model)
         {
-            var authorId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+            var authorId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var post = new Post
             {
                 Title = model.Title,
