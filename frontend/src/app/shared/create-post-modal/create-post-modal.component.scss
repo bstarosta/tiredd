@@ -104,3 +104,13 @@ trd-create-post-subtiredd-select {
   margin-top: 20px;
   border-color: ui-colors.$create-post-modal-input-border;
 }
+
+.error-message {
+  color: ui-colors.$create-community-error;
+  font-size: 12px;
+}
+
+.error-display {
+  min-height: 24px;
+  margin-left: 5px;
+}

@@ -2,11 +2,24 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {SubtireddSelectItem} from "../../interfaces/subtiredd-select-item";
 import {MatTabChangeEvent} from "@angular/material/tabs";
-import {CreatePostFormOutput} from "../../interfaces/create-post-form-output";
 import {SnackbarService} from "../../services/snackbar.service";
 import {PostService} from "../../services/post.service";
 import {take} from "rxjs/operators";
 import {Post} from "../../interfaces/post";
+import {AbstractControl, FormControl, FormGroup, ValidationErrors, Validators} from "@angular/forms";
+
+const CREATE_POST_FORM_ERROR_MESSAGE_KEYS: ValidationErrors = {
+  title: {
+    required: "error.postTitle.required",
+  },
+  text: {
+    required: "error.postText.required"
+  },
+  imageUrl: {
+    required: "error.postImageUrl.required",
+    invalidUrl: "error.postImageUrl.invalidUrl"
+  }
+}
 
 @Component({
   selector: 'trd-create-post-modal',
@@ -15,6 +28,7 @@ import {Post} from "../../interfaces/post";
 })
 export class CreatePostModalComponent implements OnInit {
 
+  validationErrorsMessageKeys: ValidationErrors = CREATE_POST_FORM_ERROR_MESSAGE_KEYS
   subtireddSelectItems: SubtireddSelectItem[] = [
     {id: 1, name: "awww"},
     {id: 2, name: "whatswrongwithyourdog"},
@@ -25,9 +39,37 @@ export class CreatePostModalComponent implements OnInit {
 
   selectedSubtiredd: SubtireddSelectItem;
   textSelected: Boolean = true;
-  title: string;
-  text: string;
-  imageUrl: string;
+
+  textValidators = [Validators.required]
+  imageUrlValidators = [Validators.required, this.isValidHttpUrl]
+  form: FormGroup = new FormGroup({
+    title: new FormControl(null, Validators.required),
+    text: new FormControl(null),
+    imageUrl: new FormControl(null)
+  })
+
+  get title() {
+    return this.form.get("title")
+  }
+
+  get text() {
+    return this.form.get("text")
+  }
+
+  get imageUrl() {
+    return this.form.get("imageUrl")
+  }
+
+  isValidHttpUrl(control: AbstractControl) {
+    const invalidUrl = {invalidUrl: true}
+    try {
+      const url = new URL(control.value);
+      const isHttp = url.protocol === "http:" || url.protocol === "https:"
+      return isHttp ? null : invalidUrl;
+    } catch (_) {
+      return invalidUrl
+    }
+  }
 
   constructor(
     @Inject(MAT_DIALOG_DATA) data: string,
@@ -36,6 +78,7 @@ export class CreatePostModalComponent implements OnInit {
     private postService: PostService
   ) {
     this.postService.postCreated$.pipe(take(1)).subscribe(post => this.onCreatedPost(post))
+    this.setFormValidators()
   }
 
   ngOnInit() {
@@ -44,10 +87,8 @@ export class CreatePostModalComponent implements OnInit {
 
   onSubmit() {
     this.postService.createPost({
-      title: this.title,
-      ...(this.textSelected) && {text: this.text},
-      ...(!this.textSelected) && {imageUrl: this.imageUrl},
       subtireddId: this.selectedSubtiredd.id,
+      ...this.form.value
     })
   }
 
@@ -61,14 +102,17 @@ export class CreatePostModalComponent implements OnInit {
 
   onTabSelected(event: MatTabChangeEvent) {
     this.textSelected = event.index == 0;
+    this.setFormValidators();
   }
 
-  isTitleEmpty(): Boolean {
-    return !this.title
-  }
-
-  isContentEmpty(): Boolean {
-    return this.textSelected ? !this.text : !this.imageUrl;
+  setFormValidators() {
+    if (this.textSelected) {
+      this.form.get("text").setValidators(this.textValidators)
+      this.form.reset("imageUrl")
+    } else {
+      this.form.get("imageUrl").setValidators(this.imageUrlValidators)
+      this.form.reset("text")
+    }
   }
 
   onCreatedPost(post: Post) {
