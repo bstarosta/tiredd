@@ -25,7 +25,6 @@ namespace backend.Controllers
 
         [Authorize]
         [HttpPost]
-        [Route("create")]
         public async Task<IActionResult> Create([FromBody] CreateSubtireddModel model )
         {
             var existingSubtiredd = await tireddDbContext.Subtiredds.FirstOrDefaultAsync(s => s.Name == model.Name);
@@ -36,7 +35,7 @@ namespace backend.Controllers
 
             var subtiredd = new Subtiredd()
             {
-                AdminId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value,
+                AdminId = User.FindFirstValue(ClaimTypes.NameIdentifier),
                 Name = model.Name,
                 ImageUrl = model.ImageUrl,
                 Description = model.Description,
