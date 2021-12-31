@@ -42,10 +42,10 @@ namespace backend.Controllers
                 Description = model.Description,
                 CreatedAt = DateTime.Now
             };
-            await tireddDbContext.AddAsync(subtiredd);
+            var createdSubtiredd =  await tireddDbContext.AddAsync(subtiredd);
             await tireddDbContext.SaveChangesAsync();
 
-            return StatusCode(StatusCodes.Status201Created);
+            return new ObjectResult(createdSubtiredd.Entity) {StatusCode = StatusCodes.Status201Created};
         }
     }
 }
