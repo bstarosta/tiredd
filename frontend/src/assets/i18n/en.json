@@ -64,5 +64,6 @@
   "aboutCommunity": "About community",
   "ofMembers": "members",
   "created": "Created",
-  "logInOrSignUpToComment": "Log in or sign up to leave a comment"
+  "logInOrSignUpToComment": "Log in or sign up to leave a comment",
+  "createPostSuccess": "Post has been successfully created"
 }

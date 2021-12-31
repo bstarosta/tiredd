@@ -19,7 +19,7 @@ export class AboutCommunityComponent {
 
   onCreatePostClick() {
     if (this.isUserLoggedIn)
-      this.createPostModalService.openAccountModal();
+      this.createPostModalService.openCreatePostModal();
     else
       this.accountModalService.openAccountModal("register");
   }

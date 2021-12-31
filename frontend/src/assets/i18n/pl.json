@@ -56,7 +56,7 @@
   "error.communityBackground.required": "Tło społeczności jest wymagane",
   "error.communityDescription.required": "Opis społeczności jest wymagany",
   "create": "Utwórz",
-  "createCommunitySuccess": "Pomyslnie utworzono społeczność",
+  "createCommunitySuccess": "Pomyślnie utworzono społeczność",
   "commentPlaceholder": "Co masz na myśli?",
   "addComment": "Skomentuj",
   "reply": "Odpowiedz",
@@ -65,5 +65,6 @@
   "aboutCommunity": "Szczegóły społeczności",
   "ofMembers": "członków",
   "created": "Utworzono",
-  "logInOrSignUpToComment": "Zaloguj lub zarejestruj się aby dodać komentarz"
+  "logInOrSignUpToComment": "Zaloguj lub zarejestruj się aby dodać komentarz",
+  "createPostSuccess": "Pomyślnie utworzono post"
 }

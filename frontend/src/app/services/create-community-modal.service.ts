@@ -16,7 +16,7 @@ export class CreateCommunityModalService {
 
   constructor(private matDialog: MatDialog) { }
 
-  userId: string = "id"
+  userId: string = "id" // TODO: Remove id
 
   openCreateCommunityModal(): Observable<any> {
     return this.matDialog.open(CreateCommunityModalComponent, {data: this.userId, ...CREATE_COMMUNITY_MODAL_CONFIG}).afterClosed()

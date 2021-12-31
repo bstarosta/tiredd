@@ -2,6 +2,11 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {SubtireddSelectItem} from "../../interfaces/subtiredd-select-item";
 import {MatTabChangeEvent} from "@angular/material/tabs";
+import {CreatePostFormOutput} from "../../interfaces/create-post-form-output";
+import {SnackbarService} from "../../services/snackbar.service";
+import {PostService} from "../../services/post.service";
+import {take} from "rxjs/operators";
+import {Post} from "../../interfaces/post";
 
 @Component({
   selector: 'trd-create-post-modal',
@@ -10,13 +15,12 @@ import {MatTabChangeEvent} from "@angular/material/tabs";
 })
 export class CreatePostModalComponent implements OnInit {
 
-  userId: string;
   subtireddSelectItems: SubtireddSelectItem[] = [
-    {name: "awww"},
-    {name: "whatswrongwithyourdog"},
-    {name: "dachschund"},
-    {name: "corgi"},
-    {name: "dogs"},
+    {id: 1, name: "awww"},
+    {id: 2, name: "whatswrongwithyourdog"},
+    {id: 3, name: "dachschund"},
+    {id: 4, name: "corgi"},
+    {id: 5, name: "dogs"},
   ]
 
   selectedSubtiredd: SubtireddSelectItem;
@@ -25,12 +29,26 @@ export class CreatePostModalComponent implements OnInit {
   text: string;
   imageUrl: string;
 
-  constructor(@Inject(MAT_DIALOG_DATA) data: string, private matDialogRef: MatDialogRef<CreatePostModalComponent>) {
-    this.userId = data;
+  constructor(
+    @Inject(MAT_DIALOG_DATA) data: string,
+    private matDialogRef: MatDialogRef<CreatePostModalComponent>,
+    private snackbarService: SnackbarService,
+    private postService: PostService
+  ) {
+    this.postService.postCreated$.pipe(take(1)).subscribe(post => this.onCreatedPost(post))
   }
 
   ngOnInit() {
     this.selectedSubtiredd = this.subtireddSelectItems[0];
+  }
+
+  onSubmit() {
+    this.postService.createPost({
+      title: this.title,
+      ...(this.textSelected) && {text: this.text},
+      ...(!this.textSelected) && {imageUrl: this.imageUrl},
+      subtireddId: this.selectedSubtiredd.id,
+    })
   }
 
   onCloseClick() {
@@ -53,15 +71,8 @@ export class CreatePostModalComponent implements OnInit {
     return this.textSelected ? !this.text : !this.imageUrl;
   }
 
-  onPostClick() {
-    if (this.textSelected) {
-      console.log("Subtiredd name: " + this.selectedSubtiredd.name);
-      console.log("Title: " + this.title);
-      console.log("Text: " + this.text);
-    } else {
-      console.log("Subtiredd name: " + this.selectedSubtiredd.name);
-      console.log("Title: " + this.title);
-      console.log("ImageUrl: " + this.imageUrl);
-    }
+  onCreatedPost(post: Post) {
+    this.snackbarService.openSuccessSnackbar("createPostSuccess")
+    this.matDialogRef.close()
   }
 }
