@@ -30,10 +30,9 @@ namespace backend.Controllers
             using (tireddDbContext)
             {
                 var user = await tireddDbContext.Users
-                    .Where(user => user.UserName == User.Identity.Name)
                     .Include(user => user.Subtiredds)
                     .Include(user => user.ManagedSubtiredds)
-                    .FirstAsync();
+                    .SingleAsync(user => user.Id == User.FindFirstValue(ClaimTypes.NameIdentifier));
                 return Ok(toCurrentUserJson(user));
             }
         }
