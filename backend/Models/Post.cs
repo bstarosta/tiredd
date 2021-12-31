@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace backend.Models
 {
@@ -8,6 +9,8 @@ namespace backend.Models
         public int Id { get; set; }
         public string Title { get; set; }
         public string Text { get; set; }
+        [Url]
+        public string ImageUrl { get; set; }
         public int Score { get; set; }
         public DateTime CreatedAt { get; set; }
 
