@@ -7,7 +7,7 @@ import {PostService} from "../../services/post.service";
 import {take} from "rxjs/operators";
 import {Post} from "../../interfaces/post";
 import {FormControl, FormGroup, ValidationErrors, Validators} from "@angular/forms";
-import {UrlValidatorService} from "../../services/url-validator.service";
+import {httpUrlValidator} from "../../validators/url-validator";
 
 const CREATE_POST_FORM_ERROR_MESSAGE_KEYS: ValidationErrors = {
   title: {
@@ -62,8 +62,7 @@ export class CreatePostModalComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) data: string,
     private matDialogRef: MatDialogRef<CreatePostModalComponent>,
     private snackbarService: SnackbarService,
-    private postService: PostService,
-    private urlValidatorService: UrlValidatorService
+    private postService: PostService
   ) {
     this.postService.postCreated$.pipe(take(1)).subscribe(post => this.onCreatedPost(post))
     this.setFormValidators()
@@ -99,7 +98,7 @@ export class CreatePostModalComponent implements OnInit {
       this.form.get("imageUrl").clearValidators()
       this.form.reset("imageUrl")
     } else {
-      this.form.get("imageUrl").setValidators(this.urlValidatorService.validateHttpUrl)
+      this.form.get("imageUrl").setValidators(httpUrlValidator)
       this.form.get("text").clearValidators()
       this.form.reset("text")
     }

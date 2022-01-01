@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ColorConverterService} from "../../services/color-converter.service";
+import {backgroundColorFromString} from "../../utils/color-converter";
 
 @Component({
   selector: 'trd-user-avatar',
@@ -12,11 +12,8 @@ export class UserAvatarComponent implements OnInit {
   userInitial: string;
   backgroundColor: string;
 
-  constructor(private colorConverterService: ColorConverterService) {
-  }
-
   ngOnInit() {
     this.userInitial = this.userName.charAt(0).toUpperCase()
-    this.backgroundColor = this.colorConverterService.backgroundColorFromString(this.userName)
+    this.backgroundColor = backgroundColorFromString(this.userName)
   }
 }

@@ -2,7 +2,7 @@ import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angula
 import {FormControl, FormGroup, ValidationErrors, Validators} from "@angular/forms";
 import {CreateCommunityFormOutput} from "../../interfaces/create-community-form-output";
 import {Observable, Subscription} from "rxjs";
-import {UrlValidatorService} from "../../services/url-validator.service";
+import {httpUrlValidator} from "../../validators/url-validator";
 
 const CREATE_COMMUNITY_FORM_ERROR_MESSAGE_KEYS: ValidationErrors = {
   name: {
@@ -32,12 +32,9 @@ export class CreateCommunityFormComponent implements OnInit, OnDestroy {
 
   form: FormGroup = new FormGroup({
     name: new FormControl("", [Validators.required, Validators.maxLength(20)]),
-    imageUrl: new FormControl("", this.urlValidatorService.validateHttpUrl),
+    imageUrl: new FormControl("", httpUrlValidator),
     description: new FormControl("", Validators.required)
   })
-
-  constructor(private urlValidatorService: UrlValidatorService) {
-  }
 
   get name() {
     return this.form.get("name");
