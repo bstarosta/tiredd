@@ -1,0 +1,53 @@
+@use "../../../style/ui-colors";
+
+.join-community-button {
+  border: none;
+  background-color: ui-colors.$join-community-button-background;
+  width: 90px;
+  margin: 0 20px 0 auto;
+
+  &:hover {
+    background-color: ui-colors.$light-blue;
+  }
+}
+
+button {
+  height: 30px;
+  border-radius: 15px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.contents {
+  width: 100%;
+}
+
+.item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  border-top: 1px solid ui-colors.$popular-communities-item-border;
+  padding: 8px 0;
+}
+
+.item-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  padding: 8px 0;
+  cursor: pointer;
+
+  &:hover {
+    .underline-on-hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.item-text {
+  margin-left: 20px;
+  margin-right: 20px;
+  font-size: 18px;
+}

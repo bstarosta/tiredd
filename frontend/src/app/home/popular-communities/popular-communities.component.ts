@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {PopularCommunityInfo} from "../../interfaces/popular-community-info";
+import {Subtiredd} from "../../interfaces/subtiredd";
 
 @Component({
   selector: 'trd-popular-communities',
@@ -8,15 +8,47 @@ import {PopularCommunityInfo} from "../../interfaces/popular-community-info";
 })
 export class PopularCommunitiesComponent {
 
-  popularCommunities: PopularCommunityInfo[] = [
-    {name: "first", imageUrl: "https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat.png"},
+  popularCommunities: Subtiredd[] = [
     {
-      name: "second",
-      imageUrl: "https://static01.nyt.com/images/2021/09/14/science/07CAT-STRIPES/07CAT-STRIPES-mediumSquareAt3X-v2.jpg"
+      id: 1,
+      name: "first",
+      description: "description",
+      imageUrl: "https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat.png",
+      createdAt: new Date("2021-12-18T18:21:00Z"),
+      adminId: "1"
     },
-    {name: "third", imageUrl: "https://www.shorturl.at/img/shorturl-icon.png"},
-    {name: "fourth", imageUrl: "https://www.shorturl.at/img/shorturl-icon.png"},
-    {name: "fifth", imageUrl: "https://www.shorturl.at/img/shorturl-icon.png"},
+    {
+      id: 2,
+      name: "second",
+      description: "description",
+      imageUrl: "https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat.png",
+      createdAt: new Date("2021-12-18T18:21:00Z"),
+      adminId: "2"
+    },
+    {
+      id: 3,
+      name: "third",
+      description: "description",
+      imageUrl: "https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat.png",
+      createdAt: new Date("2021-12-18T18:21:00Z"),
+      adminId: "3"
+    },
+    {
+      id: 4,
+      name: "fourth",
+      description: "description",
+      imageUrl: "https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat.png",
+      createdAt: new Date("2021-12-18T18:21:00Z"),
+      adminId: "4"
+    },
+    {
+      id: 5,
+      name: "fifth",
+      description: "description",
+      imageUrl: "https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat.png",
+      createdAt: new Date("2021-12-18T18:21:00Z"),
+      adminId: "5"
+    }
   ]
 
   constructor() {

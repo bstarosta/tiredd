@@ -16,7 +16,6 @@ import {PostListItemComponent} from './post-list-item/post-list-item.component';
 import {PostListComponent} from './post-list/post-list.component';
 import {PostListOrderPickerComponent} from './post-list-order-picker/post-list-order-picker.component';
 import {PostColumnComponent} from './posts-column/post-column.component';
-import {PopularCommunitiesComponent} from '../home/popular-communities/popular-communities.component';
 import {CommunityAvatarComponent} from './community-avatar/community-avatar.component';
 import {CreatePostComponent} from './create-post/create-post.component';
 import {CreatePostModalComponent} from './create-post-modal/create-post-modal.component';
@@ -25,14 +24,14 @@ import {SecurityModule} from "./security/security.module";
 import {CreatePostSubtireddSelectComponent} from './create-post-subtiredd-select/create-post-subtiredd-select.component';
 import {HeaderUserAvatarComponent} from './header-user-avatar/header-user-avatar.component';
 import {MatTabsModule} from "@angular/material/tabs";
-import { CreateCommunityModalComponent } from './create-community-modal/create-community-modal.component';
-import { CreateCommunityFormComponent } from './create-community-form/create-community-form.component';
-import { SuccessSnackbarComponent } from './success-toast/success-snackbar.component';
+import {CreateCommunityModalComponent} from './create-community-modal/create-community-modal.component';
+import {CreateCommunityFormComponent} from './create-community-form/create-community-form.component';
+import {SuccessSnackbarComponent} from './success-toast/success-snackbar.component';
 import {MatSnackBarModule} from "@angular/material/snack-bar";
-import { LocalizedDatePipe } from './localized-date.pipe';
+import {LocalizedDatePipe} from './localized-date.pipe';
 
 @NgModule({
-  declarations: [LanguagePickerComponent, HeaderComponent, SearchbarComponent, HeaderSubtireddSelectComponent, UserAvatarComponent, PostListItemComponent, PostListComponent, PostListOrderPickerComponent, PostColumnComponent, PopularCommunitiesComponent, CommunityAvatarComponent, CreatePostComponent, CreatePostModalComponent, CreatePostSubtireddSelectComponent, HeaderUserAvatarComponent, LocalizedDatePipe, CreateCommunityModalComponent, CreateCommunityFormComponent, SuccessSnackbarComponent],
+  declarations: [LanguagePickerComponent, HeaderComponent, SearchbarComponent, HeaderSubtireddSelectComponent, UserAvatarComponent, PostListItemComponent, PostListComponent, PostListOrderPickerComponent, PostColumnComponent, CommunityAvatarComponent, CreatePostComponent, CreatePostModalComponent, CreatePostSubtireddSelectComponent, HeaderUserAvatarComponent, LocalizedDatePipe, CreateCommunityModalComponent, CreateCommunityFormComponent, SuccessSnackbarComponent],
   imports: [
     CommonModule,
     TranslateModule,
@@ -56,7 +55,6 @@ import { LocalizedDatePipe } from './localized-date.pipe';
     PostListComponent,
     PostListOrderPickerComponent,
     PostColumnComponent,
-    PopularCommunitiesComponent,
     CreatePostComponent,
     UserAvatarComponent,
     CommunityAvatarComponent,

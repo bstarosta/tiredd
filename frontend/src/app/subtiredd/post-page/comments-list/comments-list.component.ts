@@ -9,7 +9,7 @@ import {AccountModalService} from "../../../services/account-modal.service";
   templateUrl: './comments-list.component.html',
   styleUrls: ['./comments-list.component.scss']
 })
-export class CommentsListComponent implements OnInit, OnDestroy {
+export class CommentsListComponent implements OnInit, OnDestroy { // TODO: Split this list into components
 
   @Input() comments: Comment[]
   showReplyInput: Boolean[]

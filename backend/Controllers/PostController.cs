@@ -24,6 +24,7 @@ namespace backend.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreatePostModel model)
         {
+            // TODO: Validate if user is a member of subtiredd
             var post = new Post
             {
                 Title = model.Title,

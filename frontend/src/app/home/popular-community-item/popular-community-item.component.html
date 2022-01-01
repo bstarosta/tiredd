@@ -1,0 +1,9 @@
+<div class="item">
+  <div class="item-info" [routerLink]="['/t', community.name]">
+    <p class="item-text">{{index + 1}}</p>
+    <trd-community-avatar [communityName]="community.name"></trd-community-avatar>
+    <p class="item-text underline-on-hover">
+      t/{{community.name}}</p>
+  </div>
+  <button class="join-community-button">{{"joinCommunity" | translate}}</button>
+</div>
