@@ -13,12 +13,14 @@ export class SubtireddPageComponent implements OnDestroy {
   isUserLoggedIn$: Observable<Boolean>;
   routeSubscription: Subscription;
 
+  // TODO: Take subtiredd data from API
+  subtireddId: number = 1
+  subtireddName: string
+
   constructor(private route: ActivatedRoute, private userService: UserService) {
     this.routeSubscription = route.paramMap.subscribe(paramMap => this.subtireddName = paramMap.get("subtireddName"));
     this.isUserLoggedIn$ = userService.isUserLoggedIn$;
   }
-
-  subtireddName: string
 
   ngOnDestroy(): void {
     this.routeSubscription.unsubscribe();
