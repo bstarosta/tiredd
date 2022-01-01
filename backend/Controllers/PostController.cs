@@ -14,20 +14,16 @@ namespace backend.Controllers
 {
     [Route("api/post")]
     [ApiController]
-    public class PostController : ControllerBase
+    public class PostController : TireddController
     {
-        private readonly TireddDbContext tireddDbContext;
-
-        public PostController(TireddDbContext tireddDbContext)
+        public PostController(TireddDbContext tireddDbContext) : base(tireddDbContext)
         {
-            this.tireddDbContext = tireddDbContext;
         }
 
         [Authorize]
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreatePostModel model)
         {
-            var authorId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var post = new Post
             {
                 Title = model.Title,
@@ -36,7 +32,7 @@ namespace backend.Controllers
                 Score = 0,
                 CreatedAt = DateTime.Now,
                 SubtireddId = model.SubtireddId,
-                AuthorId = authorId
+                AuthorId = UserId
             };
             await using (tireddDbContext)
             {

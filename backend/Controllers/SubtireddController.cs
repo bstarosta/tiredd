@@ -13,13 +13,10 @@ namespace backend.Controllers
 {
     [Route("api/subtiredd")]
     [ApiController]
-    public class SubtireddController : ControllerBase
+    public class SubtireddController : TireddController
     {
-        private readonly TireddDbContext tireddDbContext;
-
-        public SubtireddController(TireddDbContext tireddDbContext)
+        public SubtireddController(TireddDbContext tireddDbContext) : base(tireddDbContext)
         {
-            this.tireddDbContext = tireddDbContext;
         }
 
         [Authorize]
@@ -34,7 +31,7 @@ namespace backend.Controllers
 
             var subtiredd = new Subtiredd()
             {
-                AdminId = User.FindFirstValue(ClaimTypes.NameIdentifier),
+                AdminId = UserId,
                 Name = model.Name,
                 ImageUrl = model.ImageUrl,
                 Description = model.Description,
@@ -44,6 +41,44 @@ namespace backend.Controllers
             await tireddDbContext.SaveChangesAsync();
 
             return new ObjectResult(createdSubtiredd.Entity) {StatusCode = StatusCodes.Status201Created};
+        }
+
+        [Authorize]
+        [HttpPost]
+        [Route("{subtireddId}/join")]
+        public async Task<IActionResult> Join(int subtireddId)
+        {
+            await using (tireddDbContext)
+            {
+                var user = await GetUserWithSubtiredds();
+                var subtiredd = await tireddDbContext.Subtiredds.SingleAsync(subtiredd => subtiredd.Id == subtireddId);
+                if (subtiredd == null)
+                    return NotFound();
+                user.Subtiredds.Add(subtiredd);
+                await tireddDbContext.SaveChangesAsync();
+                return NoContent();
+            }
+        }
+
+        private Task<User> GetUserWithSubtiredds()
+        {
+            return tireddDbContext.Users
+                .Include(user => user.Subtiredds)
+                .SingleAsync(user => user.Id == UserId);
+        }
+
+        [Authorize]
+        [HttpPost]
+        [Route("{subtireddId}/leave")]
+        public async Task<IActionResult> Leave(int subtireddId)
+        {
+            await using (tireddDbContext)
+            {
+                var user = await GetUserWithSubtiredds();
+                user.Subtiredds.RemoveAll(subtiredd => subtiredd.Id == subtireddId);
+                await tireddDbContext.SaveChangesAsync();
+                return NoContent();
+            }
         }
     }
 }

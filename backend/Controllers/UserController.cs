@@ -13,13 +13,10 @@ namespace backend.Controllers
 {
     [Route("api")]
     [ApiController]
-    public class UserController : ControllerBase
+    public class UserController : TireddController
     {
-        private readonly TireddDbContext tireddDbContext;
-
-        public UserController(TireddDbContext tireddDbContext)
+        public UserController(TireddDbContext tireddDbContext) : base(tireddDbContext)
         {
-            this.tireddDbContext = tireddDbContext;
         }
 
         [Authorize]
@@ -27,28 +24,28 @@ namespace backend.Controllers
         [Route("currentUser")]
         public async Task<IActionResult> CurrentUser()
         {
-            using (tireddDbContext)
+            await using (tireddDbContext)
             {
                 var user = await tireddDbContext.Users
                     .Include(user => user.Subtiredds)
                     .Include(user => user.ManagedSubtiredds)
-                    .SingleAsync(user => user.Id == User.FindFirstValue(ClaimTypes.NameIdentifier));
-                return Ok(toCurrentUserJson(user));
+                    .SingleAsync(user => user.Id == UserId);
+                return Ok(ToCurrentUserJson(user));
             }
         }
 
-        private static object toCurrentUserJson(User user)
+        private static object ToCurrentUserJson(User user)
         {
             return new
             {
                 id = user.Id,
                 userName = user.UserName,
-                subtiredds = user.Subtiredds.Select(toSubtireddJson),
-                manangedSubtiredds = user.ManagedSubtiredds.Select(toSubtireddJson),
+                subtiredds = user.Subtiredds.Select(ToSubtireddJson),
+                manangedSubtiredds = user.ManagedSubtiredds.Select(ToSubtireddJson),
             };
         }
 
-        private static object toSubtireddJson(Subtiredd subtiredd)
+        private static object ToSubtireddJson(Subtiredd subtiredd)
         {
             return new {id = subtiredd.Id, name = subtiredd.Name};
         }
