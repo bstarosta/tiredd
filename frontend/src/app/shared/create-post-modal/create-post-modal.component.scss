@@ -22,7 +22,6 @@
 ::ng-deep .mat-tab-list .mat-tab-labels {
   height: 30px;
   align-items: center;
-
 }
 
 ::ng-deep.mat-tab-label.mat-tab-label-active:not(.mat-tab-disabled),
@@ -37,8 +36,12 @@
   height: 3px;
 }
 
-.mat-tab-group {
+form {
   margin: auto 0;
+}
+
+.mat-tab-group {
+  margin-top: 10px;
 }
 
 .tab {
@@ -61,6 +64,14 @@
   &:focus {
     border-color: ui-colors.$create-post-modal-input-border-hover;
   }
+
+  &.error {
+    border-color: ui-colors.$create-post-modal-input-error-border;
+
+    &.ng-touched::-webkit-input-placeholder {
+      color: ui-colors.$create-post-modal-input-error-border;
+    }
+  }
 }
 
 input {
@@ -70,8 +81,9 @@ input {
 }
 
 textarea {
-  height: 25vh;
+  height: 20vh;
   padding: 10px 10px;
+  margin-bottom: 10px;
   resize: none;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
@@ -80,7 +92,6 @@ button {
   height: 40px;
   width: 130px;
   margin: auto 10px 0 calc(100% - 140px);
-  padding: 5px 0;
   border-radius: 30px;
   border: none;
   font-size: 20px;
@@ -101,7 +112,7 @@ button {
 }
 
 trd-create-post-subtiredd-select {
-  margin-top: 20px;
+  margin: auto 0;
   border-color: ui-colors.$create-post-modal-input-border;
 }
 

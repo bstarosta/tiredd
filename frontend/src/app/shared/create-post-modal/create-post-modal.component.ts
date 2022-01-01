@@ -16,7 +16,6 @@ const CREATE_POST_FORM_ERROR_MESSAGE_KEYS: ValidationErrors = {
     required: "error.postText.required"
   },
   imageUrl: {
-    required: "error.postImageUrl.required",
     invalidUrl: "error.postImageUrl.invalidUrl"
   }
 }
@@ -41,12 +40,23 @@ export class CreatePostModalComponent implements OnInit {
   textSelected: Boolean = true;
 
   textValidators = [Validators.required]
-  imageUrlValidators = [Validators.required, this.isValidHttpUrl]
+  imageUrlValidators = [this.isValidHttpUrl]
   form: FormGroup = new FormGroup({
     title: new FormControl(null, Validators.required),
     text: new FormControl(null),
     imageUrl: new FormControl(null)
   })
+
+  isValidHttpUrl(control: AbstractControl) {
+    const invalidUrl = {invalidUrl: true}
+    try {
+      const url = new URL(control.value);
+      const isHttp = url.protocol === "http:" || url.protocol === "https:"
+      return isHttp ? null : invalidUrl;
+    } catch (_) {
+      return invalidUrl
+    }
+  }
 
   get title() {
     return this.form.get("title")
@@ -58,17 +68,6 @@ export class CreatePostModalComponent implements OnInit {
 
   get imageUrl() {
     return this.form.get("imageUrl")
-  }
-
-  isValidHttpUrl(control: AbstractControl) {
-    const invalidUrl = {invalidUrl: true}
-    try {
-      const url = new URL(control.value);
-      const isHttp = url.protocol === "http:" || url.protocol === "https:"
-      return isHttp ? null : invalidUrl;
-    } catch (_) {
-      return invalidUrl
-    }
   }
 
   constructor(
@@ -108,9 +107,11 @@ export class CreatePostModalComponent implements OnInit {
   setFormValidators() {
     if (this.textSelected) {
       this.form.get("text").setValidators(this.textValidators)
+      this.form.get("imageUrl").clearValidators()
       this.form.reset("imageUrl")
     } else {
       this.form.get("imageUrl").setValidators(this.imageUrlValidators)
+      this.form.get("text").clearValidators()
       this.form.reset("text")
     }
   }

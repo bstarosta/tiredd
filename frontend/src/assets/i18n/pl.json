@@ -66,5 +66,8 @@
   "ofMembers": "członków",
   "created": "Utworzono",
   "logInOrSignUpToComment": "Zaloguj lub zarejestruj się aby dodać komentarz",
-  "createPostSuccess": "Pomyślnie utworzono post"
+  "createPostSuccess": "Pomyślnie utworzono post",
+  "error.postTitle.required": "Tytuł posta jest wymagany",
+  "error.postText.required": "Treść posta jest wymagana",
+  "error.postImageUrl.invalidUrl": "Podaj poprawny link"
 }

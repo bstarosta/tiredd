@@ -8,14 +8,16 @@
   <mat-tab-group dynamicHeight (selectedTabChange)="onTabSelected($event)">
     <mat-tab label="{{'text' | translate}}">
       <div class="tab">
-        <input formControlName="title" class="text-input title" [placeholder]="'title' | translate">
+        <input formControlName="title" [ngClass]="{'error': title.touched && title.invalid}" class="text-input title"
+               [placeholder]="'title' | translate">
         <div class="error-display">
           <ng-container *ngIf="title.touched">
             <p *ngFor="let error of title.errors | objectToKeys"
                class="error-message">{{validationErrorsMessageKeys["title"][error] | translate}}</p>
           </ng-container>
         </div>
-        <textarea formControlName="text" class="text-input" [placeholder]="'text' | translate"></textarea>
+        <textarea formControlName="text" [ngClass]="{'error': text.touched && text.invalid}" class="text-input"
+                  [placeholder]="'text' | translate"></textarea>
         <div class="error-display">
           <ng-container *ngIf="text.touched">
             <p *ngFor="let error of text.errors | objectToKeys"
@@ -26,14 +28,14 @@
     </mat-tab>
     <mat-tab label="{{'image' | translate}}">
       <div class="tab">
-        <input formControlName="title" class="text-input title" [placeholder]="'title' | translate">
+        <input formControlName="title" [ngClass]="{'error': title.touched && title.invalid}" class="text-input title" [placeholder]="'title' | translate">
         <div class="error-display">
           <ng-container *ngIf="title.touched">
             <p *ngFor="let error of title.errors | objectToKeys"
                class="error-message">{{validationErrorsMessageKeys["title"][error] | translate}}</p>
           </ng-container>
         </div>
-        <textarea formControlName="imageUrl" class="text-input" [placeholder]="'imageUrl' | translate"></textarea>
+        <textarea formControlName="imageUrl" [ngClass]="{'error': imageUrl.touched && imageUrl.invalid}" class="text-input" [placeholder]="'imageUrl' | translate"></textarea>
         <div class="error-display">
           <ng-container *ngIf="imageUrl.touched">
             <p *ngFor="let error of imageUrl.errors | objectToKeys"

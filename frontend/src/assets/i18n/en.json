@@ -44,7 +44,7 @@
   "title": "Title",
   "text": "Text",
   "image": "Image",
-  "imageUrl": "Image url",
+  "imageUrl": "Image URL",
   "post": "Post",
   "communityName": "Community name",
   "backgroundImage": "Community background url",
@@ -65,5 +65,8 @@
   "ofMembers": "members",
   "created": "Created",
   "logInOrSignUpToComment": "Log in or sign up to leave a comment",
-  "createPostSuccess": "Post has been successfully created"
+  "createPostSuccess": "Post has been successfully created",
+  "error.postTitle.required": "Post title is required",
+  "error.postText.required": "Post text is required",
+  "error.postImageUrl.invalidUrl": "Please enter a valid URL"
 }
