@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup, ValidationErrors, Validators} from "@angular/forms";
-import {matchPasswordsValidator} from "../validators/match-password-validator";
+import {matchPasswordsValidator} from "../../../validators/match-password-validator";
 import {ParentErrorStateMatcher} from "../parent-error-state-matcher";
 import {RegisterFormOutput} from "../../../interfaces/register-form-output";
 import {Observable, Subscription} from "rxjs";

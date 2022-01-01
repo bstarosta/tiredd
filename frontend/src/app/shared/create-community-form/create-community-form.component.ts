@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angula
 import {FormControl, FormGroup, ValidationErrors, Validators} from "@angular/forms";
 import {CreateCommunityFormOutput} from "../../interfaces/create-community-form-output";
 import {Observable, Subscription} from "rxjs";
+import {httpUrlValidator} from "../../validators/url-validator";
 
 const CREATE_COMMUNITY_FORM_ERROR_MESSAGE_KEYS: ValidationErrors = {
   name: {
@@ -9,8 +10,8 @@ const CREATE_COMMUNITY_FORM_ERROR_MESSAGE_KEYS: ValidationErrors = {
     maxlength: "error.communityName.maxLength",
     conflict: "error.communityName.conflict"
   },
-  imageUrl : {
-    required: "error.communityBackground.required"
+  imageUrl: {
+    invalidUrl: "error.communityBackground.invalidUrl"
   },
   description: {
     required: "error.communityDescription.required"
@@ -22,7 +23,7 @@ const CREATE_COMMUNITY_FORM_ERROR_MESSAGE_KEYS: ValidationErrors = {
   templateUrl: './create-community-form.component.html',
   styleUrls: ['./create-community-form.component.scss']
 })
-export class CreateCommunityFormComponent implements OnInit, OnDestroy{
+export class CreateCommunityFormComponent implements OnInit, OnDestroy {
 
   validationErrorsMessageKeys: ValidationErrors = CREATE_COMMUNITY_FORM_ERROR_MESSAGE_KEYS
   @Input() subtireddNameConflict$: Observable<void>
@@ -31,10 +32,9 @@ export class CreateCommunityFormComponent implements OnInit, OnDestroy{
 
   form: FormGroup = new FormGroup({
     name: new FormControl("", [Validators.required, Validators.maxLength(20)]),
-    imageUrl: new FormControl("", Validators.required),
+    imageUrl: new FormControl("", httpUrlValidator),
     description: new FormControl("", Validators.required)
   })
-
 
   get name() {
     return this.form.get("name");
@@ -53,7 +53,7 @@ export class CreateCommunityFormComponent implements OnInit, OnDestroy{
   }
 
   ngOnInit(): void {
-    this.subtireddNameConflictSubscription = this.subtireddNameConflict$.subscribe( _ => {
+    this.subtireddNameConflictSubscription = this.subtireddNameConflict$.subscribe(_ => {
       this.name.setErrors({conflict: true});
     })
   }

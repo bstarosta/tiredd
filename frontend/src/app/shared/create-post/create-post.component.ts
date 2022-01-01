@@ -18,6 +18,6 @@ export class CreatePostComponent {
   userName$: Observable<string>;
 
   openCreatePostModal(): void {
-    this.createPostModalService.openAccountModal();
+    this.createPostModalService.openCreatePostModal();
   }
 }
