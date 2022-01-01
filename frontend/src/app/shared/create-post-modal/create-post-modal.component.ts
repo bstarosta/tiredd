@@ -6,7 +6,8 @@ import {SnackbarService} from "../../services/snackbar.service";
 import {PostService} from "../../services/post.service";
 import {take} from "rxjs/operators";
 import {Post} from "../../interfaces/post";
-import {AbstractControl, FormControl, FormGroup, ValidationErrors, Validators} from "@angular/forms";
+import {FormControl, FormGroup, ValidationErrors, Validators} from "@angular/forms";
+import {UrlValidatorService} from "../../services/url-validator.service";
 
 const CREATE_POST_FORM_ERROR_MESSAGE_KEYS: ValidationErrors = {
   title: {
@@ -39,24 +40,11 @@ export class CreatePostModalComponent implements OnInit {
   selectedSubtiredd: SubtireddSelectItem;
   textSelected: Boolean = true;
 
-  textValidators = [Validators.required]
-  imageUrlValidators = [this.isValidHttpUrl]
   form: FormGroup = new FormGroup({
     title: new FormControl(null, Validators.required),
     text: new FormControl(null),
     imageUrl: new FormControl(null)
   })
-
-  isValidHttpUrl(control: AbstractControl) {
-    const invalidUrl = {invalidUrl: true}
-    try {
-      const url = new URL(control.value);
-      const isHttp = url.protocol === "http:" || url.protocol === "https:"
-      return isHttp ? null : invalidUrl;
-    } catch (_) {
-      return invalidUrl
-    }
-  }
 
   get title() {
     return this.form.get("title")
@@ -74,7 +62,8 @@ export class CreatePostModalComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) data: string,
     private matDialogRef: MatDialogRef<CreatePostModalComponent>,
     private snackbarService: SnackbarService,
-    private postService: PostService
+    private postService: PostService,
+    private urlValidatorService: UrlValidatorService
   ) {
     this.postService.postCreated$.pipe(take(1)).subscribe(post => this.onCreatedPost(post))
     this.setFormValidators()
@@ -106,11 +95,11 @@ export class CreatePostModalComponent implements OnInit {
 
   setFormValidators() {
     if (this.textSelected) {
-      this.form.get("text").setValidators(this.textValidators)
+      this.form.get("text").setValidators(Validators.required)
       this.form.get("imageUrl").clearValidators()
       this.form.reset("imageUrl")
     } else {
-      this.form.get("imageUrl").setValidators(this.imageUrlValidators)
+      this.form.get("imageUrl").setValidators(this.urlValidatorService.validateHttpUrl)
       this.form.get("text").clearValidators()
       this.form.reset("text")
     }

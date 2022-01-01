@@ -13,12 +13,10 @@ const CREATE_POST_MODAL_CONFIG: MatDialogConfig = {
 })
 export class CreatePostModalService {
 
-  userId: string = "id"; // TODO: Remove id
-
   constructor(private matDialog: MatDialog) {
   }
 
   openCreatePostModal(): Observable<any> {
-    return this.matDialog.open(CreatePostModalComponent, {data: this.userId, ...CREATE_POST_MODAL_CONFIG}).afterClosed()
+    return this.matDialog.open(CreatePostModalComponent, CREATE_POST_MODAL_CONFIG).afterClosed()
   }
 }
