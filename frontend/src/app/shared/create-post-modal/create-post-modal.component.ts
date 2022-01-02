@@ -55,7 +55,7 @@ export class CreatePostModalComponent implements OnInit {
   }
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) data: string,
+    @Inject(MAT_DIALOG_DATA) public data: SubtireddSelectItem,
     private matDialogRef: MatDialogRef<CreatePostModalComponent>,
     private snackbarService: SnackbarService,
     private postService: PostService,

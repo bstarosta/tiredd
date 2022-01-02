@@ -1,8 +1,9 @@
-import {Component} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {CreatePostModalService} from "../../services/create-post-modal.service";
 import {UserService} from "../../services/user.service";
 import {Observable} from "rxjs";
 import {map} from "rxjs/operators";
+import {SubtireddSelectItem} from "../../interfaces/subtiredd-select-item";
 
 @Component({
   selector: 'trd-create-post',
@@ -15,9 +16,10 @@ export class CreatePostComponent {
     this.userName$ = userService.user$.pipe(map(user => user.userName));
   }
 
+  @Input() currentSubtiredd: SubtireddSelectItem
   userName$: Observable<string>;
 
   openCreatePostModal(): void {
-    this.createPostModalService.openCreatePostModal();
+    this.createPostModalService.openCreatePostModal(this.currentSubtiredd);
   }
 }
