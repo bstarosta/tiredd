@@ -16,6 +16,7 @@ export class PopularCommunityItemComponent {
   @Input() index: number
   @Input() community: Subtiredd
   hasUserJoined: Boolean = false;
+  membershipButtonEnabled: Boolean = true;
   isMouseOver: Boolean = false;
   isUserLoggedIn: Boolean = false
   isUserLoggedInSubscription: Subscription
@@ -54,6 +55,7 @@ export class PopularCommunityItemComponent {
   }
 
   joinCommunity() {
+    this.membershipButtonEnabled = false
     this.communityMembershipService.joinCommunity(this.community.id)
     this.communityMembershipService.communityJoined$
       .pipe(
@@ -62,10 +64,13 @@ export class PopularCommunityItemComponent {
       )
       .subscribe(_ => {
         this.hasUserJoined = true
+        this.membershipButtonEnabled = true
+        this.isMouseOver = false // prevents glitching when mouseout happens on a disabled button
       })
   }
 
   leaveCommunity() {
+    this.membershipButtonEnabled = false
     this.communityMembershipService.leaveCommunity(this.community.id)
     this.communityMembershipService.communityLeft$
       .pipe(
@@ -74,6 +79,8 @@ export class PopularCommunityItemComponent {
       )
       .subscribe(_ => {
         this.hasUserJoined = false
+        this.membershipButtonEnabled = true
+        this.isMouseOver = false // prevents glitching when mouseout happens on a disabled button
       })
   }
 }
