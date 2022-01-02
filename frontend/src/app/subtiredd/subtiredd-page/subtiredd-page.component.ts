@@ -3,6 +3,7 @@ import {ActivatedRoute} from "@angular/router";
 import {UserService} from "../../services/user.service";
 import {Observable, Subscription} from "rxjs";
 import {Subtiredd} from "../../interfaces/subtiredd";
+import {SubtireddSelectItem} from "../../interfaces/subtiredd-select-item";
 
 @Component({
   selector: 'trd-subtiredd-page',
@@ -15,12 +16,19 @@ export class SubtireddPageComponent implements OnDestroy {
   routeSubscription: Subscription;
 
   subtiredd: Subtiredd = {
-    id: 1,
-    name: null,
+    id: 3,
+    name: "testowy2",
     description: "Description",
     imageUrl: "https://i.ytimg.com/vi/1Ne1hqOXKKI/maxresdefault.jpg",
     createdAt: new Date("2021-12-18T18:21:00Z"),
     adminId: '1'
+  }
+
+  subtireddToSubtireddSelectItem(subtiredd: Subtiredd): SubtireddSelectItem {
+    return {
+      name: subtiredd.name,
+      id: subtiredd.id
+    }
   }
 
   constructor(private route: ActivatedRoute, private userService: UserService) {

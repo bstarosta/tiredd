@@ -1,8 +1,9 @@
 <trd-subtiredd-header [subtireddId]="subtiredd.id" [subtireddName]="subtiredd.name"></trd-subtiredd-header>
 <div class="row">
   <div class="column">
-    <trd-create-post *ngIf="isUserLoggedIn$ | async"></trd-create-post>
+    <trd-create-post *ngIf="isUserLoggedIn$ | async" [currentSubtiredd]="subtireddToSubtireddSelectItem(subtiredd)"></trd-create-post>
     <trd-posts-column></trd-posts-column>
   </div>
-  <trd-about-community [isUserLoggedIn]="isUserLoggedIn$ | async"></trd-about-community>
+  <trd-about-community [currentSubtiredd]="subtireddToSubtireddSelectItem(subtiredd)"
+                       [isUserLoggedIn]="isUserLoggedIn$ | async"></trd-about-community>
 </div>
