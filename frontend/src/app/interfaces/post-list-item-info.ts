@@ -1,13 +1,8 @@
-import {Vote} from "../types/vote";
+import {VoteType} from "../types/voteType";
+import {Post} from "./post";
 
-export interface PostListItemInfo {
-  id: string
-  title: string;
-  subtiredd: string;
-  score: number;
-  author: string;
-  userVote: Vote;
-  timestamp: Date;
-  image?: string;
-  text?: string;
+export interface PostListItemInfo extends Post {
+  subtireddName: string;
+  authorName: string;
+  userVote: VoteType;
 }
