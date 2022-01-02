@@ -25,7 +25,7 @@ export class SubtireddService {
       if (error.status === 409) {
         this.subtireddNameConflict.next();
       } else {
-        console.log("Unknown error")
+        console.log(error)
       }
     })
   }

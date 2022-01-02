@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using backend.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -33,6 +34,25 @@ namespace backend.Controllers
                 return new ObjectResult(createdSubtiredd.Entity) {StatusCode = StatusCodes.Status201Created};
             }
         }
+
+        [HttpGet]
+        [Route("{subtireddName}")]
+        public async Task<IActionResult> GetSubtiredd(string subtireddName)
+        {
+            Regex subtireddNameRegex = new Regex("\\w");
+            if (!subtireddNameRegex.IsMatch(subtireddName))
+                return BadRequest();
+            var subtiredd = await tireddDbContext.Subtiredds.FirstOrDefaultAsync(s => s.Name == subtireddName);
+            if (subtiredd == null)
+                return NotFound();
+            var userCount = tireddDbContext.Entry(subtiredd)
+                .Collection(s => s.Users)
+                .Query()
+                .Count();
+
+            return new ObjectResult(ToSubtireddJson(subtiredd, userCount)) { StatusCode = StatusCodes.Status200OK };
+        }
+
 
         [Authorize]
         [HttpPost]
@@ -70,6 +90,19 @@ namespace backend.Controllers
                 await tireddDbContext.SaveChangesAsync();
                 return NoContent();
             }
+        }
+
+        private static object ToSubtireddJson(Subtiredd subtiredd, int subtireddUserCount)
+        {
+            return new
+            {
+                id = subtiredd.Id,
+                name = subtiredd.Name,
+                description = subtiredd.Description,
+                imageUrl = subtiredd.ImageUrl,
+                userCount = subtireddUserCount,
+                createdAt = subtiredd.CreatedAt,
+            };
         }
     }
 }
