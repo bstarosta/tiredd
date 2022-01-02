@@ -23,12 +23,14 @@ export class PostPageComponent implements AfterViewInit {
   };
 
   constructor(private route: ActivatedRoute, private scroller: ViewportScroller) {
-    scroller.setOffset([0, 64])
+    scroller.setOffset([0, 128])
   }
 
   ngAfterViewInit(): void {
     const scrollToComments = this.route.snapshot.fragment === "comments"
     if (scrollToComments)
       this.scroller.scrollToAnchor("comments")
+    else
+      this.scroller.scrollToPosition([0, 0])
   }
 }
