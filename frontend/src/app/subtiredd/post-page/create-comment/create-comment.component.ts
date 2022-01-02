@@ -1,7 +1,6 @@
 import {Component, Input} from '@angular/core';
-import {UserService} from "../../../services/user.service";
-import {Observable} from "rxjs";
-import {map} from "rxjs/operators";
+import {CommentService} from "../../../services/comment.service";
+import {CreateComment} from "../../../interfaces/create-comment";
 
 @Component({
   selector: 'trd-create-comment',
@@ -12,11 +11,10 @@ export class CreateCommentComponent {
 
   @Input() postId: string
   @Input() parentCommentId: string
-  userId$: Observable<string>
   commentText: string
 
-  constructor(private userService: UserService) {
-    this.userId$ = userService.user$.pipe(map(user => user.id))
+  constructor(private commentService: CommentService) {
+    this.commentService.commentCreated$.subscribe(comment => this.onCommentCreated(comment));
   }
 
   isCommentEmpty() {
@@ -24,11 +22,14 @@ export class CreateCommentComponent {
   }
 
   onAddCommentClicked() {
-    console.log('Comment for post [id: ' +
-      this.postId +
-      '] and parent comment [id: ' +
-      this.parentCommentId +
-      ']: ' +
-      this.commentText)
+    this.commentService.createComment({
+      text: this.commentText,
+      postId: this.postId,
+      parentCommentId: this.parentCommentId
+    })
+  }
+
+  onCommentCreated(comment: CreateComment) {
+    this.commentText = "";
   }
 }
