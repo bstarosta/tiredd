@@ -2,7 +2,7 @@ import {Component, Input} from '@angular/core';
 import {CreatePostModalService} from "../../services/create-post-modal.service";
 import {UserService} from "../../services/user.service";
 import {Observable} from "rxjs";
-import {map} from "rxjs/operators";
+import {filter, map} from "rxjs/operators";
 import {SubtireddSelectItem} from "../../interfaces/subtiredd-select-item";
 
 @Component({
@@ -13,7 +13,9 @@ import {SubtireddSelectItem} from "../../interfaces/subtiredd-select-item";
 export class CreatePostComponent {
 
   constructor(private createPostModalService: CreatePostModalService, private userService: UserService) {
-    this.userName$ = userService.user$.pipe(map(user => user.userName));
+    this.userName$ = userService.user$.pipe(
+      filter(user => !!user),
+      map(user => user.userName));
   }
 
   @Input() currentSubtiredd: SubtireddSelectItem
