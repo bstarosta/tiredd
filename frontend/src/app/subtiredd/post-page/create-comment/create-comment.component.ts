@@ -9,8 +9,8 @@ import {CreateComment} from "../../../interfaces/create-comment";
 })
 export class CreateCommentComponent {
 
-  @Input() postId: string
-  @Input() parentCommentId: string
+  @Input() postId: number
+  @Input() parentCommentId: number
   commentText: string
 
   constructor(private commentService: CommentService) {
