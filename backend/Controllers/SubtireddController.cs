@@ -25,7 +25,7 @@ namespace backend.Controllers
         {
             await using (tireddDbContext)
             {
-                var existingSubtiredd = await tireddDbContext.Subtiredds.SingleAsync(s => s.Name == model.Name);
+                var existingSubtiredd = await tireddDbContext.Subtiredds.FirstOrDefaultAsync(s => s.Name == model.Name);
                 if (existingSubtiredd != null)
                     return StatusCode(StatusCodes.Status409Conflict);
                 var createdSubtiredd = await tireddDbContext.AddAsync(model.ToSubtiredd(UserId));

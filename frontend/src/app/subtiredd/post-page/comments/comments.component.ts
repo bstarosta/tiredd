@@ -13,7 +13,7 @@ import {AccountModalMode, AccountModalService} from "../../../services/account-m
 })
 export class CommentsComponent {
 
-  postId: string
+  postId: number
   commentsList$: Observable<Comment[]>
   isUserLoggedIn$: Observable<Boolean>
 
@@ -23,7 +23,7 @@ export class CommentsComponent {
     private userService: UserService,
     private accountModalService: AccountModalService
   ) {
-    this.postId = route.snapshot.paramMap.get("postId")
+    this.postId = +route.snapshot.paramMap.get("postId")
     postCommentsService.getCommentsList(this.postId)
     this.commentsList$ = postCommentsService.commentsList$
     this.isUserLoggedIn$ = userService.isUserLoggedIn$
