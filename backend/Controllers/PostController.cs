@@ -9,38 +9,31 @@ using backend.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace backend.Controllers
 {
     [Route("api/post")]
     [ApiController]
-    public class PostController : ControllerBase
+    public class PostController : TireddController
     {
-        private readonly TireddDbContext tireddDbContext;
-
-        public PostController(TireddDbContext tireddDbContext)
+        public PostController(TireddDbContext tireddDbContext) : base(tireddDbContext)
         {
-            this.tireddDbContext = tireddDbContext;
         }
 
         [Authorize]
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreatePostModel model)
         {
-            var authorId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var post = new Post
-            {
-                Title = model.Title,
-                Text = model.Text,
-                ImageUrl = model.ImageUrl,
-                Score = 0,
-                CreatedAt = DateTime.Now,
-                SubtireddId = model.SubtireddId,
-                AuthorId = authorId
-            };
             await using (tireddDbContext)
             {
-                var createdPost = await tireddDbContext.Posts.AddAsync(post);
+                var isUserMemberOfSubtiredd = await tireddDbContext.Users
+                    .Include(user => user.Subtiredds)
+                    .SelectMany(user => user.Subtiredds)
+                    .AnyAsync(subtiredd => subtiredd.Id == model.SubtireddId);
+                if (!isUserMemberOfSubtiredd)
+                    return BadRequest();
+                var createdPost = await tireddDbContext.Posts.AddAsync(model.ToPost(UserId));
                 await tireddDbContext.SaveChangesAsync();
                 return new ObjectResult(createdPost.Entity) {StatusCode = StatusCodes.Status201Created};
             }

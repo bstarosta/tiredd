@@ -46,7 +46,11 @@ button {
   background-color: ui-colors.$subtiredd-header-button-background;
   margin: 0 30px;
 
-  &:hover {
+  &:disabled {
+    cursor: default;
+  }
+
+  &:hover:not(:disabled) {
     background-color: ui-colors.$subtiredd-header-button-background-hover;
   }
 }

@@ -1,20 +1,20 @@
 import {Component, Input} from '@angular/core';
-import {AccountModalService} from "../../services/account-modal.service";
+import {Subtiredd} from "../../interfaces/subtiredd";
+import {filter, take} from "rxjs/operators";
 import {UserService} from "../../services/user.service";
-import {Subscription} from "rxjs";
+import {AccountModalService} from "../../services/account-modal.service";
 import {CommunityMembershipService} from "../../services/community-membership.service";
-import {take} from "rxjs/operators";
+import {Subscription} from "rxjs";
 
 @Component({
-  selector: 'trd-subtiredd-header',
-  templateUrl: './subtiredd-header.component.html',
-  styleUrls: ['./subtiredd-header.component.scss']
+  selector: 'trd-popular-community-item',
+  templateUrl: './popular-community-item.component.html',
+  styleUrls: ['./popular-community-item.component.scss']
 })
-export class SubtireddHeaderComponent {
+export class PopularCommunityItemComponent {
 
-  @Input() subtireddId: number
-  @Input() subtireddName: string
-  imageUrl = "https://www.countryandtownhouse.co.uk/wp-content/uploads/2017/01/knitting.jpg";
+  @Input() index: number
+  @Input() community: Subtiredd
   hasUserJoined: Boolean = false;
   membershipButtonEnabled: Boolean = true;
   isMouseOver: Boolean = false;
@@ -56,9 +56,12 @@ export class SubtireddHeaderComponent {
 
   joinCommunity() {
     this.membershipButtonEnabled = false
-    this.communityMembershipService.joinCommunity(this.subtireddId)
+    this.communityMembershipService.joinCommunity(this.community.id)
     this.communityMembershipService.communityJoined$
-      .pipe(take(1))
+      .pipe(
+        filter(subtireddId => subtireddId === this.community.id),
+        take(1)
+      )
       .subscribe(_ => {
         this.hasUserJoined = true
         this.membershipButtonEnabled = true
@@ -68,9 +71,12 @@ export class SubtireddHeaderComponent {
 
   leaveCommunity() {
     this.membershipButtonEnabled = false
-    this.communityMembershipService.leaveCommunity(this.subtireddId)
+    this.communityMembershipService.leaveCommunity(this.community.id)
     this.communityMembershipService.communityLeft$
-      .pipe(take(1))
+      .pipe(
+        filter(subtireddId => subtireddId === this.community.id),
+        take(1)
+      )
       .subscribe(_ => {
         this.hasUserJoined = false
         this.membershipButtonEnabled = true
