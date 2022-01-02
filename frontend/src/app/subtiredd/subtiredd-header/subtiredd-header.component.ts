@@ -16,7 +16,6 @@ export class SubtireddHeaderComponent {
   @Input() subtireddName: string
   imageUrl = "https://www.countryandtownhouse.co.uk/wp-content/uploads/2017/01/knitting.jpg";
   hasUserJoined: Boolean = false;
-  membershipButtonEnabled: Boolean = true;
   isMouseOver: Boolean = false;
   isUserLoggedIn: Boolean = false
   isUserLoggedInSubscription: Subscription
@@ -55,24 +54,20 @@ export class SubtireddHeaderComponent {
   }
 
   joinCommunity() {
-    this.membershipButtonEnabled = false
     this.communityMembershipService.joinCommunity(this.subtireddId)
     this.communityMembershipService.communityJoined$
       .pipe(take(1))
       .subscribe(_ => {
         this.hasUserJoined = true
-        this.membershipButtonEnabled = true
       })
   }
 
   leaveCommunity() {
-    this.membershipButtonEnabled = false
     this.communityMembershipService.leaveCommunity(this.subtireddId)
     this.communityMembershipService.communityLeft$
       .pipe(take(1))
       .subscribe(_ => {
         this.hasUserJoined = false
-        this.membershipButtonEnabled = true
       })
   }
 }

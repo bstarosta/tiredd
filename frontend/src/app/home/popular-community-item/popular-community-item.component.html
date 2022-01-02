@@ -5,5 +5,8 @@
     <p class="item-text underline-on-hover">
       t/{{community.name}}</p>
   </div>
-  <button class="join-community-button">{{"joinCommunity" | translate}}</button>
+  <button class="join-community-button" (click)="onMembershipClick($event)" (mouseover)="isMouseOver=true"
+          (mouseout)="isMouseOver=false">
+    {{(hasUserJoined ? (isMouseOver ? "leave" : "joined") : "joinCommunity") | translate}}
+  </button>
 </div>

@@ -16,22 +16,22 @@ export class CommunityMembershipService {
     return `api/subtiredd/${subtireddId}/leave`
   }
 
-  private communityJoined: Subject<void> = new Subject<void>();
-  communityJoined$: Observable<void> = this.communityJoined.asObservable();
+  private communityJoined: Subject<number> = new Subject<number>();
+  communityJoined$: Observable<number> = this.communityJoined.asObservable();
 
-  private communityLeft: Subject<void> = new Subject<void>();
-  communityLeft$: Observable<void> = this.communityLeft.asObservable();
+  private communityLeft: Subject<number> = new Subject<number>();
+  communityLeft$: Observable<number> = this.communityLeft.asObservable();
 
   constructor(@Inject(API_BASE_URL) private baseUrl: string, private httpClient: HttpClient) {
   }
 
   joinCommunity(subtireddId: number): void {
     this.httpClient.post(this.baseUrl + CommunityMembershipService.joinControllerUrl(subtireddId), null)
-      .subscribe(_ => this.communityJoined.next())
+      .subscribe(_ => this.communityJoined.next(subtireddId))
   }
 
   leaveCommunity(subtireddId: number): void {
     this.httpClient.post(this.baseUrl + CommunityMembershipService.leaveControllerUrl(subtireddId), null)
-      .subscribe(_ => this.communityLeft.next())
+      .subscribe(_ => this.communityLeft.next(subtireddId))
   }
 }

@@ -50,7 +50,4 @@ export class PopularCommunitiesComponent {
       adminId: "5"
     }
   ]
-
-  constructor() {
-  }
 }
