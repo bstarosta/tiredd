@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace backend.Controllers
 {
-    [Route("api/comments")]
+    [Route("api/comment")]
     [ApiController]
     public class CommentController : TireddController
     {
