@@ -5,7 +5,6 @@ import {Observable, Subscription} from "rxjs";
 import {Subtiredd} from "../../interfaces/subtiredd";
 import {SubtireddSelectItem} from "../../interfaces/subtiredd-select-item";
 import {SubtireddService} from "../../services/subtiredd.service";
-import {delay} from "rxjs/operators";
 
 @Component({
   selector: 'trd-subtiredd-page',
@@ -32,7 +31,7 @@ export class SubtireddPageComponent implements OnDestroy {
       this.subtireddService.getSubtiredd(paramMap.get("subtireddName"))
       this.pending = true
     });
-    this.subtireddService.currentSubtiredd$.pipe(delay(3000)).subscribe( subtiredd => {
+    this.subtireddService.currentSubtiredd$.subscribe( subtiredd => {
       this.subtiredd = subtiredd;
       this.pending = false;
     })

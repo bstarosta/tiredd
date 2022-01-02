@@ -1,0 +1,16 @@
+:host {
+  display: flex;
+  height: calc(100vh - 71px);
+  width: 100%;
+
+  justify-content: center;
+  align-content: center;
+}
+
+mat-progress-spinner {
+  margin: auto;
+}
+
+::ng-deep.mat-progress-spinner.mat-accent circle {
+  stroke: #5a6488;
+}
