@@ -23,24 +23,15 @@ namespace backend.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateSubtireddModel model)
         {
-            var existingSubtiredd = await tireddDbContext.Subtiredds.FirstOrDefaultAsync(s => s.Name == model.Name);
-            if (existingSubtiredd != null)
+            await using (tireddDbContext)
             {
-                return StatusCode(StatusCodes.Status409Conflict);
+                var existingSubtiredd = await tireddDbContext.Subtiredds.SingleAsync(s => s.Name == model.Name);
+                if (existingSubtiredd != null)
+                    return StatusCode(StatusCodes.Status409Conflict);
+                var createdSubtiredd = await tireddDbContext.AddAsync(model.ToSubtiredd(UserId));
+                await tireddDbContext.SaveChangesAsync();
+                return new ObjectResult(createdSubtiredd.Entity) {StatusCode = StatusCodes.Status201Created};
             }
-
-            var subtiredd = new Subtiredd()
-            {
-                AdminId = UserId,
-                Name = model.Name,
-                ImageUrl = model.ImageUrl,
-                Description = model.Description,
-                CreatedAt = DateTime.Now
-            };
-            var createdSubtiredd = await tireddDbContext.AddAsync(subtiredd);
-            await tireddDbContext.SaveChangesAsync();
-
-            return new ObjectResult(createdSubtiredd.Entity) {StatusCode = StatusCodes.Status201Created};
         }
 
         [Authorize]

@@ -9,6 +9,7 @@ using backend.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace backend.Controllers
 {
@@ -24,20 +25,15 @@ namespace backend.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreatePostModel model)
         {
-            // TODO: Validate if user is a member of subtiredd
-            var post = new Post
-            {
-                Title = model.Title,
-                Text = model.Text,
-                ImageUrl = model.ImageUrl,
-                Score = 0,
-                CreatedAt = DateTime.Now,
-                SubtireddId = model.SubtireddId,
-                AuthorId = UserId
-            };
             await using (tireddDbContext)
             {
-                var createdPost = await tireddDbContext.Posts.AddAsync(post);
+                var isUserMemberOfSubtiredd = await tireddDbContext.Users
+                    .Include(user => user.Subtiredds)
+                    .SelectMany(user => user.Subtiredds)
+                    .AnyAsync(subtiredd => subtiredd.Id == model.SubtireddId);
+                if (!isUserMemberOfSubtiredd)
+                    return BadRequest();
+                var createdPost = await tireddDbContext.Posts.AddAsync(model.ToPost(UserId));
                 await tireddDbContext.SaveChangesAsync();
                 return new ObjectResult(createdPost.Entity) {StatusCode = StatusCodes.Status201Created};
             }
