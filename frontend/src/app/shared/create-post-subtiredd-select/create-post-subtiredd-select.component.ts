@@ -1,6 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {SubtireddSelectItem} from "../../interfaces/subtiredd-select-item";
-import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'trd-create-post-subtiredd-select',
@@ -10,19 +9,19 @@ import {ActivatedRoute} from "@angular/router";
 export class CreatePostSubtireddSelectComponent implements OnInit {
 
   @Input() allSubtireddSelectItems: SubtireddSelectItem[];
+  @Input() currentSubtiredd: SubtireddSelectItem;
   @Output() subtireddSelected: EventEmitter<SubtireddSelectItem> = new EventEmitter<SubtireddSelectItem>();
 
   displayedSubtireddSelectItems: SubtireddSelectItem[]
 
-  constructor(private route: ActivatedRoute) {
-    route.url.subscribe()
+  constructor() {
   }
 
   searchFilter: string;
   selectedSubtiredd: SubtireddSelectItem;
 
   ngOnInit(): void {
-    this.selectedSubtiredd = this.allSubtireddSelectItems[0];
+    this.selectedSubtiredd = this.currentSubtiredd;
   }
 
   onSearchChange(): void {

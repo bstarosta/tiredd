@@ -69,5 +69,6 @@
   "createPostSuccess": "Pomyślnie utworzono post",
   "error.postTitle.required": "Tytuł posta jest wymagany",
   "error.postText.required": "Treść posta jest wymagana",
-  "error.postImageUrl.invalidUrl": "Podaj poprawny link"
+  "error.postImageUrl.invalidUrl": "Podaj poprawny link",
+  "selectSubtiredd": "Wybierz subtiredd"
 }
