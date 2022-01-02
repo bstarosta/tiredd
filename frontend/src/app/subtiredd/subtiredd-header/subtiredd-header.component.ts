@@ -14,7 +14,7 @@ export class SubtireddHeaderComponent {
 
   @Input() subtireddId: number
   @Input() subtireddName: string
-  imageUrl = "https://www.countryandtownhouse.co.uk/wp-content/uploads/2017/01/knitting.jpg";
+  @Input() imageUrl: string;
   @Input() hasUserJoined: Boolean = false;
   membershipButtonEnabled: Boolean = true;
   isMouseOver: Boolean = false;

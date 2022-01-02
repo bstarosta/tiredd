@@ -12,9 +12,9 @@ export class AboutCommunityComponent {
 
   @Input() isUserLoggedIn: Boolean;
   @Input() currentSubtiredd: SubtireddSelectItem;
-  description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-  numberOfMembers = 1000;
-  createDate = new Date("2021-12-18T18:21:00Z");
+  @Input() description: string;
+  @Input() numberOfMembers: number;
+  @Input() createDate: Date;
 
   constructor(private createPostModalService: CreatePostModalService, private accountModalService: AccountModalService) {
   }

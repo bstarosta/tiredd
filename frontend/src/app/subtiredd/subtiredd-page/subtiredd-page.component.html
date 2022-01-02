@@ -1,9 +1,19 @@
-<trd-subtiredd-header [subtireddId]="subtiredd.id" [subtireddName]="subtiredd.name"></trd-subtiredd-header>
-<div class="row">
-  <div class="column">
-    <trd-create-post *ngIf="isUserLoggedIn$ | async" [currentSubtiredd]="subtireddToSubtireddSelectItem(subtiredd)"></trd-create-post>
-    <trd-posts-column></trd-posts-column>
+<ng-container *ngIf="!pending">
+  <trd-subtiredd-header [subtireddId]="subtiredd.id" [subtireddName]="subtiredd.name"
+                        [imageUrl]="subtiredd.imageUrl"  ></trd-subtiredd-header>
+  <div class="row">
+    <div class="column">
+      <trd-create-post *ngIf="isUserLoggedIn$ | async"
+                       [currentSubtiredd]="subtireddToSubtireddSelectItem(subtiredd)"></trd-create-post>
+      <trd-posts-column></trd-posts-column>
+    </div>
+    <trd-about-community [currentSubtiredd]="subtireddToSubtireddSelectItem(subtiredd)"
+                         [createDate]="subtiredd.createdAt"
+                         [numberOfMembers]="subtiredd.userCount"
+                         [description]="subtiredd.description"
+                         [isUserLoggedIn]="isUserLoggedIn$ | async"></trd-about-community>
   </div>
-  <trd-about-community [currentSubtiredd]="subtireddToSubtireddSelectItem(subtiredd)"
-                       [isUserLoggedIn]="isUserLoggedIn$ | async"></trd-about-community>
+</ng-container>
+<div class="loading" *ngIf="pending">
+  ładowanko
 </div>

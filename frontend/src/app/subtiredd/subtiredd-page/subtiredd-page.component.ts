@@ -4,6 +4,8 @@ import {UserService} from "../../services/user.service";
 import {Observable, Subscription} from "rxjs";
 import {Subtiredd} from "../../interfaces/subtiredd";
 import {SubtireddSelectItem} from "../../interfaces/subtiredd-select-item";
+import {SubtireddService} from "../../services/subtiredd.service";
+import {delay} from "rxjs/operators";
 
 @Component({
   selector: 'trd-subtiredd-page',
@@ -14,15 +16,9 @@ export class SubtireddPageComponent implements OnDestroy {
 
   isUserLoggedIn$: Observable<Boolean>;
   routeSubscription: Subscription;
+  pending: boolean = true;
 
-  subtiredd: Subtiredd = {
-    id: 3,
-    name: "testowy2",
-    description: "Description",
-    imageUrl: "https://i.ytimg.com/vi/1Ne1hqOXKKI/maxresdefault.jpg",
-    createdAt: new Date("2021-12-18T18:21:00Z"),
-    adminId: '1'
-  }
+  subtiredd: Subtiredd;
 
   subtireddToSubtireddSelectItem(subtiredd: Subtiredd): SubtireddSelectItem {
     return {
@@ -31,8 +27,15 @@ export class SubtireddPageComponent implements OnDestroy {
     }
   }
 
-  constructor(private route: ActivatedRoute, private userService: UserService) {
-    this.routeSubscription = route.paramMap.subscribe(paramMap => this.subtiredd.name = paramMap.get("subtireddName"));
+  constructor(private route: ActivatedRoute, private userService: UserService, private subtireddService: SubtireddService) {
+    this.routeSubscription = route.paramMap.subscribe(paramMap => {
+      this.subtireddService.getSubtiredd(paramMap.get("subtireddName"))
+      this.pending = true
+    });
+    this.subtireddService.currentSubtiredd$.pipe(delay(3000)).subscribe( subtiredd => {
+      this.subtiredd = subtiredd;
+      this.pending = false;
+    })
     this.isUserLoggedIn$ = userService.isUserLoggedIn$;
   }
 
