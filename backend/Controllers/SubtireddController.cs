@@ -55,12 +55,12 @@ namespace backend.Controllers
         {
             return new
             {
-                id = subtiredd.Id,
-                name = subtiredd.Name,
-                description = subtiredd.Description,
-                imageUrl = subtiredd.ImageUrl,
-                userCount = subtireddUserCount,
-                createdAt = subtiredd.CreatedAt,
+                Id = subtiredd.Id,
+                Name = subtiredd.Name,
+                Description = subtiredd.Description,
+                ImageUrl = subtiredd.ImageUrl,
+                UserCount = subtireddUserCount,
+                CreatedAt = subtiredd.CreatedAt,
             };
         }
 
@@ -83,8 +83,8 @@ namespace backend.Controllers
         {
             return new
             {
-                id = subtiredd.Id,
-                name = subtiredd.Name,
+                Id = subtiredd.Id,
+                Name = subtiredd.Name,
             };
         }
 
@@ -122,8 +122,9 @@ namespace backend.Controllers
         {
             return new
             {
-                id = subtiredd.Id,
-                name = subtiredd.Name,
+                Id = subtiredd.Id,
+                Name = subtiredd.Name,
+                ImageUrl = subtiredd.ImageUrl
             };
         }
     }

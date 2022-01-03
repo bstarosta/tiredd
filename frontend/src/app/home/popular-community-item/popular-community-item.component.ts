@@ -1,32 +1,45 @@
-import {Component, Input} from '@angular/core';
-import {Subtiredd} from "../../interfaces/subtiredd";
+import {Component, Input, OnInit} from '@angular/core';
 import {filter, take} from "rxjs/operators";
 import {UserService} from "../../services/user.service";
 import {AccountModalService} from "../../services/account-modal.service";
 import {CommunityMembershipService} from "../../services/community-membership.service";
 import {Subscription} from "rxjs";
+import {PopularSubtireddInfo} from "../../interfaces/popular-subtiredd-info";
+import {User} from "../../interfaces/user";
 
 @Component({
   selector: 'trd-popular-community-item',
   templateUrl: './popular-community-item.component.html',
   styleUrls: ['./popular-community-item.component.scss']
 })
-export class PopularCommunityItemComponent {
+export class PopularCommunityItemComponent implements OnInit {
 
   @Input() index: number
-  @Input() community: Subtiredd
-  hasUserJoined: Boolean = false;
-  membershipButtonEnabled: Boolean = true;
-  isMouseOver: Boolean = false;
+  @Input() community: PopularSubtireddInfo
+  hasUserJoined: Boolean = false
+  membershipButtonEnabled: Boolean = true
+  isMouseOver: Boolean = false
   isUserLoggedIn: Boolean = false
   isUserLoggedInSubscription: Subscription
+  user: User
+  userSubscription: Subscription
 
   constructor(
     private userService: UserService,
     private accountModalService: AccountModalService,
     private communityMembershipService: CommunityMembershipService
   ) {
-    this.isUserLoggedInSubscription = userService.isUserLoggedIn$.subscribe(isUserLoggedIn => this.onLoginStatusChanged(isUserLoggedIn))
+    this.isUserLoggedInSubscription = userService.isUserLoggedIn$
+      .subscribe(isUserLoggedIn => this.onLoginStatusChanged(isUserLoggedIn))
+  }
+
+  ngOnInit() {
+    this.userSubscription = this.userService.user$.pipe(filter(u => !!u))
+      .subscribe(user => {
+          this.user = user
+          this.hasUserJoined = !!user?.subtiredds.find(s => s.id === this.community.id)
+        }
+      )
   }
 
   onLoginStatusChanged(isUserLoggedIn: boolean) {
@@ -37,6 +50,7 @@ export class PopularCommunityItemComponent {
 
   ngOnDestroy(): void {
     this.isUserLoggedInSubscription.unsubscribe()
+    this.userSubscription.unsubscribe()
   }
 
   onMembershipClick(event: Event) {
