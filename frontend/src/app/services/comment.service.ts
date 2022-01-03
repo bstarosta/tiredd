@@ -9,7 +9,7 @@ import {HttpClient} from "@angular/common/http";
 })
 export class CommentService {
 
-  private readonly controllerUrl: string = "api/comment";
+  private readonly controllerUrl: string = "api/comments";
 
   private commentCreated: Subject<CreateComment> = new Subject<CreateComment>();
   commentCreated$: Observable<CreateComment> = this.commentCreated.asObservable();

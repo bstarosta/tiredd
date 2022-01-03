@@ -1,7 +1,7 @@
 export interface Comment {
   id: number
-  author: string
-  timestamp: Date
+  authorName: string
+  createdAt: Date
   text: string
   replies: Comment[]
 }

@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace backend.Controllers
 {
-    [Route("api/comments")]
+    [Route("api")]
     [ApiController]
     public class CommentController : TireddController
     {
@@ -20,6 +20,7 @@ namespace backend.Controllers
 
         [Authorize]
         [HttpPost]
+        [Route("comment")]
         public async Task<IActionResult> Create([FromBody] CreateCommentModel model)
         {
             await using (tireddDbContext)
@@ -31,6 +32,7 @@ namespace backend.Controllers
         }
 
         [HttpGet]
+        [Route("comments")]
         public async Task<IActionResult> Get(int postId)
         {
             await using (tireddDbContext)

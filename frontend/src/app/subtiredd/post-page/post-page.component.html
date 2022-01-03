@@ -4,7 +4,7 @@
   <div *ngIf="!(notFoundError$ | async)" class="row">
     <div class="column">
       <trd-post-list-item [post]="currentPost$ | async" [addRoutesToPost]="false"></trd-post-list-item>
-      <trd-comments id="comments"></trd-comments>
+      <trd-comments id="comments" [commentsList]="commentsList$ | async"></trd-comments>
     </div>
     <trd-post-community-details></trd-post-community-details>
   </div>
