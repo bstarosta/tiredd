@@ -22,17 +22,14 @@ namespace backend.Controllers
         [HttpPut]
         public async Task<IActionResult> CreateOrUpdate([FromBody] CreateOrUpdateVoteModel model)
         {
-            await using (tireddDbContext)
-            {
-                var postExists = await tireddDbContext.Posts.AnyAsync(post => post.Id == model.PostId);
-                if (!postExists)
-                    return NotFound();
-                var existingVote = await tireddDbContext.Votes
-                    .SingleOrDefaultAsync(vote => vote.UserId == UserId && vote.PostId == model.PostId);
-                if (existingVote == null)
-                    return await CreateVote(model);
-                return await UpdateExistingVote(existingVote, model.Type);
-            }
+            var postExists = await tireddDbContext.Posts.AnyAsync(post => post.Id == model.PostId);
+            if (!postExists)
+                return NotFound();
+            var existingVote = await tireddDbContext.Votes
+                .SingleOrDefaultAsync(vote => vote.UserId == UserId && vote.PostId == model.PostId);
+            if (existingVote == null)
+                return await CreateVote(model);
+            return await UpdateExistingVote(existingVote, model.Type);
         }
 
         private async Task<IActionResult> CreateVote(CreateOrUpdateVoteModel model)
@@ -54,14 +51,11 @@ namespace backend.Controllers
         [HttpDelete]
         public async Task<IActionResult> Delete(int postId)
         {
-            await using (tireddDbContext)
-            {
-                var vote = await tireddDbContext.Votes
-                    .SingleOrDefaultAsync(vote => vote.UserId == UserId && vote.PostId == postId);
-                tireddDbContext.Votes.Remove(vote);
-                await tireddDbContext.SaveChangesAsync();
-                return NoContent();
-            }
+            var vote = await tireddDbContext.Votes
+                .SingleOrDefaultAsync(vote => vote.UserId == UserId && vote.PostId == postId);
+            tireddDbContext.Votes.Remove(vote);
+            await tireddDbContext.SaveChangesAsync();
+            return NoContent();
         }
     }
 }
