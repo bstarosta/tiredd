@@ -67,7 +67,7 @@ namespace backend.Controllers
                     return NotFound();
                 user.Subtiredds.Add(subtiredd);
                 await tireddDbContext.SaveChangesAsync();
-                return new ObjectResult(ToUserSubtireddIfnoJson(subtiredd)) {StatusCode = StatusCodes.Status201Created};
+                return new ObjectResult(ToUserSubtireddInfoJson(subtiredd)) {StatusCode = StatusCodes.Status201Created};
             }
         }
 
@@ -89,11 +89,11 @@ namespace backend.Controllers
                 var subtiredd = user.Subtiredds.Find(subtiredd => subtiredd.Id == subtireddId);
                 user.Subtiredds.Remove(subtiredd);
                 await tireddDbContext.SaveChangesAsync();
-                return new ObjectResult(ToUserSubtireddIfnoJson(subtiredd)) {StatusCode = StatusCodes.Status201Created};
+                return new ObjectResult(ToUserSubtireddInfoJson(subtiredd)) {StatusCode = StatusCodes.Status201Created};
             }
         }
 
-        private static object ToUserSubtireddIfnoJson(Subtiredd subtiredd)
+        private static object ToUserSubtireddInfoJson(Subtiredd subtiredd)
         {
             return new
             {

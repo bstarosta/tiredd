@@ -1,3 +1,5 @@
+@use "../../../style/ui-colors";
+
 :host {
   display: flex;
   height: calc(100vh - 71px);
@@ -12,5 +14,5 @@ mat-progress-spinner {
 }
 
 ::ng-deep.mat-progress-spinner.mat-accent circle {
-  stroke: #5a6488;
+  stroke: ui-colors.$page-loader-stroke;
 }
