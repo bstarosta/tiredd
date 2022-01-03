@@ -4,10 +4,12 @@ import {SubtireddSelectItem} from "../../interfaces/subtiredd-select-item";
 import {MatTabChangeEvent} from "@angular/material/tabs";
 import {SnackbarService} from "../../services/snackbar.service";
 import {PostService} from "../../services/post.service";
-import {take} from "rxjs/operators";
+import {map, take} from "rxjs/operators";
 import {Post} from "../../interfaces/post";
 import {FormControl, FormGroup, ValidationErrors, Validators} from "@angular/forms";
 import {httpUrlValidator} from "../../validators/url-validator";
+import {UserService} from "../../services/user.service";
+import {Observable} from "rxjs";
 
 const CREATE_POST_FORM_ERROR_MESSAGE_KEYS: ValidationErrors = {
   title: {
@@ -28,14 +30,8 @@ const CREATE_POST_FORM_ERROR_MESSAGE_KEYS: ValidationErrors = {
 })
 export class CreatePostModalComponent implements OnInit {
 
-  validationErrorsMessageKeys: ValidationErrors = CREATE_POST_FORM_ERROR_MESSAGE_KEYS
-  subtireddSelectItems: SubtireddSelectItem[] = [
-    {id: 1, name: "awww"},
-    {id: 2, name: "whatswrongwithyourdog"},
-    {id: 3, name: "dachschund"},
-    {id: 4, name: "corgi"},
-    {id: 5, name: "dogs"},
-  ]
+  validationErrorsMessageKeys: ValidationErrors = CREATE_POST_FORM_ERROR_MESSAGE_KEYS;
+  subtireddSelectItems$: Observable<SubtireddSelectItem[]>;
 
   selectedSubtiredd: SubtireddSelectItem;
   textSelected: Boolean = true;
@@ -59,17 +55,18 @@ export class CreatePostModalComponent implements OnInit {
   }
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) data: string,
+    @Inject(MAT_DIALOG_DATA) public data: SubtireddSelectItem,
     private matDialogRef: MatDialogRef<CreatePostModalComponent>,
     private snackbarService: SnackbarService,
-    private postService: PostService
+    private postService: PostService,
+    private userService: UserService
   ) {
-    this.postService.postCreated$.pipe(take(1)).subscribe(post => this.onCreatedPost(post))
+    this.subtireddSelectItems$ = this.userService.user$.pipe(map(user => user.subtiredds));
+    this.postService.postCreated$.pipe(take(1)).subscribe(post => this.onCreatedPost(post));
     this.setFormValidators()
   }
 
   ngOnInit() {
-    this.selectedSubtiredd = this.subtireddSelectItems[0];
   }
 
   onSubmit() {

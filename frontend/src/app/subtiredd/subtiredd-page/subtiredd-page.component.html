@@ -1,8 +1,22 @@
-<trd-subtiredd-header [subtireddId]="subtiredd.id" [subtireddName]="subtiredd.name"></trd-subtiredd-header>
-<div class="row">
-  <div class="column">
-    <trd-create-post *ngIf="isUserLoggedIn$ | async"></trd-create-post>
-    <trd-posts-column></trd-posts-column>
+<ng-container *ngIf="!pending">
+  <trd-subtiredd-header [subtireddId]="subtiredd.id" [subtireddName]="subtiredd.name"
+                        [imageUrl]="subtiredd.imageUrl"
+                        [hasUserJoined]="isUserJoined"
+                        [isUserAdmin]="isUserAdmin"
+                        [isUserLoggedIn]="isUserLoggedIn$ | async"></trd-subtiredd-header>
+  <div class="row">
+    <div class="column">
+      <trd-create-post *ngIf="isUserLoggedIn$ | async"
+                       [currentSubtiredd]="subtireddToSubtireddSelectItem(subtiredd)"
+                       [userNotAllowed]="!isUserJoined"></trd-create-post>
+      <trd-posts-column></trd-posts-column>
+    </div>
+    <trd-about-community [currentSubtiredd]="subtireddToSubtireddSelectItem(subtiredd)"
+                         [createDate]="subtiredd.createdAt"
+                         [numberOfMembers]="subtiredd.userCount"
+                         [description]="subtiredd.description"
+                         [isUserLoggedIn]="isUserLoggedIn$ | async"
+                         [isUserJoined]="isUserJoined"></trd-about-community>
   </div>
-  <trd-about-community [isUserLoggedIn]="isUserLoggedIn$ | async"></trd-about-community>
-</div>
+</ng-container>
+<trd-page-loader *ngIf="pending"></trd-page-loader>

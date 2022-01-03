@@ -1,5 +1,5 @@
 <div class="trigger" [matMenuTriggerFor]="menu" (menuOpened)="onOpen()">
-  <div class="current-location unselectable">t/{{selectedSubtiredd.name}}</div>
+  <div class="current-location unselectable">{{selectedSubtiredd ? "t/" + selectedSubtiredd.name : "selectSubtiredd" | translate}}</div>
   <div class="arrow unselectable">
     <span class="material-icons">expand_more</span>
   </div>

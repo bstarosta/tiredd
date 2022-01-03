@@ -68,5 +68,7 @@
   "createPostSuccess": "Post has been successfully created",
   "error.postTitle.required": "Post title is required",
   "error.postText.required": "Post text is required",
-  "error.postImageUrl.invalidUrl": "Please enter a valid URL"
+  "error.postImageUrl.invalidUrl": "Please enter a valid URL",
+  "selectSubtiredd": "Select subtiredd",
+  "joinToPost": "Joint this community to create posts"
 }
