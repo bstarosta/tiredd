@@ -1,4 +1,6 @@
 ﻿using System.Linq;
+using System.Security.Claims;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using backend.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -31,6 +33,25 @@ namespace backend.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("{subtireddName}")]
+        public async Task<IActionResult> GetSubtiredd(string subtireddName)
+        {
+            Regex subtireddNameRegex = new Regex("\\w");
+            if (!subtireddNameRegex.IsMatch(subtireddName))
+                return BadRequest();
+            var subtiredd = await tireddDbContext.Subtiredds.FirstOrDefaultAsync(s => s.Name == subtireddName);
+            if (subtiredd == null)
+                return NotFound();
+            var userCount = tireddDbContext.Entry(subtiredd)
+                .Collection(s => s.Users)
+                .Query()
+                .Count();
+
+            return new ObjectResult(ToSubtireddJson(subtiredd, userCount)) { StatusCode = StatusCodes.Status200OK };
+        }
+
+
         [Authorize]
         [HttpPost]
         [Route("{subtireddId}/join")]
@@ -44,7 +65,7 @@ namespace backend.Controllers
                     return NotFound();
                 user.Subtiredds.Add(subtiredd);
                 await tireddDbContext.SaveChangesAsync();
-                return NoContent();
+                return new ObjectResult(ToUserSubtireddInfoJson(subtiredd)) {StatusCode = StatusCodes.Status201Created};
             }
         }
 
@@ -63,10 +84,33 @@ namespace backend.Controllers
             await using (tireddDbContext)
             {
                 var user = await GetUserWithSubtiredds();
-                user.Subtiredds.RemoveAll(subtiredd => subtiredd.Id == subtireddId);
+                var subtiredd = user.Subtiredds.Find(subtiredd => subtiredd.Id == subtireddId);
+                user.Subtiredds.Remove(subtiredd);
                 await tireddDbContext.SaveChangesAsync();
-                return NoContent();
+                return new ObjectResult(ToUserSubtireddInfoJson(subtiredd)) {StatusCode = StatusCodes.Status201Created};
             }
+        }
+
+        private static object ToUserSubtireddInfoJson(Subtiredd subtiredd)
+        {
+            return new
+            {
+                id = subtiredd.Id,
+                name = subtiredd.Name,
+            };
+        }
+
+        private static object ToSubtireddJson(Subtiredd subtiredd, int subtireddUserCount)
+        {
+            return new
+            {
+                id = subtiredd.Id,
+                name = subtiredd.Name,
+                description = subtiredd.Description,
+                imageUrl = subtiredd.ImageUrl,
+                userCount = subtireddUserCount,
+                createdAt = subtiredd.CreatedAt,
+            };
         }
 
         [HttpGet]

@@ -1,8 +1,9 @@
-import {Component} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {CreatePostModalService} from "../../services/create-post-modal.service";
 import {UserService} from "../../services/user.service";
 import {Observable} from "rxjs";
-import {map} from "rxjs/operators";
+import {filter, map} from "rxjs/operators";
+import {SubtireddSelectItem} from "../../interfaces/subtiredd-select-item";
 
 @Component({
   selector: 'trd-create-post',
@@ -12,12 +13,17 @@ import {map} from "rxjs/operators";
 export class CreatePostComponent {
 
   constructor(private createPostModalService: CreatePostModalService, private userService: UserService) {
-    this.userName$ = userService.user$.pipe(map(user => user.userName));
+    this.userName$ = userService.user$.pipe(
+      filter(user => !!user),
+      map(user => user.userName));
   }
 
+  @Input() userNotAllowed: boolean;
+  @Input() currentSubtiredd: SubtireddSelectItem
   userName$: Observable<string>;
 
   openCreatePostModal(): void {
-    this.createPostModalService.openCreatePostModal();
+    if(!this.userNotAllowed)
+      this.createPostModalService.openCreatePostModal(this.currentSubtiredd);
   }
 }

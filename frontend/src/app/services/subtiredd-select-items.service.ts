@@ -3,9 +3,10 @@ import {BehaviorSubject, Observable} from "rxjs";
 import {UserService} from "./user.service";
 import {Router} from "@angular/router";
 import {TranslateService} from "@ngx-translate/core";
-import {merge} from "rxjs/operators";
+import {filter, withLatestFrom} from "rxjs/operators";
 import {HeaderSubtireddSelectItem} from "../interfaces/header-subtiredd-select-item";
 import {CreateCommunityModalService} from "./create-community-modal.service";
+import {UserSubtireddInfo} from "../interfaces/user-subtiredd-info";
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,10 @@ export class SubtireddSelectItemsService {
   constructor(private userService: UserService, private router: Router, private translateService: TranslateService,
               private createCommunityModalService: CreateCommunityModalService)
   {
-    userService.user$.pipe(merge(translateService.onLangChange)).subscribe(_ => this.createNewSubtireddList());
+    userService.user$.pipe(filter(user => !!user)).subscribe(user => this.createNewSubtireddList(user.subtiredds));
+    translateService.onLangChange.pipe(withLatestFrom(userService.user$)).subscribe(([_, user]) => {
+      this.createNewSubtireddList(user.subtiredds);
+    })
   }
 
   private subtireddSelectItems: BehaviorSubject<HeaderSubtireddSelectItem[]> = new BehaviorSubject<HeaderSubtireddSelectItem[]>([]);
@@ -31,9 +35,17 @@ export class SubtireddSelectItemsService {
     return [homeItem, createCommunityItem]
   }
 
-  createNewSubtireddList(): void {
+  createNewSubtireddList(userSubtiredds: UserSubtireddInfo[]): void {
     this.subtireddSelectItems
-      .next([...this.addDefaultItems(), ...this.mockSubtireddSelectItems])
+      .next([...this.addDefaultItems(), ...this.userSubtireddInfosToHeaderSubtireddSelectItem(userSubtiredds)])
+  }
+
+  userSubtireddInfosToHeaderSubtireddSelectItem(userSubtireddInfo: UserSubtireddInfo[]): HeaderSubtireddSelectItem[] {
+    return userSubtireddInfo.map((usi) => ({
+      name: "t/" + usi.name,
+      url: "/t/" + usi.name,
+      onClick: this.navigateToUrl
+    }))
   }
 
   openCreateCommunityModal = (): void => {
@@ -43,13 +55,5 @@ export class SubtireddSelectItemsService {
   navigateToUrl = (url: string): void => {
     this.router.navigate([url])
   }
-
-  mockSubtireddSelectItems: HeaderSubtireddSelectItem[] = [
-    {name: "t/awww", url: "/t/awww", onClick: this.navigateToUrl},
-    {name: "t/whatswrongwithyourdog", url: "/t/whatswrongwithyourdog", onClick: this.navigateToUrl},
-    {name: "t/dachschund", url: "/t/dachschund", onClick: this.navigateToUrl},
-    {name: "t/corgi", url: "/t/corgi", onClick: this.navigateToUrl},
-    {name: "t/dogs", url: "/t/dogs", onClick: this.navigateToUrl},
-  ]
 
 }

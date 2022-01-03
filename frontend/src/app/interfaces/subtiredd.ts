@@ -4,5 +4,5 @@ export interface Subtiredd {
   description: string
   imageUrl: string
   createdAt: Date
-  adminId: string
+  userCount: number
 }
