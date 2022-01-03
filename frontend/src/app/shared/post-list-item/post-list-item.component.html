@@ -1,22 +1,25 @@
-<div class="post" [ngClass]="{'clickable-post': addRoutesToPost}" [routerLink]="['/t', post.subtiredd, post.id]">
+<div class="post" [ngClass]="{'clickable-post': addRoutesToPost}" [routerLink]="['/t', post.subtireddName, post.id]">
   <div class="votes-sidebar">
-    <div class="arrow-icon" [ngClass]="{'selected': post.userVote === 'upVote'}"></div>
+    <div class="arrow-icon" [ngClass]="{'selected': post.userVote === 'UpVote', 'voting-active': votingActive}"
+         (click)="onUpVote($event)"></div>
     <p class="score-text">{{post.score}}</p>
-    <div class="arrow-icon rotate180" [ngClass]="{'selected': post.userVote === 'downVote'}"></div>
+    <div class="arrow-icon rotate180"
+         [ngClass]="{'selected': post.userVote === 'DownVote', 'voting-active': votingActive}"
+         (click)="onDownVote($event)"></div>
   </div>
   <div class="post-contents">
     <div class="post-info">
       <div>
-        <span class="subtiredd-name" [routerLink]="['/t', post.subtiredd]">t/{{post.subtiredd}}</span>
+        <span class="subtiredd-name" [routerLink]="['/t', post.subtireddName]">t/{{post.subtireddName}}</span>
         <span class="dot-separator">•</span>
-        <span class="posted-by">{{"postedBy" | translate}} u/{{post.author}}</span>
+        <span class="posted-by">{{"postedBy" | translate}} u/{{post.authorName}}</span>
       </div>
-      <p class="time-text">{{post.timestamp | localizedDate:'d MMM y, H:mm '}}</p>
+      <p class="time-text">{{post.createdAt | localizedDate:'d MMM y, H:mm '}}</p>
     </div>
     <p class="post-title">{{post.title}}</p>
-    <img *ngIf="post.image" src="{{post.image}}" alt="image" class="post-image">
-    <p *ngIf="!post.image" class="post-text">{{post.text}}</p>
-    <div *ngIf="addRoutesToPost" class="comments" [routerLink]="['/t', post.subtiredd, post.id]"
+    <img *ngIf="post.imageUrl" src="{{post.imageUrl}}" alt="image" class="post-image">
+    <p *ngIf="!post.imageUrl" class="post-text">{{post.text}}</p>
+    <div *ngIf="addRoutesToPost" class="comments" [routerLink]="['/t', post.subtireddName, post.id]"
          [fragment]="'comments'">
       <span class="material-icons">comment</span>
       {{"comments" | translate}}
