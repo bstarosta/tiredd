@@ -26,7 +26,6 @@
   width: 25px;
   height: 25px;
   margin: 10px auto 0;
-  cursor: pointer;
   background: url("../../../assets/icons/arrow.png") 0 0 / 25px 25px no-repeat;
 
   &:hover {
@@ -40,6 +39,10 @@
   &.selected:hover {
     background: url("../../../assets/icons/arrow-filled-light.png") 0 0 / 25px 25px no-repeat;
   }
+}
+
+.voting-active {
+  cursor: pointer;
 }
 
 .rotate180 {

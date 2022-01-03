@@ -9,9 +9,7 @@ import {SubmitVoteOutput} from "../interfaces/submit-vote-output";
 })
 export class VoteService {
 
-  private static controllerUrl(postId: number): string {
-    return `api/vote?postId=${postId}`
-  }
+  private readonly controllerUrl: string = `api/vote`
 
   private voteSubmitted: Subject<number> = new Subject<number>()
   voteSubmitted$: Observable<number> = this.voteSubmitted.asObservable()
@@ -20,7 +18,12 @@ export class VoteService {
   }
 
   submitVote(voteData: SubmitVoteOutput) {
-    this.httpClient.post<number>(this.baseUrl + VoteService.controllerUrl(voteData.postId), voteData)
+    this.httpClient.put<number>(this.baseUrl + this.controllerUrl, voteData)
       .subscribe(_ => this.voteSubmitted.next(voteData.postId))
+  }
+
+  deleteVote(postId: number) {
+    this.httpClient.delete<number>(this.baseUrl + this.controllerUrl + `?postId=${postId}`)
+      .subscribe(_ => this.voteSubmitted.next(postId))
   }
 }
