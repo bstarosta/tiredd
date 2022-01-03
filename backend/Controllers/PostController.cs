@@ -25,15 +25,12 @@ namespace backend.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreatePostModel model)
         {
-            await using (tireddDbContext)
-            {
-                var isUserMemberOfSubtiredd = await IsUserMemberOfSubtiredd(model.SubtireddId);
-                if (!isUserMemberOfSubtiredd)
-                    return BadRequest();
-                var createdPost = await tireddDbContext.Posts.AddAsync(model.ToPost(UserId));
-                await tireddDbContext.SaveChangesAsync();
-                return new ObjectResult(createdPost.Entity) {StatusCode = StatusCodes.Status201Created};
-            }
+            var isUserMemberOfSubtiredd = await IsUserMemberOfSubtiredd(model.SubtireddId);
+            if (!isUserMemberOfSubtiredd)
+                return BadRequest();
+            var createdPost = await tireddDbContext.Posts.AddAsync(model.ToPost(UserId));
+            await tireddDbContext.SaveChangesAsync();
+            return new ObjectResult(createdPost.Entity) {StatusCode = StatusCodes.Status201Created};
         }
 
         private async Task<bool> IsUserMemberOfSubtiredd(int subtireddId)
