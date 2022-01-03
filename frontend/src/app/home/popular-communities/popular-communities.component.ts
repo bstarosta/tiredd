@@ -15,7 +15,7 @@ export class PopularCommunitiesComponent {
       description: "description",
       imageUrl: "https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat.png",
       createdAt: new Date("2021-12-18T18:21:00Z"),
-      adminId: "1"
+      userCount: 1
     },
     {
       id: 2,
@@ -23,7 +23,7 @@ export class PopularCommunitiesComponent {
       description: "description",
       imageUrl: "https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat.png",
       createdAt: new Date("2021-12-18T18:21:00Z"),
-      adminId: "2"
+      userCount: 1
     },
     {
       id: 3,
@@ -31,7 +31,7 @@ export class PopularCommunitiesComponent {
       description: "description",
       imageUrl: "https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat.png",
       createdAt: new Date("2021-12-18T18:21:00Z"),
-      adminId: "3"
+      userCount: 1
     },
     {
       id: 4,
@@ -39,7 +39,7 @@ export class PopularCommunitiesComponent {
       description: "description",
       imageUrl: "https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat.png",
       createdAt: new Date("2021-12-18T18:21:00Z"),
-      adminId: "4"
+      userCount: 1
     },
     {
       id: 5,
@@ -47,7 +47,7 @@ export class PopularCommunitiesComponent {
       description: "description",
       imageUrl: "https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat.png",
       createdAt: new Date("2021-12-18T18:21:00Z"),
-      adminId: "5"
+      userCount: 1
     }
   ]
 }

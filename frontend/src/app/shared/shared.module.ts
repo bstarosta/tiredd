@@ -29,24 +29,27 @@ import {CreateCommunityFormComponent} from './create-community-form/create-commu
 import {SuccessSnackbarComponent} from './success-toast/success-snackbar.component';
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {LocalizedDatePipe} from './localized-date.pipe';
+import { PageLoaderComponent } from './page-loader/page-loader.component';
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 @NgModule({
-  declarations: [LanguagePickerComponent, HeaderComponent, SearchbarComponent, HeaderSubtireddSelectComponent, UserAvatarComponent, PostListItemComponent, PostListComponent, PostListOrderPickerComponent, PostColumnComponent, CommunityAvatarComponent, CreatePostComponent, CreatePostModalComponent, CreatePostSubtireddSelectComponent, HeaderUserAvatarComponent, LocalizedDatePipe, CreateCommunityModalComponent, CreateCommunityFormComponent, SuccessSnackbarComponent],
-  imports: [
-    CommonModule,
-    TranslateModule,
-    FormsModule,
-    MatFormFieldModule,
-    MatSelectModule,
-    MatMenuModule,
-    MatIconModule,
-    RouterModule,
-    MatDialogModule,
-    SecurityModule,
-    MatTabsModule,
-    ReactiveFormsModule,
-    MatSnackBarModule
-  ],
+  declarations: [LanguagePickerComponent, HeaderComponent, SearchbarComponent, HeaderSubtireddSelectComponent, UserAvatarComponent, PostListItemComponent, PostListComponent, PostListOrderPickerComponent, PostColumnComponent, CommunityAvatarComponent, CreatePostComponent, CreatePostModalComponent, CreatePostSubtireddSelectComponent, HeaderUserAvatarComponent, LocalizedDatePipe, CreateCommunityModalComponent, CreateCommunityFormComponent, SuccessSnackbarComponent, PageLoaderComponent],
+    imports: [
+        CommonModule,
+        TranslateModule,
+        FormsModule,
+        MatFormFieldModule,
+        MatSelectModule,
+        MatMenuModule,
+        MatIconModule,
+        RouterModule,
+        MatDialogModule,
+        SecurityModule,
+        MatTabsModule,
+        ReactiveFormsModule,
+        MatSnackBarModule,
+        MatProgressSpinnerModule
+    ],
   exports: [
     LanguagePickerComponent,
     TranslateModule,
@@ -58,7 +61,8 @@ import {LocalizedDatePipe} from './localized-date.pipe';
     CreatePostComponent,
     UserAvatarComponent,
     CommunityAvatarComponent,
-    LocalizedDatePipe
+    LocalizedDatePipe,
+    PageLoaderComponent
   ]
 })
 export class SharedModule {

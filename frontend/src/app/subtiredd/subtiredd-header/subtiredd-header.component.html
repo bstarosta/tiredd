@@ -4,7 +4,7 @@
     <trd-community-avatar [communityName]="subtireddName"></trd-community-avatar>
     <span class="title">{{subtireddName}}</span>
     <button (click)="onMembershipClick($event)" (mouseover)="isMouseOver=true" (mouseout)="isMouseOver=false"
-            [disabled]="!membershipButtonEnabled">
+            [disabled]="!membershipButtonEnabled || isUserAdmin">
       {{(hasUserJoined ? (isMouseOver ? "leave" : "joined") : "joinCommunity") | translate}}
     </button>
   </div>

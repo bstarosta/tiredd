@@ -2,7 +2,8 @@
   <h2>{{"createPost" | translate}}</h2>
   <span (click)="onCloseClick()" class="material-icons close-icon">close</span>
 </div>
-<trd-create-post-subtiredd-select [allSubtireddSelectItems]="subtireddSelectItems"
+<trd-create-post-subtiredd-select [allSubtireddSelectItems]="subtireddSelectItems$ | async"
+                                  [currentSubtiredd]="data"
                                   (subtireddSelected)="onSubtireddSelected($event)"></trd-create-post-subtiredd-select>
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <mat-tab-group dynamicHeight (selectedTabChange)="onTabSelected($event)">
