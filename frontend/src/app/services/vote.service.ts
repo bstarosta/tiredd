@@ -21,4 +21,9 @@ export class VoteService {
     this.httpClient.put<number>(this.baseUrl + this.controllerUrl, voteData)
       .subscribe(_ => this.voteSubmitted.next(voteData.postId))
   }
+
+  deleteVote(postId: number) {
+    this.httpClient.delete<number>(this.baseUrl + this.controllerUrl + `?postId=${postId}`)
+      .subscribe(_ => this.voteSubmitted.next(postId))
+  }
 }

@@ -1,8 +1,11 @@
 <div class="post" [ngClass]="{'clickable-post': addRoutesToPost}" [routerLink]="['/t', post.subtireddName, post.id]">
   <div class="votes-sidebar">
-    <div class="arrow-icon" [ngClass]="{'selected': post.userVote === 'upVote'}"></div>
+    <div class="arrow-icon" [ngClass]="{'selected': post.userVote === 'UpVote', 'voting-active': votingActive}"
+         (click)="onUpVote($event)"></div>
     <p class="score-text">{{post.score}}</p>
-    <div class="arrow-icon rotate180" [ngClass]="{'selected': post.userVote === 'downVote'}"></div>
+    <div class="arrow-icon rotate180"
+         [ngClass]="{'selected': post.userVote === 'DownVote', 'voting-active': votingActive}"
+         (click)="onDownVote($event)"></div>
   </div>
   <div class="post-contents">
     <div class="post-info">

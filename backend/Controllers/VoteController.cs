@@ -49,5 +49,19 @@ namespace backend.Controllers
             await tireddDbContext.SaveChangesAsync();
             return Ok(existingVote);
         }
+
+        [Authorize]
+        [HttpDelete]
+        public async Task<IActionResult> Delete(int postId)
+        {
+            await using (tireddDbContext)
+            {
+                var vote = await tireddDbContext.Votes
+                    .SingleOrDefaultAsync(vote => vote.UserId == UserId && vote.PostId == postId);
+                tireddDbContext.Votes.Remove(vote);
+                await tireddDbContext.SaveChangesAsync();
+                return NoContent();
+            }
+        }
     }
 }
