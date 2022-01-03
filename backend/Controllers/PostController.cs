@@ -34,40 +34,5 @@ namespace backend.Controllers
                 return new ObjectResult(createdPost.Entity) {StatusCode = StatusCodes.Status201Created};
             }
         }
-
-        [HttpGet]
-        [Route("{postId}/detailed")]
-        public async Task<IActionResult> Get(int postId)
-        {
-            await using (tireddDbContext)
-            {
-                var post = await tireddDbContext.Posts
-                    .Include(p => p.Subtiredd)
-                    .Include(p => p.Author)
-                    .Include(p => p.Votes)
-                    .FirstOrDefaultAsync(post => post.Id == postId);
-                if (post == null)
-                    return NotFound();
-                return new ObjectResult(ToPostJson(post, UserId)) {StatusCode = StatusCodes.Status200OK};
-            }
-        }
-
-        private static object ToPostJson(Post post, string userId)
-        {
-            return new
-            {
-                id = post.Id,
-                title = post.Title,
-                text = post.Text,
-                imageUrl = post.ImageUrl,
-                score = post.Score,
-                createdAt = post.CreatedAt,
-                subtireddId = post.SubtireddId,
-                authorId = post.AuthorId,
-                subtireddName = post.Subtiredd.Name,
-                authorName = post.Author.UserName,
-                userVote = userId == null ? null : post.Votes.FirstOrDefault(v => v.UserId == userId)?.Type
-            };
-        }
     }
 }

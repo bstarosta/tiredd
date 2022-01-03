@@ -11,7 +11,8 @@ import {PostListItemInfo} from "../interfaces/post-list-item-info";
 })
 export class PostService {
 
-  private readonly controllerUrl: string = "api/post"
+  private readonly postControllerUrl: string = "api/post"
+  private readonly subtireddControllerUrl: string = "api/subtiredd"
 
   private postCreated: Subject<Post> = new Subject<Post>();
   postCreated$: Observable<Post> = this.postCreated.asObservable();
@@ -23,12 +24,13 @@ export class PostService {
   }
 
   createPost(postData: CreatePostFormOutput): void {
-    this.httpClient.post<Post>(this.baseUrl + this.controllerUrl, postData)
+    this.httpClient.post<Post>(this.baseUrl + this.postControllerUrl, postData)
       .subscribe(post => this.postCreated.next(post), error => console.error(error))
   }
 
-  getPost(postId: number): void {
-    this.httpClient.get<PostListItemInfo>(this.baseUrl + this.controllerUrl + "/" + postId + "/detailed")
+  getPost(subtireddName: string, postId: number): void {
+    this.httpClient
+      .get<PostListItemInfo>(this.baseUrl + this.subtireddControllerUrl + "/" + subtireddName + "/post/" + postId)
       .subscribe(post => this.currentPost.next(post), error => console.error(error))
   }
 }

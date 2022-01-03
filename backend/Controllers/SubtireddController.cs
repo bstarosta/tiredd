@@ -1,12 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using backend.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace backend.Controllers
@@ -70,6 +67,43 @@ namespace backend.Controllers
                 await tireddDbContext.SaveChangesAsync();
                 return NoContent();
             }
+        }
+
+        [HttpGet]
+        [Route("{subtireddName}/post/{postId}")]
+        public async Task<IActionResult> Get(string subtireddName, int postId)
+        {
+            await using (tireddDbContext)
+            {
+                var subtiredd = await tireddDbContext.Subtiredds
+                    .Include(s => s.Posts).ThenInclude(p => p.Author)
+                    .Include(s => s.Posts).ThenInclude(p => p.Votes)
+                    .FirstOrDefaultAsync(subtiredd => subtiredd.Name == subtireddName);
+                if (subtiredd == null)
+                    return new NotFoundObjectResult("No such subtiredd");
+                var post = subtiredd.Posts?.FirstOrDefault(post => post.Id == postId);
+                if (post == null)
+                    return new NotFoundObjectResult("No such post in this subtiredd");
+                return new ObjectResult(ToPostJson(subtiredd, post, UserId)) {StatusCode = StatusCodes.Status200OK};
+            }
+        }
+
+        private static object ToPostJson(Subtiredd subtiredd, Post post, string userId)
+        {
+            return new
+            {
+                id = post.Id,
+                title = post.Title,
+                text = post.Text,
+                imageUrl = post.ImageUrl,
+                score = post.Score,
+                createdAt = post.CreatedAt,
+                subtireddId = subtiredd.Id,
+                authorId = post.AuthorId,
+                subtireddName = subtiredd.Name,
+                authorName = post.Author.UserName,
+                userVote = userId == null ? null : post.Votes.FirstOrDefault(v => v.UserId == userId)?.Type
+            };
         }
     }
 }

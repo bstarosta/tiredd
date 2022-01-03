@@ -16,7 +16,9 @@ export class PostPageComponent implements AfterViewInit {
 
   constructor(private route: ActivatedRoute, private scroller: ViewportScroller, private postService: PostService) {
     scroller.setOffset([0, 128]);
-    postService.getPost(+route.snapshot.paramMap.get("postId"));
+    let subtireddName = route.snapshot.paramMap.get("subtireddName");
+    let postId = +route.snapshot.paramMap.get("postId");
+    postService.getPost(subtireddName, postId);
     this.currentPost$ = postService.currentPost$;
   }
 
