@@ -18,10 +18,12 @@ export class CreatePostComponent {
       map(user => user.userName));
   }
 
+  @Input() userNotAllowed: boolean;
   @Input() currentSubtiredd: SubtireddSelectItem
   userName$: Observable<string>;
 
   openCreatePostModal(): void {
-    this.createPostModalService.openCreatePostModal(this.currentSubtiredd);
+    if(!this.userNotAllowed)
+      this.createPostModalService.openCreatePostModal(this.currentSubtiredd);
   }
 }

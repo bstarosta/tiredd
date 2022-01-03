@@ -7,14 +7,16 @@
   <div class="row">
     <div class="column">
       <trd-create-post *ngIf="isUserLoggedIn$ | async"
-                       [currentSubtiredd]="subtireddToSubtireddSelectItem(subtiredd)"></trd-create-post>
+                       [currentSubtiredd]="subtireddToSubtireddSelectItem(subtiredd)"
+                       [userNotAllowed]="!isUserJoined"></trd-create-post>
       <trd-posts-column></trd-posts-column>
     </div>
     <trd-about-community [currentSubtiredd]="subtireddToSubtireddSelectItem(subtiredd)"
                          [createDate]="subtiredd.createdAt"
                          [numberOfMembers]="subtiredd.userCount"
                          [description]="subtiredd.description"
-                         [isUserLoggedIn]="isUserLoggedIn$ | async"></trd-about-community>
+                         [isUserLoggedIn]="isUserLoggedIn$ | async"
+                         [isUserJoined]="isUserJoined"></trd-about-community>
   </div>
 </ng-container>
 <trd-page-loader *ngIf="pending"></trd-page-loader>

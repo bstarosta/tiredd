@@ -59,7 +59,7 @@ export class PopularCommunityItemComponent {
     this.communityMembershipService.joinCommunity(this.community.id)
     this.communityMembershipService.communityJoined$
       .pipe(
-        filter(subtireddId => subtireddId === this.community.id),
+        filter(subtiredd => subtiredd.id === this.community.id),
         take(1)
       )
       .subscribe(_ => {
@@ -74,7 +74,7 @@ export class PopularCommunityItemComponent {
     this.communityMembershipService.leaveCommunity(this.community.id)
     this.communityMembershipService.communityLeft$
       .pipe(
-        filter(subtireddId => subtireddId === this.community.id),
+        filter(subtiredd => subtiredd.id === this.community.id),
         take(1)
       )
       .subscribe(_ => {

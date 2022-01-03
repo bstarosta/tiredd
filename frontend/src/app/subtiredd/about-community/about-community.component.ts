@@ -11,6 +11,7 @@ import {SubtireddSelectItem} from "../../interfaces/subtiredd-select-item";
 export class AboutCommunityComponent {
 
   @Input() isUserLoggedIn: Boolean;
+  @Input() isUserJoined: boolean;
   @Input() currentSubtiredd: SubtireddSelectItem;
   @Input() description: string;
   @Input() numberOfMembers: number;
