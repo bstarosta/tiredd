@@ -41,7 +41,7 @@ namespace backend.Controllers
                 id = user.Id,
                 userName = user.UserName,
                 subtiredds = user.Subtiredds.Select(ToSubtireddJson),
-                manangedSubtiredds = user.ManagedSubtiredds.Select(ToSubtireddJson),
+                managedSubtiredds = user.ManagedSubtiredds.Select(ToSubtireddJson),
             };
         }
 

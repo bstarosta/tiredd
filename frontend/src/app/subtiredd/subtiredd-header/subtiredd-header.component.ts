@@ -16,9 +16,10 @@ export class SubtireddHeaderComponent {
   @Input() subtireddName: string
   @Input() imageUrl: string;
   @Input() hasUserJoined: Boolean = false;
+  @Input() isUserAdmin: Boolean = false;
   membershipButtonEnabled: Boolean = true;
   isMouseOver: Boolean = false;
-  isUserLoggedIn: Boolean = false
+  @Input() isUserLoggedIn: Boolean = false
   isUserLoggedInSubscription: Subscription
 
   constructor(

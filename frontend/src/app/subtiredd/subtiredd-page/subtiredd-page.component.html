@@ -1,6 +1,9 @@
 <ng-container *ngIf="!pending">
   <trd-subtiredd-header [subtireddId]="subtiredd.id" [subtireddName]="subtiredd.name"
-                        [imageUrl]="subtiredd.imageUrl"  ></trd-subtiredd-header>
+                        [imageUrl]="subtiredd.imageUrl"
+                        [hasUserJoined]="isUserJoined"
+                        [isUserAdmin]="isUserAdmin"
+                        [isUserLoggedIn]="isUserLoggedIn$ | async"></trd-subtiredd-header>
   <div class="row">
     <div class="column">
       <trd-create-post *ngIf="isUserLoggedIn$ | async"
