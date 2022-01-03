@@ -1,5 +1,5 @@
 import {Inject, Injectable} from "@angular/core";
-import {Observable, Subject} from "rxjs";
+import {BehaviorSubject, Observable, Subject} from "rxjs";
 import {API_BASE_URL} from "../utils/api-base-url";
 import {HttpClient} from "@angular/common/http";
 import {CreatePostFormOutput} from "../interfaces/create-post-form-output";
@@ -17,8 +17,11 @@ export class PostService {
   private postCreated: Subject<Post> = new Subject<Post>();
   postCreated$: Observable<Post> = this.postCreated.asObservable();
 
-  private currentPost: Subject<PostListItemInfo> = new Subject<PostListItemInfo>();
+  private currentPost: BehaviorSubject<PostListItemInfo> = new BehaviorSubject<PostListItemInfo>(null);
   currentPost$: Observable<PostListItemInfo> = this.currentPost.asObservable();
+
+  private notFoundError: BehaviorSubject<string> = new BehaviorSubject<string>(null);
+  notFoundError$: Observable<string> = this.notFoundError.asObservable();
 
   constructor(@Inject(API_BASE_URL) private baseUrl: string, private httpClient: HttpClient) {
   }
@@ -31,6 +34,13 @@ export class PostService {
   getPost(subtireddName: string, postId: number): void {
     this.httpClient
       .get<PostListItemInfo>(this.baseUrl + this.subtireddControllerUrl + "/" + subtireddName + "/post/" + postId)
-      .subscribe(post => this.currentPost.next(post), error => console.error(error))
+      .subscribe(post => this.currentPost.next(post),
+        error => {
+          if (error.status === 404) {
+            console.log(error)
+            this.notFoundError.next(error.error)
+          } else
+            console.log(error)
+        })
   }
 }
