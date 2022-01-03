@@ -64,8 +64,8 @@ namespace backend.Controllers
                 createdAt = post.CreatedAt,
                 subtireddId = post.SubtireddId,
                 authorId = post.AuthorId,
-                subtiredd = post.Subtiredd.Name,
-                author = post.Author.UserName,
+                subtireddName = post.Subtiredd.Name,
+                authorName = post.Author.UserName,
                 userVote = userId == null ? null : post.Votes.FirstOrDefault(v => v.UserId == userId)?.Type
             };
         }
