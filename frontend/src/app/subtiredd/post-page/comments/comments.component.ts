@@ -28,4 +28,8 @@ export class CommentsComponent {
   openAccountModal(mode: AccountModalMode): void {
     this.accountModalService.openAccountModal(mode);
   }
+
+  onCommentCreated(comment: Comment) {
+    console.log("Adding comment with text: " + comment.text)
+  }
 }
