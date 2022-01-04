@@ -45,7 +45,7 @@ export class UserService {
   }
 
   getUserData(): void {
-    this.httpClient.get<User>(this.baseUrl + "api/currentUser").subscribe(user => {
+    this.httpClient.get<User>(this.baseUrl + "api/current-user").subscribe(user => {
       this.user.next(user);
     })
   }
