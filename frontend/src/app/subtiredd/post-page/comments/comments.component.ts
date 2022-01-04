@@ -35,7 +35,7 @@ export class CommentsComponent {
 
   private addComment(comment: Comment) {
     if (!comment.parentCommentId)
-      this.commentsList.push(comment)
+      this.commentsList.unshift(comment)
     else
       this.addCommentToList(comment, this.commentsList);
   }
@@ -43,7 +43,7 @@ export class CommentsComponent {
   addCommentToList(comment: Comment, commentsList: Comment[]) {
     commentsList.forEach(c => {
       if (c.id == comment.parentCommentId)
-        c.replies.push(comment);
+        c.replies.unshift(comment);
       else
         this.addCommentToList(comment, c.replies);
     })

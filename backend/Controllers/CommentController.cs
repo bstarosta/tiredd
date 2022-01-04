@@ -52,7 +52,7 @@ namespace backend.Controllers
                     .Where(c => c.PostId == postId)
                     .ToListAsync();
                 var commentViewModels = ListToCommentJson(comments)
-                    .Where(c => c.ParentCommentId == null);
+                    .Where(c => c.ParentCommentId == null).OrderByDescending(c => c.CreatedAt);
                 return new ObjectResult(commentViewModels) {StatusCode = StatusCodes.Status200OK};
             }
         }
