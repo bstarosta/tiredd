@@ -13,7 +13,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace backend.Controllers
 {
-    [Route("api/post")]
+    [Route("api")]
     [ApiController]
     public class PostController : TireddController
     {
@@ -23,6 +23,7 @@ namespace backend.Controllers
 
         [Authorize]
         [HttpPost]
+        [Route("post")]
         public async Task<IActionResult> Create([FromBody] CreatePostModel model)
         {
             var isUserMemberOfSubtiredd = await IsUserMemberOfSubtiredd(model.SubtireddId);
@@ -40,6 +41,31 @@ namespace backend.Controllers
                 .Where(user => user.Id == UserId)
                 .SelectMany(user => user.Subtiredds)
                 .AnyAsync(subtiredd => subtiredd.Id == subtireddId);
+        }
+
+        [HttpGet]
+        [Route("posts/trending-today")]
+        public async Task<IActionResult> TrendingToday()
+        {
+            var trendingPosts = tireddDbContext.Posts
+                .Include(post => post.Subtiredd)
+                .Where(post => post.CreatedAt.Date == DateTime.Today)
+                .OrderByDescending(post => post.Score)
+                .Select(post => ToTrendingPostInfoJson(post))
+                .Take(4);
+            return Ok(trendingPosts);
+        }
+
+        private static object ToTrendingPostInfoJson(Post post)
+        {
+            return new
+            {
+                Id = post.Id,
+                Title = post.Title,
+                Text = post.Text,
+                ImageUrl = post.ImageUrl,
+                SubtireddName = post.Subtiredd.Name
+            };
         }
     }
 }

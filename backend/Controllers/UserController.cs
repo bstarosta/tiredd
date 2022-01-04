@@ -21,7 +21,7 @@ namespace backend.Controllers
 
         [Authorize]
         [HttpGet]
-        [Route("currentUser")]
+        [Route("current-user")]
         public async Task<IActionResult> CurrentUser()
         {
             var user = await tireddDbContext.Users
@@ -35,16 +35,20 @@ namespace backend.Controllers
         {
             return new
             {
-                id = user.Id,
-                userName = user.UserName,
-                subtiredds = user.Subtiredds.Select(ToSubtireddJson),
-                managedSubtiredds = user.ManagedSubtiredds.Select(ToSubtireddJson),
+                Id = user.Id,
+                UserName = user.UserName,
+                Subtiredds = user.Subtiredds.Select(ToSubtireddJson),
+                ManagedSubtiredds = user.ManagedSubtiredds.Select(ToSubtireddJson),
             };
         }
 
         private static object ToSubtireddJson(Subtiredd subtiredd)
         {
-            return new {id = subtiredd.Id, name = subtiredd.Name};
+            return new
+            {
+                Id = subtiredd.Id,
+                Name = subtiredd.Name
+            };
         }
     }
 }

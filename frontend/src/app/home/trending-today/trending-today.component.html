@@ -1,12 +1,14 @@
-<div>
+<div class="trending-today" *ngIf="trendingToday.length > 0">
   <p class="trending-today-text">{{"trendingToday" | translate}}</p>
   <div class="trending-today-content">
-    <div *ngFor="let post of trendingPosts" class="trending-post" [routerLink]="['/t', post.subtirred, post.id]">
-      <img src="{{post.imageUrl ? post.imageUrl : '../../../assets/images/placeholder-image.png'}}" alt="">
+    <div *ngFor="let post of trendingToday; let i = index" class="trending-post"
+         [routerLink]="['/t', post.subtireddName, post.id]">
+      <img src="{{post.imageUrl ? post.imageUrl : '../../../assets/images/text-post-placeholder-image-' + i +'.jpeg'}}"
+           alt="">
       <div class="post-image-shadow"></div>
-      <p class="post-title">{{post.title}}</p>
-      <p class="post-excerpt">{{post.excerpt}}</p>
-      <p class="post-subtiredd">t/{{post.subtirred}}</p>
+      <p class="post-title" [ngClass]="{'lower-title': post.imageUrl}">{{post.title}}</p>
+      <p class="post-excerpt">{{post.text}}</p>
+      <p class="post-subtiredd">t/{{post.subtireddName}}</p>
     </div>
   </div>
 </div>
