@@ -1,7 +1,8 @@
 export interface Comment {
   id: number
+  text: string
   authorName: string
   createdAt: Date
-  text: string
+  parentCommentId: number
   replies: Comment[]
 }

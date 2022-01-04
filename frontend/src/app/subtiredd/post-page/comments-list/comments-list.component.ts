@@ -48,6 +48,7 @@ export class CommentsListComponent implements OnInit, OnDestroy { // TODO: Split
   }
 
   onCommentCreated(comment: Comment) {
-    this.commentCreated.emit(comment);
+    // TODO: fix, different index
+    // this.showReplyInput[comment.parentCommentId] = false;
   }
 }

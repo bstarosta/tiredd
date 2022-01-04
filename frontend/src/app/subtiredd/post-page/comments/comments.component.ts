@@ -30,6 +30,23 @@ export class CommentsComponent {
   }
 
   onCommentCreated(comment: Comment) {
-    console.log("Adding comment with text: " + comment.text)
+    console.log("on comment created")
+    this.addComment(comment);
+  }
+
+  private addComment(comment: Comment) {
+    if (!comment.parentCommentId)
+      this.commentsList.push(comment)
+    else
+      this.addCommentToList(comment, this.commentsList);
+  }
+
+  addCommentToList(comment: Comment, commentsList: Comment[]) {
+    commentsList.forEach(c => {
+      if (c.id == comment.parentCommentId)
+        c.replies.push(comment);
+      else
+        this.addCommentToList(comment, c.replies);
+    })
   }
 }

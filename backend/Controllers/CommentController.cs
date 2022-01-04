@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using backend.Controllers.Models;
 using backend.Models;
@@ -27,7 +28,14 @@ namespace backend.Controllers
             {
                 var createdComment = await tireddDbContext.Comments.AddAsync(model.ToComment(UserId));
                 await tireddDbContext.SaveChangesAsync();
-                return new ObjectResult(createdComment.Entity) {StatusCode = StatusCodes.Status201Created};
+                var createdCommentViewModel = new CommentViewModel(
+                    createdComment.Entity.Id,
+                    createdComment.Entity.Text,
+                    User.FindFirstValue(ClaimTypes.Name),
+                    createdComment.Entity.CreatedAt,
+                    createdComment.Entity.ParentCommentId,
+                    new List<CommentViewModel>());
+                return new ObjectResult(createdCommentViewModel) {StatusCode = StatusCodes.Status201Created};
             }
         }
 
@@ -62,6 +70,6 @@ namespace backend.Controllers
                             ? new List<CommentViewModel>()
                             : ListToCommentJson(comment.ChildComments)))
                 .ToList();
-        } 
+        }
     }
 }
