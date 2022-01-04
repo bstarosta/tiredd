@@ -31,7 +31,6 @@ export class CreateCommentComponent {
   }
 
   onCommentCreated(comment: Comment) {
-    console.log("create-component emits")
     this.commentText = "";
     this.commentCreated.emit(comment)
   }

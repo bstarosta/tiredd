@@ -47,8 +47,7 @@ export class CommentsListComponent implements OnInit, OnDestroy { // TODO: Split
       this.accountModalService.openAccountModal('login')
   }
 
-  onCommentCreated(comment: Comment) {
-    // TODO: fix, different index
-    // this.showReplyInput[comment.parentCommentId] = false;
+  onCommentCreated(comment: Comment, commentIndex: number) {
+    this.showReplyInput[commentIndex] = false;
   }
 }

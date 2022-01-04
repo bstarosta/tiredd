@@ -30,7 +30,6 @@ export class CommentsComponent {
   }
 
   onCommentCreated(comment: Comment) {
-    console.log("on comment created")
     this.addComment(comment);
   }
 
