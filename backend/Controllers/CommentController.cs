@@ -24,8 +24,6 @@ namespace backend.Controllers
         [Route("comment")]
         public async Task<IActionResult> Create([FromBody] CreateCommentModel model)
         {
-            await using (tireddDbContext)
-            {
                 var createdComment = await tireddDbContext.Comments.AddAsync(model.ToComment(UserId));
                 await tireddDbContext.SaveChangesAsync();
                 var createdCommentViewModel = new CommentViewModel(
@@ -36,7 +34,6 @@ namespace backend.Controllers
                     createdComment.Entity.ParentCommentId,
                     new List<CommentViewModel>());
                 return new ObjectResult(createdCommentViewModel) {StatusCode = StatusCodes.Status201Created};
-            }
         }
 
         [HttpGet]

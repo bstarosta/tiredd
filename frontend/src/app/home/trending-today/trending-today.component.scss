@@ -2,7 +2,11 @@
 
 :host {
   display: flex;
-  margin: 10px 0 20px;
+  margin: 10px 0 10px;
+}
+
+.trending-today {
+  margin: 10px 0 10px 0;
 }
 
 .trending-today-content {
@@ -30,6 +34,7 @@ img {
 
 .trending-post {
   height: 170px;
+  max-width: 325px;
   margin: 0 6px;
   cursor: pointer;
 }
@@ -48,6 +53,10 @@ img {
   left: 10px;
   font-size: 24px;
   color: ui-colors.$trending-today-text-color;
+}
+
+.lower-title {
+  top: -240px;
 }
 
 .post-excerpt {

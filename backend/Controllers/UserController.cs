@@ -21,33 +21,34 @@ namespace backend.Controllers
 
         [Authorize]
         [HttpGet]
-        [Route("currentUser")]
+        [Route("current-user")]
         public async Task<IActionResult> CurrentUser()
         {
-            await using (tireddDbContext)
-            {
-                var user = await tireddDbContext.Users
-                    .Include(user => user.Subtiredds)
-                    .Include(user => user.ManagedSubtiredds)
-                    .SingleAsync(user => user.Id == UserId);
-                return Ok(ToCurrentUserJson(user));
-            }
+            var user = await tireddDbContext.Users
+                .Include(user => user.Subtiredds)
+                .Include(user => user.ManagedSubtiredds)
+                .SingleAsync(user => user.Id == UserId);
+            return Ok(ToCurrentUserJson(user));
         }
 
         private static object ToCurrentUserJson(User user)
         {
             return new
             {
-                id = user.Id,
-                userName = user.UserName,
-                subtiredds = user.Subtiredds.Select(ToSubtireddJson),
-                managedSubtiredds = user.ManagedSubtiredds.Select(ToSubtireddJson),
+                Id = user.Id,
+                UserName = user.UserName,
+                Subtiredds = user.Subtiredds.Select(ToSubtireddJson),
+                ManagedSubtiredds = user.ManagedSubtiredds.Select(ToSubtireddJson),
             };
         }
 
         private static object ToSubtireddJson(Subtiredd subtiredd)
         {
-            return new {id = subtiredd.Id, name = subtiredd.Name};
+            return new
+            {
+                Id = subtiredd.Id,
+                Name = subtiredd.Name
+            };
         }
     }
 }
