@@ -9,7 +9,7 @@
       <trd-create-post *ngIf="isUserLoggedIn$ | async"
                        [currentSubtiredd]="subtireddToSubtireddSelectItem(subtiredd)"
                        [userNotAllowed]="!isUserJoined"></trd-create-post>
-      <trd-posts-column></trd-posts-column>
+      <trd-posts-column [subtireddId]="subtiredd.id"></trd-posts-column>
     </div>
     <trd-about-community [currentSubtiredd]="subtireddToSubtireddSelectItem(subtiredd)"
                          [createDate]="subtiredd.createdAt"

@@ -1,3 +1,9 @@
 <trd-post-list-order-picker [selectedOrder]="selectedOrder"
                             (orderPicked)="onOrderPicked($event)"></trd-post-list-order-picker>
-<trd-post-list [posts]="postList$ | async"></trd-post-list>
+<trd-post-list infiniteScroll (scrolled)="onScroll()" [infiniteScrollThrottle]="500" [posts]="postList"></trd-post-list>
+<div *ngIf="postListEndReached">
+  No more posts found
+</div>
+<div *ngIf="loadingPosts">
+  łaadowaaanko!!
+</div>
