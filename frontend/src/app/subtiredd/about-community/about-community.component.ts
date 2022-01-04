@@ -25,7 +25,7 @@ export class AboutCommunityComponent {
     if (this.isUserLoggedIn)
       this.createPostModalService.openCreatePostModal(this.currentSubtiredd);
     else
-      this.accountModalService.openAccountModal("register");
+      this.accountModalService.openAccountModal("login");
   }
 
 }

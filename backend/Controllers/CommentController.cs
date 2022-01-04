@@ -18,12 +18,9 @@ namespace backend.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateCommentModel model)
         {
-            await using (tireddDbContext)
-            {
-                var createdComment = await tireddDbContext.Comments.AddAsync(model.ToComment(UserId));
-                await tireddDbContext.SaveChangesAsync();
-                return new ObjectResult(createdComment.Entity) {StatusCode = StatusCodes.Status201Created};
-            }
+            var createdComment = await tireddDbContext.Comments.AddAsync(model.ToComment(UserId));
+            await tireddDbContext.SaveChangesAsync();
+            return new ObjectResult(createdComment.Entity) {StatusCode = StatusCodes.Status201Created};
         }
     }
 }

@@ -24,14 +24,11 @@ namespace backend.Controllers
         [Route("currentUser")]
         public async Task<IActionResult> CurrentUser()
         {
-            await using (tireddDbContext)
-            {
-                var user = await tireddDbContext.Users
-                    .Include(user => user.Subtiredds)
-                    .Include(user => user.ManagedSubtiredds)
-                    .SingleAsync(user => user.Id == UserId);
-                return Ok(ToCurrentUserJson(user));
-            }
+            var user = await tireddDbContext.Users
+                .Include(user => user.Subtiredds)
+                .Include(user => user.ManagedSubtiredds)
+                .SingleAsync(user => user.Id == UserId);
+            return Ok(ToCurrentUserJson(user));
         }
 
         private static object ToCurrentUserJson(User user)
