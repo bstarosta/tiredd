@@ -17,12 +17,12 @@ export class PostColumnComponent {
   postList$: Observable<PostListItemInfo[]>;
 
   constructor(private postColumnService: PostColumnService) {
-    postColumnService.getPostList(this.selectedOrder);
+    postColumnService.getPostList(this.selectedOrder, 2);
     this.postList$ = postColumnService.postList$;
   }
 
   onOrderPicked(postListOrder: PostListOrder) {
-    this.postColumnService.getPostList(postListOrder);
+    this.postColumnService.getPostList(postListOrder, 2);
     this.selectedOrder = postListOrder;
   }
 
