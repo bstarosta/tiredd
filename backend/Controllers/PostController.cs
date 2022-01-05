@@ -25,7 +25,6 @@ namespace backend.Controllers
         [Authorize]
         [Route("post")]
         [HttpPost]
-        [Route("post")]
         public async Task<IActionResult> Create([FromBody] CreatePostModel model)
         {
             var isUserMemberOfSubtiredd = await IsUserMemberOfSubtiredd(model.SubtireddId);
@@ -81,7 +80,15 @@ namespace backend.Controllers
                 .Include(p => p.Votes);
             var filteredBySubtiredd = subtireddId.HasValue ?
                 postsWithRelatedObjects.Where(p => p.SubtireddId == subtireddId) : postsWithRelatedObjects;
-            var sortedSubtiredds = await GetSortedQuerry(filteredBySubtiredd, sorting).Select(post => new
+            var sortedPosts = GetSortedQuery(filteredBySubtiredd, sorting).Select(post => ToPostJson(post, UserId));
+            var postPage = await sortedPosts.Skip(pageSize * (pageNumber - 1)).Take(pageSize).ToListAsync();
+
+            return new ObjectResult(postPage) {StatusCode = StatusCodes.Status200OK};
+        }
+
+        private static object ToPostJson(Post post, string userId)
+        {
+            return new
             {
                 id = post.Id,
                 title = post.Title,
@@ -92,18 +99,12 @@ namespace backend.Controllers
                 authorId = post.AuthorId,
                 subtireddName = post.Subtiredd.Name,
                 authorName = post.Author.UserName,
-                userVote = GetUserVote(post, UserId)
-            }).Skip(pageSize * (pageNumber-1)).Take(pageSize).ToListAsync();
-
-            return new ObjectResult(sortedSubtiredds) {StatusCode = StatusCodes.Status200OK};
+                userVote = userId == null ? null : post.Votes.FirstOrDefault(v => v.UserId == userId)?.Type
+                
+            };
         }
 
-        private static object GetUserVote(Post post, string userId)
-        {
-            return userId == null ? null : post.Votes.FirstOrDefault(v => v.UserId == userId)?.Type;
-        }
-
-        private IQueryable<Post> GetSortedQuerry(IQueryable<Post> filteredPosts, PostSorting sorting)
+        private static IQueryable<Post> GetSortedQuery(IQueryable<Post> filteredPosts, PostSorting sorting)
         {
             var now = DateTime.Now;
 
@@ -111,7 +112,7 @@ namespace backend.Controllers
             {
                 PostSorting.New => filteredPosts.OrderByDescending(p => p.CreatedAt),
                 PostSorting.Top => filteredPosts.OrderByDescending(p => p.Score),
-                PostSorting.Hot => filteredPosts.OrderByDescending(p => p.Score/EF.Functions.DateDiffSecond(p.CreatedAt, DateTime.Now))
+                PostSorting.Hot => filteredPosts.OrderByDescending(p => (double)p.Score/EF.Functions.DateDiffSecond(p.CreatedAt, DateTime.Now))
             };
         }
     }

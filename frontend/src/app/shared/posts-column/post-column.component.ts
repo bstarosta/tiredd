@@ -11,7 +11,7 @@ const DEFAULT_ORDER: PostListOrder = "hot";
   templateUrl: './post-column.component.html',
   styleUrls: ['./post-column.component.scss']
 })
-export class PostColumnComponent implements OnInit{
+export class PostColumnComponent implements OnInit {
 
   selectedOrder: PostListOrder = DEFAULT_ORDER;
   postList: PostListItemInfo[] = [];
@@ -23,14 +23,14 @@ export class PostColumnComponent implements OnInit{
   constructor(private postColumnService: PostColumnService) {
 
     postColumnService.clearPostList();
-    postColumnService.postList$.pipe(filter(posts => posts != null)).subscribe(posts => {
-      this.loadingPosts = false;
-      this.postList = [...this.postList, ...posts];
-      if (posts.length === 0) {
-        console.log("End reached")
-        this.postListEndReached = true;
-      }
-    })
+    postColumnService.postList$.pipe(filter(posts => posts !== null && posts !== undefined))
+      .subscribe(posts => {
+        this.loadingPosts = false;
+        this.postList = [...this.postList, ...posts];
+        if (posts.length === 0) {
+          this.postListEndReached = true;
+        }
+      })
   }
 
   onScroll() {
@@ -38,6 +38,7 @@ export class PostColumnComponent implements OnInit{
   }
 
   onOrderPicked(postListOrder: PostListOrder) {
+    this.loadingPosts = true;
     this.postList = [];
     this.pageNumber = 1;
     this.postColumnService.getPostList(postListOrder, this.pageNumber, this.subtireddId);
@@ -50,15 +51,16 @@ export class PostColumnComponent implements OnInit{
   }
 
   loadMorePosts(): void {
-    if(!this.postListEndReached) {
+    if (!this.postListEndReached) {
       this.pageNumber = this.pageNumber + 1;
+      this.loadingPosts = true;
       this.postColumnService.getPostList(this.selectedOrder, this.pageNumber, this.subtireddId);
     }
   }
 
   loadPosts(): void {
-   this.postColumnService.getPostList(this.selectedOrder, this.pageNumber, this.subtireddId);
-   this.loadingPosts = true;
+    this.postColumnService.getPostList(this.selectedOrder, this.pageNumber, this.subtireddId);
+    this.loadingPosts = true;
   }
 
 }

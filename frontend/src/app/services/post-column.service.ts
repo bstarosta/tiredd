@@ -25,7 +25,6 @@ export class PostColumnService {
 
     this.httpClient.get<PostListItemInfo[]>(this.baseUrl + `api/posts/${sorting}`,
       {params: params}).subscribe(posts => {
-        console.log(posts);
         this.postList.next(posts);
     })
   }
