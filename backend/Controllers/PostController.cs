@@ -25,6 +25,7 @@ namespace backend.Controllers
         [Authorize]
         [Route("post")]
         [HttpPost]
+        [Route("post")]
         public async Task<IActionResult> Create([FromBody] CreatePostModel model)
         {
             var isUserMemberOfSubtiredd = await IsUserMemberOfSubtiredd(model.SubtireddId);
@@ -45,6 +46,31 @@ namespace backend.Controllers
         }
 
         [HttpGet]
+        [Route("posts/trending-today")]
+        public async Task<IActionResult> TrendingToday()
+        {
+            var trendingPosts = tireddDbContext.Posts
+                .Include(post => post.Subtiredd)
+                .Where(post => post.CreatedAt.Date == DateTime.Today)
+                .OrderByDescending(post => post.Score)
+                .Select(post => ToTrendingPostInfoJson(post))
+                .Take(4);
+            return Ok(trendingPosts);
+        }
+
+        private static object ToTrendingPostInfoJson(Post post)
+        {
+            return new
+            {
+                Id = post.Id,
+                Title = post.Title,
+                Text = post.Text,
+                ImageUrl = post.ImageUrl,
+                SubtireddName = post.Subtiredd.Name
+            };
+        }
+
+        [HttpGet]
         [Route("posts/{sorting}")]
         public async Task<IActionResult> GetPostList(PostSorting sorting, [FromQuery]int pageNumber, [FromQuery]int? subtireddId)
         {
@@ -55,7 +81,7 @@ namespace backend.Controllers
                 .Include(p => p.Votes);
             var filteredBySubtiredd = subtireddId.HasValue ?
                 postsWithRelatedObjects.Where(p => p.SubtireddId == subtireddId) : postsWithRelatedObjects;
-            var sortedSubtiredds = await GetSortedQuerry(filteredBySubtiredd, sorting).Select(post => new 
+            var sortedSubtiredds = await GetSortedQuerry(filteredBySubtiredd, sorting).Select(post => new
             {
                 id = post.Id,
                 title = post.Title,
