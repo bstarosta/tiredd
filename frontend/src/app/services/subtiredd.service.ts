@@ -42,4 +42,8 @@ export class SubtireddService {
       }
     )
   }
+
+  clearSubtiredd(): void {
+    this.currentSubtiredd.next(null);
+  }
 }

@@ -43,7 +43,7 @@ export class SubtireddPageComponent implements OnDestroy {
       })
     this.isUserLoggedIn$ = userService.isUserLoggedIn$;
     this.userSubscription = userService.user$.pipe(filter(u => !!u)).subscribe(user => {
-      this.user = user
+      this.user = user;
     });
   }
 
@@ -56,6 +56,7 @@ export class SubtireddPageComponent implements OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.subtireddService.clearSubtiredd();
     this.userSubscription.unsubscribe();
     this.routeSubscription.unsubscribe();
     this.subtireddSubscription.unsubscribe();

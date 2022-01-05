@@ -1,3 +1,10 @@
 <trd-post-list-order-picker [selectedOrder]="selectedOrder"
                             (orderPicked)="onOrderPicked($event)"></trd-post-list-order-picker>
-<trd-post-list [posts]="postList$ | async"></trd-post-list>
+<trd-post-list infiniteScroll (scrolled)="onScroll()" [infiniteScrollThrottle]="500" [posts]="postList"></trd-post-list>
+<div class="post-list-end" *ngIf="postListEndReached">
+  <p *ngIf="postList.length !== 0">{{"noMorePostsFound" | translate}}</p>
+  <p *ngIf="postList.length === 0">{{"noPostsFound" | translate}}</p>
+</div>
+<div class="spinner" *ngIf="loadingPosts">
+  <mat-progress-spinner color="accent" [mode]="'indeterminate'" diameter="50"></mat-progress-spinner>
+</div>

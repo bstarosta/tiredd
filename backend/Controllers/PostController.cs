@@ -6,6 +6,7 @@ using backend.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 
 namespace backend.Controllers
@@ -19,8 +20,8 @@ namespace backend.Controllers
         }
 
         [Authorize]
-        [HttpPost]
         [Route("post")]
+        [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreatePostModel model)
         {
             var isUserMemberOfSubtiredd = await IsUserMemberOfSubtiredd(model.SubtireddId);
@@ -62,6 +63,53 @@ namespace backend.Controllers
                 Text = post.Text,
                 ImageUrl = post.ImageUrl,
                 SubtireddName = post.Subtiredd.Name
+            };
+        }
+
+        [HttpGet]
+        [Route("posts/{sorting}")]
+        public async Task<IActionResult> GetPostList(PostSorting sorting, [FromQuery]int pageNumber, [FromQuery]int? subtireddId)
+        {
+            int pageSize = 10;
+            var postsWithRelatedObjects = tireddDbContext.Posts
+                .Include(p => p.Author)
+                .Include(p => p.Subtiredd)
+                .Include(p => p.Votes);
+            var filteredBySubtiredd = subtireddId.HasValue ?
+                postsWithRelatedObjects.Where(p => p.SubtireddId == subtireddId) : postsWithRelatedObjects;
+            var sortedPosts = GetSortedQuery(filteredBySubtiredd, sorting).Select(post => ToPostJson(post, UserId));
+            var postPage = await sortedPosts.Skip(pageSize * (pageNumber - 1)).Take(pageSize).ToListAsync();
+
+            return new ObjectResult(postPage) {StatusCode = StatusCodes.Status200OK};
+        }
+
+        private static object ToPostJson(Post post, string userId)
+        {
+            return new
+            {
+                id = post.Id,
+                title = post.Title,
+                text = post.Text,
+                imageUrl = post.ImageUrl,
+                score = post.Score,
+                createdAt = post.CreatedAt,
+                authorId = post.AuthorId,
+                subtireddName = post.Subtiredd.Name,
+                authorName = post.Author.UserName,
+                userVote = userId == null ? null : post.Votes.FirstOrDefault(v => v.UserId == userId)?.Type
+                
+            };
+        }
+
+        private static IQueryable<Post> GetSortedQuery(IQueryable<Post> filteredPosts, PostSorting sorting)
+        {
+            var now = DateTime.Now;
+
+            return sorting switch
+            {
+                PostSorting.New => filteredPosts.OrderByDescending(p => p.CreatedAt),
+                PostSorting.Top => filteredPosts.OrderByDescending(p => p.Score),
+                PostSorting.Hot => filteredPosts.OrderByDescending(p => (double)p.Score/EF.Functions.DateDiffSecond(p.CreatedAt, DateTime.Now))
             };
         }
     }

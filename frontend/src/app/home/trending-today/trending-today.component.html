@@ -1,4 +1,4 @@
-<div class="trending-today" *ngIf="trendingToday.length > 0">
+<div class="trending-today" *ngIf="trendingToday">
   <p class="trending-today-text">{{"trendingToday" | translate}}</p>
   <div class="trending-today-content">
     <div *ngFor="let post of trendingToday; let i = index" class="trending-post"

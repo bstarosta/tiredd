@@ -31,6 +31,7 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {LocalizedDatePipe} from './localized-date.pipe';
 import { PageLoaderComponent } from './page-loader/page-loader.component';
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {InfiniteScrollModule} from "ngx-infinite-scroll";
 
 @NgModule({
   declarations: [LanguagePickerComponent, HeaderComponent, SearchbarComponent, HeaderSubtireddSelectComponent, UserAvatarComponent, PostListItemComponent, PostListComponent, PostListOrderPickerComponent, PostColumnComponent, CommunityAvatarComponent, CreatePostComponent, CreatePostModalComponent, CreatePostSubtireddSelectComponent, HeaderUserAvatarComponent, LocalizedDatePipe, CreateCommunityModalComponent, CreateCommunityFormComponent, SuccessSnackbarComponent, PageLoaderComponent],
@@ -48,7 +49,8 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
         MatTabsModule,
         ReactiveFormsModule,
         MatSnackBarModule,
-        MatProgressSpinnerModule
+        MatProgressSpinnerModule,
+        InfiniteScrollModule
     ],
   exports: [
     LanguagePickerComponent,

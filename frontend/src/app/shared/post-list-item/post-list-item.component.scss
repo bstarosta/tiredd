@@ -1,5 +1,9 @@
 @use "../../../style/ui-colors";
 
+:host {
+  min-width: 100%;
+}
+
 .post {
   display: flex;
   width: 100%;

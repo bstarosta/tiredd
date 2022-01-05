@@ -72,6 +72,8 @@
   "error.postImageUrl.invalidUrl": "Podaj poprawny link",
   "selectSubtiredd": "Wybierz subtiredd",
   "joinToPost": "Dołącz do społeczności, aby tworzyć posty",
+  "noMorePostsFound": "Nie znaleziono więcej postów",
+  "noPostsFound": "W tej społeczności nie ma jeszcze postów",
   "error.subtireddNotFound": "Nie ma takiego subtiredda",
   "error.postNotFound": "Nie ma takiego posta w tym subtireddzie"
 }
