@@ -1,4 +1,4 @@
-<div [routerLink]="['/t', community.name]">
+<div [routerLink]="['/t', community.name]" class="contents">
   <div class="header">
     <img alt="" src="{{community.imageUrl}}">
   </div>
@@ -9,14 +9,15 @@
   <div class="content">
     <div class="description">{{community.description}}</div>
     <div class="membersInfo">
-      <span class="number">{{community.numberOfMembers | number}}</span>
+      <span class="number">{{community.userCount | number}}</span>
       <span class="members">{{"ofMembers" | translate}}</span>
     </div>
     <div class="createdAt">
       <span class="material-icons">cake</span>
-      <span class="date">{{"created" | translate}} {{community.createDate | localizedDate:'d MMM y'}}</span>
+      <span class="date">{{"created" | translate}} {{community.createdAt | localizedDate:'d MMM y'}}</span>
     </div>
-    <button (click)="onJoinClick($event)" (mouseover)="isMouseOver=true" (mouseout)="isMouseOver=false">
+    <button (click)="onMembershipClick($event)" (mouseover)="isMouseOver=true" (mouseout)="isMouseOver=false"
+            [disabled]="!membershipButtonEnabled || isUserAdmin">
       {{(hasUserJoined ? (isMouseOver ? "leave" : "joined") : "joinCommunity") | translate}}
     </button>
   </div>

@@ -1,6 +1,6 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {CommentService} from "../../../services/comment.service";
-import {CreateComment} from "../../../interfaces/create-comment";
+import {Comment} from "../../../interfaces/comment";
 
 @Component({
   selector: 'trd-create-comment',
@@ -11,6 +11,7 @@ export class CreateCommentComponent {
 
   @Input() postId: number
   @Input() parentCommentId: number
+  @Output() commentCreated: EventEmitter<Comment> = new EventEmitter<Comment>();
   commentText: string
 
   constructor(private commentService: CommentService) {
@@ -29,7 +30,8 @@ export class CreateCommentComponent {
     })
   }
 
-  onCommentCreated(comment: CreateComment) {
+  onCommentCreated(comment: Comment) {
     this.commentText = "";
+    this.commentCreated.emit(comment)
   }
 }

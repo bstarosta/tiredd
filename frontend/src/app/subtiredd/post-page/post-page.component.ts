@@ -1,38 +1,64 @@
-import {AfterViewInit, Component} from '@angular/core';
+import {AfterViewInit, Component, OnDestroy} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {ViewportScroller} from "@angular/common";
 import {PostListItemInfo} from "../../interfaces/post-list-item-info";
+import {PostService} from "../../services/post.service";
+import {Observable, Subscription} from "rxjs";
+import {combineLatest, filter, merge} from "rxjs/operators";
+import {PostCommentsService} from "../../services/post-comments.service";
+import {Comment} from "../../interfaces/comment";
+import {SubtireddService} from "../../services/subtiredd.service";
+import {Subtiredd} from "../../interfaces/subtiredd";
 
 @Component({
   selector: 'trd-post-page',
   templateUrl: './post-page.component.html',
   styleUrls: ['./post-page.component.scss']
 })
-export class PostPageComponent implements AfterViewInit {
+export class PostPageComponent implements AfterViewInit, OnDestroy {
 
-  post: PostListItemInfo = {
-    id: 1,
-    title: "This is a post",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    imageUrl: "https://cdn.vox-cdn.com/thumbor/kcwYR08QGJ5Srb-Z_VY8bXp01SI=/0x0:1920x1080/1200x800/filters:focal(807x387:1113x693)/cdn.vox-cdn.com/uploads/chorus_image/image/59245045/hangoutsscreen_3.0.jpg",
-    score: 100,
-    createdAt: new Date("2021-12-18T18:21:00Z"),
-    subtireddId: 1,
-    authorId: "1",
-    subtireddName: "subtiredd",
-    authorName: 'author1',
-    userVote: null,
-  }
+  currentPost$: Observable<PostListItemInfo>;
+  notFoundError$: Observable<string>;
+  commentsList$: Observable<Comment[]>;
+  currentSubtiredd$: Observable<Subtiredd>;
+  postPageData$: Observable<any>;
+  postServiceSubscription: Subscription;
+  pending: Boolean = true;
 
-  constructor(private route: ActivatedRoute, private scroller: ViewportScroller) {
-    scroller.setOffset([0, 128])
+  constructor(private route: ActivatedRoute,
+              private scroller: ViewportScroller,
+              private postService: PostService,
+              private postCommentsService: PostCommentsService,
+              private subtireddService: SubtireddService) {
+    scroller.setOffset([0, 128]);
+    let subtireddName = route.snapshot.paramMap.get("subtireddName");
+    let postId = +route.snapshot.paramMap.get("postId");
+
+    postService.getPost(subtireddName, postId);
+    this.currentPost$ = postService.currentPost$.pipe(filter(i => !!i));
+    this.notFoundError$ = postService.notFoundError$;
+
+    postCommentsService.getCommentsList(postId);
+    this.commentsList$ = postCommentsService.commentsList$.pipe(filter(i => !!i));
+
+    subtireddService.getSubtiredd(subtireddName);
+    this.currentSubtiredd$ = subtireddService.currentSubtiredd$.pipe(filter(i => !!i));
+
+    this.postPageData$ = this.currentPost$.pipe(combineLatest([this.commentsList$, this.currentSubtiredd$]));
+    this.postServiceSubscription = this.postPageData$
+      .pipe(merge(postService.notFoundError$), filter(i => !!i))
+      .subscribe(_ => this.pending = false);
   }
 
   ngAfterViewInit(): void {
-    const scrollToComments = this.route.snapshot.fragment === "comments"
+    const scrollToComments = this.route.snapshot.fragment === "comments";
     if (scrollToComments)
-      this.scroller.scrollToAnchor("comments")
+      this.scroller.scrollToAnchor("comments");
     else
-      this.scroller.scrollToPosition([0, 0])
+      this.scroller.scrollToPosition([0, 0]);
+  }
+
+  ngOnDestroy(): void {
+    this.postServiceSubscription.unsubscribe();
   }
 }

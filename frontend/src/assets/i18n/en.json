@@ -72,5 +72,7 @@
   "selectSubtiredd": "Select subtiredd",
   "joinToPost": "Joint this community to create posts",
   "noMorePostsFound": "No more posts found",
-  "noPostsFound": "There are no posts in this community"
+  "noPostsFound": "There are no posts in this community",
+  "error.subtireddNotFound": "No such subtiredd",
+  "error.postNotFound": "No such post in this subtiredd"
 }

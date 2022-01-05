@@ -1,21 +1,22 @@
 <div *ngFor="let comment of comments; let commentIndex = index" class="comment">
   <div class="avatar-column">
-    <trd-user-avatar class="author-avatar" [userName]="comment.author"></trd-user-avatar>
+    <trd-user-avatar class="author-avatar" [userName]="comment.authorName"></trd-user-avatar>
     <div class="comment-line"></div>
   </div>
   <div class="comment-column">
     <div class="comment-info">
-      <p class="comment-author">{{comment.author}}</p>
+      <p class="comment-author">{{comment.authorName}}</p>
       <span class="dot-separator">•</span>
-      <p class="comment-timestamp">{{comment.timestamp | localizedDate:'d MMM y, H:mm '}}</p>
+      <p class="comment-timestamp">{{comment.createdAt | localizedDate:'d MMM y, H:mm '}}</p>
     </div>
     <p class="comment-text">{{comment.text}}</p>
     <div class="reply" (click)="onReplyToggle(commentIndex)">
       <span class="material-icons reply-icon">comment</span>
       <span class="reply-text">{{"reply" | translate}}</span>
     </div>
-    <trd-create-comment *ngIf="showReplyInput[commentIndex]" [parentCommentId]="comment.id"
+    <trd-create-comment *ngIf="showReplyInput[commentIndex]" [parentCommentId]="comment.id" [postId]="postId"
+                        (commentCreated)="onCommentCreated($event, commentIndex)"
                         class="create-reply-comment"></trd-create-comment>
-    <trd-comments-list [comments]="comment.replies"></trd-comments-list>
+    <trd-comments-list [comments]="comment.replies" [postId]="postId"></trd-comments-list>
   </div>
 </div>
