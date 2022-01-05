@@ -1,6 +1,7 @@
 <div class="contents">
   <div class="header">
-        <img alt="" src="{{(popularCommunities && popularCommunities[0].imageUrl) ?? 'assets/images/popular-communities-placeholder-image.png'}}">
+    <img alt=""
+         src="{{popularCommunities?.length ? popularCommunities[0].imageUrl : 'assets/images/popular-communities-placeholder-image.png'}}">
     <div class="header-image-shadow"></div>
     <p class="header-text">{{"popularCommunities" | translate}}</p>
   </div>
