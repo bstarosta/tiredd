@@ -60,5 +60,6 @@ export class PostPageComponent implements AfterViewInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.postServiceSubscription.unsubscribe();
+    this.subtireddService.clearSubtiredd();
   }
 }
