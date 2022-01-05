@@ -6,6 +6,6 @@
       <trd-post-list-item [post]="currentPost$ | async" [addRoutesToPost]="false"></trd-post-list-item>
       <trd-comments id="comments" [commentsList]="commentsList$ | async"></trd-comments>
     </div>
-    <trd-post-community-details></trd-post-community-details>
+    <trd-post-community-details [community]="currentSubtiredd$ | async"></trd-post-community-details>
   </div>
 </ng-container>

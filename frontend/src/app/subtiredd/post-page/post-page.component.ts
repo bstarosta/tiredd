@@ -7,6 +7,8 @@ import {Observable, Subscription} from "rxjs";
 import {combineLatest, filter, merge} from "rxjs/operators";
 import {PostCommentsService} from "../../services/post-comments.service";
 import {Comment} from "../../interfaces/comment";
+import {SubtireddService} from "../../services/subtiredd.service";
+import {Subtiredd} from "../../interfaces/subtiredd";
 
 @Component({
   selector: 'trd-post-page',
@@ -18,14 +20,16 @@ export class PostPageComponent implements AfterViewInit, OnDestroy {
   currentPost$: Observable<PostListItemInfo>;
   notFoundError$: Observable<string>;
   commentsList$: Observable<Comment[]>;
+  currentSubtiredd$: Observable<Subtiredd>;
   postPageData$: Observable<any>;
-  pending: Boolean = true;
   postServiceSubscription: Subscription;
+  pending: Boolean = true;
 
   constructor(private route: ActivatedRoute,
               private scroller: ViewportScroller,
               private postService: PostService,
-              private postCommentsService: PostCommentsService) {
+              private postCommentsService: PostCommentsService,
+              private subtireddService: SubtireddService) {
     scroller.setOffset([0, 128]);
     let subtireddName = route.snapshot.paramMap.get("subtireddName");
     let postId = +route.snapshot.paramMap.get("postId");
@@ -37,7 +41,10 @@ export class PostPageComponent implements AfterViewInit, OnDestroy {
     postCommentsService.getCommentsList(postId);
     this.commentsList$ = postCommentsService.commentsList$.pipe(filter(i => !!i));
 
-    this.postPageData$ = this.currentPost$.pipe(combineLatest(this.commentsList$));
+    subtireddService.getSubtiredd(subtireddName);
+    this.currentSubtiredd$ = subtireddService.currentSubtiredd$.pipe(filter(i => !!i));
+
+    this.postPageData$ = this.currentPost$.pipe(combineLatest([this.commentsList$, this.currentSubtiredd$]));
     this.postServiceSubscription = this.postPageData$
       .pipe(merge(postService.notFoundError$), filter(i => !!i))
       .subscribe(_ => this.pending = false);

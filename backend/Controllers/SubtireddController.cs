@@ -127,11 +127,9 @@ namespace backend.Controllers
         }
 
         [HttpGet]
-        [Route("{subtireddName}/post/{postId}")]
+        [Route("subtiredd/{subtireddName}/post/{postId}")]
         public async Task<IActionResult> Get(string subtireddName, int postId)
         {
-            await using (tireddDbContext)
-            {
                 var subtiredd = await tireddDbContext.Subtiredds
                     .Include(s => s.Posts).ThenInclude(p => p.Author)
                     .Include(s => s.Posts).ThenInclude(p => p.Votes)
@@ -142,7 +140,6 @@ namespace backend.Controllers
                 if (post == null)
                     return new NotFoundObjectResult("No such post in this subtiredd");
                 return new ObjectResult(ToPostJson(subtiredd, post, UserId)) {StatusCode = StatusCodes.Status200OK};
-            }
         }
 
         private static object ToPostJson(Subtiredd subtiredd, Post post, string userId)
