@@ -1,4 +1,4 @@
-<div *ngIf="pending">ładowanko</div>
+<trd-page-loader *ngIf="pending"></trd-page-loader>
 <ng-container *ngIf="!pending">
   <div *ngIf="!!(notFoundError$ | async)" class="error-message">{{notFoundError$ | async}}</div>
   <div *ngIf="!(notFoundError$ | async)" class="row">
