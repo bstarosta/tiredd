@@ -6,7 +6,7 @@
       t/{{community.name}}</p>
   </div>
   <button class="join-community-button" (click)="onMembershipClick($event)" (mouseover)="isMouseOver=true"
-          (mouseout)="isMouseOver=false" [disabled]="!membershipButtonEnabled">
+          (mouseout)="isMouseOver=false" [disabled]="!membershipButtonEnabled || isUserAdmin">
     {{(hasUserJoined ? (isMouseOver ? "leave" : "joined") : "joinCommunity") | translate}}
   </button>
 </div>

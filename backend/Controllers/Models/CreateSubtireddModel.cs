@@ -17,15 +17,16 @@ namespace backend.Models
         [Required(ErrorMessage = "Subtiredd description is required")]
         public string Description { get; set; }
 
-        public Subtiredd ToSubtiredd(string adminId)
+        public Subtiredd ToSubtiredd(User admin)
         {
             return new Subtiredd()
             {
-                AdminId = adminId,
+                Admin = admin,
+                Users = new List<User> {admin},
                 Name = Name,
                 ImageUrl = ImageUrl,
                 Description = Description,
-                CreatedAt = DateTime.Now
+                CreatedAt = DateTime.Now,
             };
         }
     }

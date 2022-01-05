@@ -17,6 +17,7 @@ export class PopularCommunityItemComponent implements OnInit {
   @Input() index: number
   @Input() community: PopularSubtireddInfo
   hasUserJoined: Boolean = false
+  isUserAdmin: Boolean = false
   membershipButtonEnabled: Boolean = true
   isMouseOver: Boolean = false
   isUserLoggedIn: Boolean = false
@@ -38,6 +39,7 @@ export class PopularCommunityItemComponent implements OnInit {
       .subscribe(user => {
           this.user = user
           this.hasUserJoined = !!user?.subtiredds.find(s => s.id === this.community.id)
+          this.isUserAdmin = !!user?.managedSubtiredds.find(s => s.id === this.community.id)
         }
       )
   }

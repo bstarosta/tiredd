@@ -29,7 +29,7 @@ export class SubtireddService {
       if (error.status === 409) {
         this.subtireddNameConflict.next();
       } else {
-        console.log(error)
+        console.error(error)
       }
     })
   }
@@ -38,7 +38,7 @@ export class SubtireddService {
     this.httpClient.get<Subtiredd>(this.baseUrl + this.controllerUrl + "/" + name).subscribe(subtiredd => {
         this.currentSubtiredd.next(subtiredd);
       }, error => {
-        console.log(error)
+        console.error(error)
       }
     )
   }

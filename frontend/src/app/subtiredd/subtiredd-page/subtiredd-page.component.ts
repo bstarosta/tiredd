@@ -43,7 +43,6 @@ export class SubtireddPageComponent implements OnDestroy {
     this.isUserLoggedIn$ = userService.isUserLoggedIn$;
     this.userSubscription = userService.user$.pipe(filter(u => !!u)).subscribe(user => {
       this.user = user
-      console.log(user)
     });
   }
 
