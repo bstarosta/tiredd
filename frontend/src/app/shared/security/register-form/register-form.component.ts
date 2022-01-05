@@ -54,7 +54,6 @@ export class RegisterFormComponent implements OnDestroy, OnInit{
       ...this.form.value,
       password: this.password.value
     }
-    console.log("clicked");
     this.formSubmitted.emit(userRegistrationData);
   }
 

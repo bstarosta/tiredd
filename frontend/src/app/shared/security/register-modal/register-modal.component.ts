@@ -23,7 +23,6 @@ export class RegisterModalComponent {
   @Output() logInLinkClick: EventEmitter<AccountModalMode> = new EventEmitter<AccountModalMode>();
 
   onFormSubmitted(userRegisterData: RegisterFormOutput): void {
-    console.log("level-up")
     this.authService.registerUser(userRegisterData);
   }
 

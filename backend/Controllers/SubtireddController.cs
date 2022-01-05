@@ -26,8 +26,11 @@ namespace backend.Controllers
             var existingSubtiredd = await tireddDbContext.Subtiredds.FirstOrDefaultAsync(s => s.Name == model.Name);
             if (existingSubtiredd != null)
                 return StatusCode(StatusCodes.Status409Conflict);
-            var createdSubtiredd = await tireddDbContext.AddAsync(model.ToSubtiredd(UserId));
+            var user = await tireddDbContext.Users.SingleAsync(user => user.Id == UserId);
+            var createdSubtiredd = await tireddDbContext.AddAsync(model.ToSubtiredd(user));
             await tireddDbContext.SaveChangesAsync();
+            createdSubtiredd.Entity.Users = null;
+            createdSubtiredd.Entity.Admin = null;
             return new ObjectResult(createdSubtiredd.Entity) {StatusCode = StatusCodes.Status201Created};
         }
 
@@ -77,6 +80,13 @@ namespace backend.Controllers
             return new ObjectResult(ToUserSubtireddInfoJson(subtiredd)) {StatusCode = StatusCodes.Status201Created};
         }
 
+        private Task<User> GetUserWithSubtiredds()
+        {
+            return tireddDbContext.Users
+                .Include(user => user.Subtiredds)
+                .SingleAsync(user => user.Id == UserId);
+        }
+
         private static object ToUserSubtireddInfoJson(Subtiredd subtiredd)
         {
             return new
@@ -86,13 +96,6 @@ namespace backend.Controllers
             };
         }
 
-        private Task<User> GetUserWithSubtiredds()
-        {
-            return tireddDbContext.Users
-                .Include(user => user.Subtiredds)
-                .SingleAsync(user => user.Id == UserId);
-        }
-
         [Authorize]
         [HttpPost]
         [Route("subtiredd/{subtireddId}/leave")]
@@ -100,6 +103,8 @@ namespace backend.Controllers
         {
             var user = await GetUserWithSubtiredds();
             var subtiredd = user.Subtiredds.Find(subtiredd => subtiredd.Id == subtireddId);
+            if (subtiredd?.AdminId == user.Id)
+                return BadRequest();
             user.Subtiredds.Remove(subtiredd);
             await tireddDbContext.SaveChangesAsync();
             return new ObjectResult(ToUserSubtireddInfoJson(subtiredd)) {StatusCode = StatusCodes.Status201Created};
