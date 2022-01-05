@@ -1,8 +1,9 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {PostColumnService} from "../../services/post-column.service";
 import {PostListItemInfo} from "../../interfaces/post-list-item-info";
 import {PostListOrder} from "../../types/post-list-order";
 import {filter} from "rxjs/operators";
+import {Subscription} from "rxjs";
 
 const DEFAULT_ORDER: PostListOrder = "hot";
 
@@ -11,8 +12,9 @@ const DEFAULT_ORDER: PostListOrder = "hot";
   templateUrl: './post-column.component.html',
   styleUrls: ['./post-column.component.scss']
 })
-export class PostColumnComponent implements OnInit {
+export class PostColumnComponent implements OnInit, OnDestroy {
 
+  postsSubscription: Subscription;
   selectedOrder: PostListOrder = DEFAULT_ORDER;
   postList: PostListItemInfo[] = [];
   postListEndReached: boolean = false;
@@ -23,7 +25,7 @@ export class PostColumnComponent implements OnInit {
   constructor(private postColumnService: PostColumnService) {
 
     postColumnService.clearPostList();
-    postColumnService.postList$.pipe(filter(posts => posts !== null && posts !== undefined))
+    this.postsSubscription= postColumnService.postList$.pipe(filter(posts => posts !== null && posts !== undefined))
       .subscribe(posts => {
         this.loadingPosts = false;
         this.postList = [...this.postList, ...posts];
@@ -61,6 +63,10 @@ export class PostColumnComponent implements OnInit {
   loadPosts(): void {
     this.postColumnService.getPostList(this.selectedOrder, this.pageNumber, this.subtireddId);
     this.loadingPosts = true;
+  }
+
+  ngOnDestroy(): void {
+    this.postsSubscription.unsubscribe();
   }
 
 }
