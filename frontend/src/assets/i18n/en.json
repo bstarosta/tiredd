@@ -70,5 +70,7 @@
   "error.postText.required": "Post text is required",
   "error.postImageUrl.invalidUrl": "Please enter a valid URL",
   "selectSubtiredd": "Select subtiredd",
-  "joinToPost": "Joint this community to create posts"
+  "joinToPost": "Joint this community to create posts",
+  "error.subtireddNotFound": "No such subtiredd",
+  "error.postNotFound": "No such post in this subtiredd"
 }

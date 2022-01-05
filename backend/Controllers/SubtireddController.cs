@@ -130,16 +130,16 @@ namespace backend.Controllers
         [Route("subtiredd/{subtireddName}/post/{postId}")]
         public async Task<IActionResult> Get(string subtireddName, int postId)
         {
-                var subtiredd = await tireddDbContext.Subtiredds
-                    .Include(s => s.Posts).ThenInclude(p => p.Author)
-                    .Include(s => s.Posts).ThenInclude(p => p.Votes)
-                    .FirstOrDefaultAsync(subtiredd => subtiredd.Name == subtireddName);
-                if (subtiredd == null)
-                    return new NotFoundObjectResult("No such subtiredd");
-                var post = subtiredd.Posts?.FirstOrDefault(post => post.Id == postId);
-                if (post == null)
-                    return new NotFoundObjectResult("No such post in this subtiredd");
-                return new ObjectResult(ToPostJson(subtiredd, post, UserId)) {StatusCode = StatusCodes.Status200OK};
+            var subtiredd = await tireddDbContext.Subtiredds
+                .Include(s => s.Posts).ThenInclude(p => p.Author)
+                .Include(s => s.Posts).ThenInclude(p => p.Votes)
+                .FirstOrDefaultAsync(subtiredd => subtiredd.Name == subtireddName);
+            if (subtiredd == null)
+                return new NotFoundObjectResult("error.subtireddNotFound");
+            var post = subtiredd.Posts?.FirstOrDefault(post => post.Id == postId);
+            if (post == null)
+                return new NotFoundObjectResult("error.postNotFound");
+            return new ObjectResult(ToPostJson(subtiredd, post, UserId)) {StatusCode = StatusCodes.Status200OK};
         }
 
         private static object ToPostJson(Subtiredd subtiredd, Post post, string userId)

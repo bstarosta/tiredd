@@ -71,5 +71,7 @@
   "error.postText.required": "Treść posta jest wymagana",
   "error.postImageUrl.invalidUrl": "Podaj poprawny link",
   "selectSubtiredd": "Wybierz subtiredd",
-  "joinToPost": "Dołącz do społeczności, aby tworzyć posty"
+  "joinToPost": "Dołącz do społeczności, aby tworzyć posty",
+  "error.subtireddNotFound": "Nie ma takiego subtiredda",
+  "error.postNotFound": "Nie ma takiego posta w tym subtireddzie"
 }

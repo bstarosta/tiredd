@@ -1,6 +1,6 @@
 <trd-page-loader *ngIf="pending"></trd-page-loader>
 <ng-container *ngIf="!pending">
-  <div *ngIf="!!(notFoundError$ | async)" class="error-message">{{notFoundError$ | async}}</div>
+  <div *ngIf="!!(notFoundError$ | async)" class="error-message">{{(notFoundError$ | async) | translate}}</div>
   <div *ngIf="!(notFoundError$ | async)" class="row">
     <div class="column">
       <trd-post-list-item [post]="currentPost$ | async" [addRoutesToPost]="false"></trd-post-list-item>

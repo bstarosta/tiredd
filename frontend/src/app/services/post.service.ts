@@ -37,7 +37,6 @@ export class PostService {
       .subscribe(post => this.currentPost.next(post),
         error => {
           if (error.status === 404) {
-            console.log(error)
             this.notFoundError.next(error.error)
           } else
             console.log(error)
