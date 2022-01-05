@@ -1,3 +1,5 @@
+@use "../../../style/ui-colors";
+
 :host {
   display: flex;
   width: 70%;
@@ -29,4 +31,10 @@ trd-comments {
 
 trd-post-community-details {
   width: 30%;
+}
+
+.error-message {
+  color: ui-colors.$post-page-error-message;
+  font-size: 18px;
+  text-align: center;
 }

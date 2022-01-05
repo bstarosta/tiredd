@@ -36,10 +36,11 @@ export class SubtireddPageComponent implements OnDestroy {
       this.subtireddService.getSubtiredd(paramMap.get("subtireddName"))
       this.pending = true;
     });
-    this.subtireddSubscription = this.subtireddService.currentSubtiredd$.subscribe( subtiredd => {
-      this.subtiredd = subtiredd;
-      this.pending = false;
-    })
+    this.subtireddSubscription = this.subtireddService.currentSubtiredd$
+      .pipe(filter(i => !!i)).subscribe(subtiredd => {
+        this.subtiredd = subtiredd;
+        this.pending = false;
+      })
     this.isUserLoggedIn$ = userService.isUserLoggedIn$;
     this.userSubscription = userService.user$.pipe(filter(u => !!u)).subscribe(user => {
       this.user = user
@@ -55,12 +56,9 @@ export class SubtireddPageComponent implements OnDestroy {
     return !!this.user?.managedSubtiredds.find(s => s.id === this.subtiredd.id)
   }
 
-
-
   ngOnDestroy(): void {
     this.userSubscription.unsubscribe();
     this.routeSubscription.unsubscribe();
     this.subtireddSubscription.unsubscribe();
   }
-
 }

@@ -1,6 +1,6 @@
 import {Inject, Injectable} from '@angular/core';
 import {API_BASE_URL} from "../utils/api-base-url";
-import {Observable, Subject} from "rxjs";
+import {BehaviorSubject, Observable, Subject} from "rxjs";
 import {CreateCommunityFormOutput} from "../interfaces/create-community-form-output";
 import {HttpClient} from "@angular/common/http";
 import {Subtiredd} from "../interfaces/subtiredd";
@@ -12,7 +12,7 @@ export class SubtireddService {
 
   private readonly controllerUrl: string = "api/subtiredd"
 
-  private currentSubtiredd: Subject<Subtiredd> = new Subject<Subtiredd>();
+  private currentSubtiredd: BehaviorSubject<Subtiredd> = new BehaviorSubject<Subtiredd>(null);
   currentSubtiredd$: Observable<Subtiredd> = this.currentSubtiredd.asObservable();
   private subtireddCreated: Subject<void> = new Subject<void>();
   private subtireddNameConflict: Subject<void> = new Subject<void>();

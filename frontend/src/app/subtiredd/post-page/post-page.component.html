@@ -1,7 +1,11 @@
-<div class="row">
-  <div class="column">
-    <trd-post-list-item [post]="post" [addRoutesToPost]="false"></trd-post-list-item>
-    <trd-comments id="comments"></trd-comments>
+<trd-page-loader *ngIf="pending"></trd-page-loader>
+<ng-container *ngIf="!pending">
+  <div *ngIf="!!(notFoundError$ | async)" class="error-message">{{(notFoundError$ | async) | translate}}</div>
+  <div *ngIf="!(notFoundError$ | async)" class="row">
+    <div class="column">
+      <trd-post-list-item [post]="currentPost$ | async" [addRoutesToPost]="false"></trd-post-list-item>
+      <trd-comments id="comments" [commentsList]="commentsList$ | async"></trd-comments>
+    </div>
+    <trd-post-community-details [community]="currentSubtiredd$ | async"></trd-post-community-details>
   </div>
-  <trd-post-community-details></trd-post-community-details>
-</div>
+</ng-container>

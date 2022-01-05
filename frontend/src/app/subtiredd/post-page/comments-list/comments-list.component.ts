@@ -1,4 +1,4 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {Comment} from "../../../interfaces/comment";
 import {UserService} from "../../../services/user.service";
 import {Subscription} from "rxjs";
@@ -12,6 +12,8 @@ import {AccountModalService} from "../../../services/account-modal.service";
 export class CommentsListComponent implements OnInit, OnDestroy { // TODO: Split this list into components
 
   @Input() comments: Comment[]
+  @Input() postId: number;
+  @Output() commentCreated: EventEmitter<Comment> = new EventEmitter<Comment>();
   showReplyInput: Boolean[]
   isUserLoggedIn: Boolean = false
   isUserLoggedInSubscription: Subscription
@@ -43,5 +45,9 @@ export class CommentsListComponent implements OnInit, OnDestroy { // TODO: Split
       this.showReplyInput[commentIndex] = !this.showReplyInput[commentIndex]
     else
       this.accountModalService.openAccountModal('login')
+  }
+
+  onCommentCreated(comment: Comment, commentIndex: number) {
+    this.showReplyInput[commentIndex] = false;
   }
 }
